@@ -1,0 +1,139 @@
+.register-form-content {
+  width: 100%;
+  max-width: 500px;
+}
+.badge-role {
+  display: inline-block;
+  background: #FFF0F2;
+  color: #E63956;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+.register-form-content h2 {
+  font-size: 1.5rem;
+  color: #111827;
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+}
+.form-subtitle {
+  color: #6B7280;
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+.form-group-sm {
+  margin-bottom: 0.8rem;
+}
+.form-group-sm label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.3rem;
+}
+.form-group-sm input[type="text"],
+.form-group-sm input[type="password"],
+.form-group-sm input[type="email"],
+.form-group-sm input[type="tel"] {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  outline: none;
+  transition: all 0.2s;
+}
+.form-group-sm input:focus {
+  border-color: #E63956;
+}
+.form-group-sm .input-error {
+  border-color: #EF4444;
+  background-color: #FEF2F2;
+}
+.error-text {
+  color: #EF4444;
+  font-size: 0.7rem;
+  margin-top: 0.3rem;
+  display: block;
+}
+.password-input-wrap {
+  position: relative;
+}
+.toggle-password {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6B7280;
+  font-size: 0.9rem;
+}
+.checkbox-container-sm {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: #4B5563;
+  font-size: 0.75rem;
+  margin-bottom: 1.2rem;
+}
+.checkbox-container-sm input {
+  margin-top: 0.15rem;
+}
+.checkbox-container-sm a {
+  color: #E63956;
+  text-decoration: none;
+  font-weight: 600;
+}
+.checkbox-container-sm a:hover {
+  text-decoration: underline;
+}
+.btn-submit-sm {
+  width: 100%;
+  padding: 0.75rem;
+  background: #E63956;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-submit-sm:hover:not(:disabled) {
+  background: #C92A44;
+}
+.btn-submit-sm:disabled {
+  background: #FCA5A5;
+  cursor: not-allowed;
+}
+.btn-submit-sm.loading {
+  opacity: 0.7;
+}
+.register-hint {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #4B5563;
+  margin-top: 1rem;
+}
+.register-hint a {
+  color: #E63956;
+  font-weight: 600;
+  text-decoration: none;
+}
+.register-hint a:hover {
+  text-decoration: underline;
+}
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1rem;
+}
+.form-grid-full {
+  grid-column: 1 / -1;
+}
