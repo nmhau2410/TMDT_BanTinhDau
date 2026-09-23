@@ -35,7 +35,9 @@
   margin-bottom: 0.5rem;
 }
 .form-group input[type="text"],
-.form-group input[type="password"] {
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid #D1D5DB;
@@ -110,6 +112,7 @@
 }
 .btn-submit:disabled {
   background: #FCA5A5; 
+  color: white;
   cursor: not-allowed;
 }
 .btn-submit.loading {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export const useRegisterForm = (initialData, validationRules) => {
+export const useRegisterForm = (initialData, validationRules, onSubmitSuccess) => {
   const [formData, setFormData] = useState(initialData);
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
@@ -60,7 +60,11 @@ export const useRegisterForm = (initialData, validationRules) => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      alert('Đăng ký thành công!');
+      if (onSubmitSuccess) {
+        onSubmitSuccess(formData);
+      } else {
+        alert('Đăng ký thành công!');
+      }
     }, 1500);
   };
   const togglePassword = () => setShowPassword(!showPassword);

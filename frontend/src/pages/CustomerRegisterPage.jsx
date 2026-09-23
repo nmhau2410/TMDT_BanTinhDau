@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthLayout from '../components/AuthLayout';
 import { useRegisterForm } from '../services/RegisterForm';
+import { useNavigate } from 'react-router-dom';
 import './RegisterPage.css';
 
 const initialData = { fullName: '', email: '',phone: '',password: '',confirmPassword: '',agreed: false};
@@ -12,9 +13,13 @@ const validationRules = {
   confirmPassword: { required: true, matchField: 'password', matchMessage: 'Mật khẩu không khớp' }
 };
 const CustomerRegisterPage = () => {
+  const navigate = useNavigate();
+  const handleSuccess = (data) => {
+    navigate('/verify-otp', { state: { mode: 'register', email: data.email } });
+  };
   const {
     formData,errors,showPassword,showConfirmPassword,isLoading,isFormValid,handleChange,handleSubmit,togglePassword,toggleConfirmPassword
-  } = useRegisterForm(initialData, validationRules);
+  } = useRegisterForm(initialData, validationRules, handleSuccess);
   return (
     <AuthLayout>
       <div className="register-form-content">
