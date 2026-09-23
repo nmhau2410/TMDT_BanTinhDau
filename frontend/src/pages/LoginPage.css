@@ -1,0 +1,147 @@
+.form-content {
+  width: 100%;
+  max-width: 400px; 
+}
+.badge-role {
+  display: inline-block;
+  background: #FFF0F2;
+  color: #E63956;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+}
+.form-content h2 {
+  font-size: 1.8rem;
+  color: #111827;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+.form-subtitle {
+  color: #6B7280;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+.form-group {
+  margin-bottom: 1.2rem;
+}
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+.form-group input[type="text"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s;
+}
+.form-group input:focus {
+  border-color: #E63956;
+}
+.form-group .input-error {
+  border-color: #EF4444;
+  background-color: #FEF2F2;
+}
+.error-text {
+  color: #EF4444;
+  font-size: 0.75rem;
+  margin-top: 0.4rem;
+  display: block;
+}
+.password-input-wrap {
+  position: relative;
+}
+.toggle-password {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6B7280;
+  font-size: 1rem;
+}
+.form-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-size: 0.85rem;
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: #4B5563;
+}
+.forgot-link {
+  color: #E63956;
+  text-decoration: none;
+  font-weight: 600;
+}
+.forgot-link:hover {
+  text-decoration: underline;
+}
+.btn-submit {
+  width: 100%;
+  padding: 0.85rem;
+  background: #E63956;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-submit:hover:not(:disabled) {
+  background: #C92A44;
+}
+.btn-submit:disabled {
+  background: #FCA5A5; 
+  cursor: not-allowed;
+}
+.btn-submit.loading {
+  opacity: 0.7;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: #9CA3AF;
+  font-size: 0.8rem;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #E5E7EB;
+}
+.divider span {
+  padding: 0 1rem;
+}
+.register-hint {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #4B5563;
+}
+.register-hint a {
+  color: #E63956;
+  font-weight: 600;
+  text-decoration: none;
+}
+.register-hint a:hover {
+  text-decoration: underline;
+}
