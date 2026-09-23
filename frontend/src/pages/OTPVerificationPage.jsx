@@ -12,6 +12,12 @@ const OTPVerificationPage = () => {
   const email = state.email || 'name@email.com';
   const handleSuccess = (otpString) => {
     console.log('OTP Verified:', otpString);
+    if (mode === 'forgot-password') {
+      navigate('/reset-password', { replace: true });
+    } else {
+      alert('Xác thực email thành công!');
+      navigate('/login', { replace: true });
+    }
   };
   const {otp,timeLeft,isLoading,error,inputRefs,formatTime,handleChange,handleKeyDown,handlePaste,handleSubmit,handleResend,isExpired,isButtonDisabled} = useOTPVerification(300, handleSuccess);
   const content = {

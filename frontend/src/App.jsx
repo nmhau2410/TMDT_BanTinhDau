@@ -5,6 +5,7 @@ import CustomerRegisterPage from './pages/CustomerRegisterPage'
 import PartnerRegisterPage from './pages/PartnerRegisterPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import OTPVerificationPage from './pages/OTPVerificationPage'
+import ResetPasswordPage from './pages/ResetPasswordPage'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/register-partner" element={<PartnerRegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/verify-otp" element={<OTPVerificationPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
