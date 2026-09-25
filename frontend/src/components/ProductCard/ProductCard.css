@@ -1,0 +1,203 @@
+.product-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e7e8e3;
+  border-radius: 15px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(35, 48, 38, .09);
+}
+
+.product-card__badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: #fff;
+  background: #4c7056;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.product-card__image {
+  height: 178px;
+  margin: 10px 10px 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e2eadf, #f3e9dc);
+}
+
+.product-card__image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+
+.product-card:hover .product-card__image img {
+  transform: scale(1.035);
+}
+
+.product-card__image--fallback::after {
+  content: "Tinh dầu thiên nhiên";
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: #45664c;
+  font-weight: 800;
+}
+
+.product-card__content {
+  padding: 10px 11px 12px;
+}
+
+.product-card__category {
+  display: block;
+  margin-bottom: 4px;
+  color: #78907d;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+
+.product-card__name {
+  min-height: 32px;
+  margin: 4px 0;
+  color: #242622;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.product-card__description {
+  min-height: 25px;
+  margin: 0;
+  color: #777b75;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.product-card__origin {
+  margin: 6px 0 0;
+  color: #888c84;
+  font-size: 8px;
+}
+
+.product-card__origin span {
+  color: #4d7658;
+}
+
+.product-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 3px;
+  color: #676b64;
+  font-size: 9px;
+}
+
+.product-card__rating span:last-child {
+  color: #a0a29c;
+}
+
+.product-card__star {
+  color: #f3a400 !important;
+}
+
+.product-card__progress {
+  margin-top: 8px;
+}
+
+.product-card__progress-track {
+  height: 5px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #e6e6e2;
+}
+
+.product-card__progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #e88100;
+}
+
+.product-card__progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  color: #989b94;
+  font-size: 7px;
+}
+
+.product-card__bottom {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.product-card__prices strong {
+  display: block;
+  color: #225d38;
+  font-size: 14px;
+}
+
+.product-card__prices del {
+  display: block;
+  margin-top: 2px;
+  color: #a6a7a2;
+  font-size: 9px;
+}
+
+.product-card__buy {
+  min-height: 28px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: #ed1748;
+  font-size: 9px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.product-card__add {
+  width: 27px;
+  height: 27px;
+  border: 1px solid #dce4dc;
+  border-radius: 50%;
+  color: #45684e;
+  background: #f4f8f3;
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media (max-width: 650px) {
+  .product-card__image {
+    height: 142px;
+    margin: 7px 7px 0;
+  }
+
+  .product-card__content {
+    padding: 8px;
+  }
+
+  .product-card__name {
+    font-size: 11px;
+  }
+
+  .product-card__prices strong {
+    font-size: 12px;
+  }
+}
