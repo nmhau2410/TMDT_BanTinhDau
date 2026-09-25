@@ -1,4 +1,4 @@
-import homeDatabase from "../test/database";
+import homeDatabase from "../test/data.js";
 
 // Lấy toàn bộ dữ liệu cho Homepage
 export async function getHomeData() {
