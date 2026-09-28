@@ -1,7 +1,7 @@
 import React from 'react';
-import AuthLayout from '../components/AuthLayout';
-import { useRegisterForm } from '../services/RegisterForm';
-import './RegisterPage.css';
+import AuthLayout from '../../../components/AuthLayout.jsx';
+import { useRegisterForm } from '../../../services/RegisterForm.js';
+import '../css/RegisterPage.css';
 
 const initialData = { fullName: '', email: '',phone: '',password: '',confirmPassword: '',agreed: false};
 const validationRules = {
@@ -65,10 +65,10 @@ const CustomerRegisterPage = () => {
             {isLoading ? 'ĐANG XỬ LÝ...' : 'ĐĂNG KÝ'}
           </button>
           <div className="register-hint">
-            Đã có tài khoản? <a href="/login">Đăng nhập</a>
+            Đã có tài khoản? <a href="/auth/login">Đăng nhập</a>
           </div>
           <div className="register-hint" style={{ marginTop: '0.5rem' }}>
-            Bạn là chủ xưởng chưng cất? <a href="/register-partner">Đăng ký Đối tác</a>
+            Bạn là chủ xưởng chưng cất? <a href="/auth/register-partner">Đăng ký Đối tác</a>
           </div>
         </form>
       </div>

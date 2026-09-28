@@ -1,7 +1,7 @@
 import React from 'react';
-import AuthLayout from '../components/AuthLayout';
-import { useLoginForm } from '../services/LoginForm'; 
-import './LoginPage.css';
+import AuthLayout from '../../../components/AuthLayout.jsx';
+import { useLoginForm } from '../../../services/LoginForm.js';
+import '../css/LoginPage.css';
 
 const LoginPage = () => {
   const {
@@ -40,14 +40,14 @@ const LoginPage = () => {
               <span className="checkmark"></span>
               Ghi nhớ đăng nhập
             </label>
-            <a href="/forgot-password" className="forgot-link">Quên mật khẩu?</a>
+            <a href="/auth/forgot-password" className="forgot-link">Quên mật khẩu?</a>
           </div>
           <button type="submit" className={`btn-submit ${isLoading ? 'loading' : ''}`}disabled={!isFormValid || isLoading}>
             {isLoading ? 'ĐANG XỬ LÝ...' : 'ĐĂNG NHẬP'}
           </button>
           <div className="divider"><span>hoặc</span></div>
           <div className="register-hint">
-            Bạn chưa có tài khoản? <a href="/register">Đăng ký ngay</a>
+            Bạn chưa có tài khoản? <a href="/auth/register">Đăng ký ngay</a>
           </div>
         </form>
       </div>
