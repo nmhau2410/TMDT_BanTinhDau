@@ -62,7 +62,7 @@ export default function Header() {
 
                         {/* Đăng nhập */}
                         <a
-                            href="/login"
+                            href="/auth/login"
                             className="login-button"
                         >
               <span className="login-button__icon">
