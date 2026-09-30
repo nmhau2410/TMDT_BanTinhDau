@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import AuthRoutes from "./AuthRoutes";
 // import CustomerRoutes from "./CustomerRoutes";
-// import WorkshopRoutes from "./WorkshopRoutes";
+import WorkshopRoutes from "./WorkshopRoutes";
 // import AdminRoutes from "./AdminRoutes";
 
 function AppRoutes() {
@@ -15,7 +15,7 @@ function AppRoutes() {
 
                 <Route path="/auth/*" element={<AuthRoutes />} />
                 {/*<Route path="/customer/*" element={<CustomerRoutes />} />*/}
-                {/*<Route path="/workshop/*" element={<WorkshopRoutes />} />*/}
+                <Route path="/workshop/*" element={<WorkshopRoutes />} />
                 {/*<Route path="/admin/*" element={<AdminRoutes />} />*/}
 
                 {/*<Route path="*" element={<Navigate to="/" replace />} />*/}
