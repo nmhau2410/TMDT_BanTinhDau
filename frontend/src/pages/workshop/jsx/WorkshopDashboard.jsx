@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../../../components/workshop/Sidebar';
 import '../css/WorkshopDashboard.css';
 
 const WorkshopDashboard = () => {
+    const [filterType, setFilterType] = useState('month');
+    const [startDate, setStartDate] = useState('2023-10-01');
+    const [endDate, setEndDate] = useState('2023-10-31');
+    const [selectedMonth, setSelectedMonth] = useState('10');
+    const [selectedYear, setSelectedYear] = useState('2023');
+    const [selectedQuarter, setSelectedQuarter] = useState('Q3');
+
+    const [enableCompare, setEnableCompare] = useState(false);
+    const [compareMonth, setCompareMonth] = useState('9');
+    const [compareYear, setCompareYear] = useState('2023');
+    const [compareQuarter, setCompareQuarter] = useState('Q2');
+    const [compareTargetYear, setCompareTargetYear] = useState('2023');
+
     return (
         <div className="dashboard-container">
             <Sidebar />
@@ -12,12 +25,147 @@ const WorkshopDashboard = () => {
                     <span>Quản lý xưởng</span> / <span className="active">Quản lý thống kê hiệu suất</span>
                 </div>
 
-                {/* Stats Grid */}
+                <div className="card filter-card">
+                    <div className="filter-header">
+                        <h3 className="card-title" style={{ margin: 0 }}>Bộ lọc & So sánh dữ liệu</h3>
+                    </div>
+                    <div className="filter-body">
+                        <div className="filter-group">
+                            <label className="filter-label">Xem theo:</label>
+                            <select
+                                className="filter-select"
+                                value={filterType}
+                                onChange={(e) => setFilterType(e.target.value)}
+                            >
+                                <option value="day">Ngày tùy chọn</option>
+                                <option value="7days">7 ngày qua</option>
+                                <option value="month">Tháng</option>
+                                <option value="quarter">Quý</option>
+                                <option value="year">Năm</option>
+                            </select>
+                        </div>
+
+                        {filterType === 'day' && (
+                            <div className="filter-group">
+                                <label className="filter-label">Khoảng ngày:</label>
+                                <input type="date" className="filter-input" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+                                <span>đến</span>
+                                <input type="date" className="filter-input" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+                            </div>
+                        )}
+
+                        {filterType === 'month' && (
+                            <div className="filter-group">
+                                <label className="filter-label">Chọn tháng/năm:</label>
+                                <select className="filter-select" value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
+                                    {[...Array(12)].map((_, i) => (
+                                        <option key={i + 1} value={i + 1}>Tháng {i + 1}</option>
+                                    ))}
+                                </select>
+                                <select className="filter-select" value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                </select>
+                            </div>
+                        )}
+
+                        {filterType === 'quarter' && (
+                            <div className="filter-group">
+                                <label className="filter-label">Chọn quý/năm:</label>
+                                <select className="filter-select" value={selectedQuarter} onChange={(e) => setSelectedQuarter(e.target.value)}>
+                                    <option value="Q1">Quý 1</option>
+                                    <option value="Q2">Quý 2</option>
+                                    <option value="Q3">Quý 3</option>
+                                    <option value="Q4">Quý 4</option>
+                                </select>
+                                <select className="filter-select" value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                </select>
+                            </div>
+                        )}
+
+                        {filterType === 'year' && (
+                            <div className="filter-group">
+                                <label className="filter-label">Chọn năm:</label>
+                                <select className="filter-select" value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                </select>
+                            </div>
+                        )}
+
+                        <div className="filter-group checkbox-group">
+                            <label className="checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    checked={enableCompare}
+                                    onChange={(e) => setEnableCompare(e.target.checked)}
+                                />
+                                So sánh dữ liệu
+                            </label>
+                        </div>
+
+                        {enableCompare && filterType === 'month' && (
+                            <div className="filter-group compare-box">
+                                <label className="filter-label">So với tháng:</label>
+                                <select className="filter-select" value={compareMonth} onChange={(e) => setCompareMonth(e.target.value)}>
+                                    {[...Array(12)].map((_, i) => (
+                                        <option key={i + 1} value={i + 1}>Tháng {i + 1}</option>
+                                    ))}
+                                </select>
+                                <select className="filter-select" value={compareYear} onChange={(e) => setCompareYear(e.target.value)}>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                </select>
+                            </div>
+                        )}
+
+                        {enableCompare && filterType === 'quarter' && (
+                            <div className="filter-group compare-box">
+                                <label className="filter-label">So với quý:</label>
+                                <select className="filter-select" value={compareQuarter} onChange={(e) => setCompareQuarter(e.target.value)}>
+                                    <option value="Q1">Quý 1</option>
+                                    <option value="Q2">Quý 2</option>
+                                    <option value="Q3">Quý 3</option>
+                                    <option value="Q4">Quý 4</option>
+                                </select>
+                                <select className="filter-select" value={compareYear} onChange={(e) => setCompareYear(e.target.value)}>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                </select>
+                            </div>
+                        )}
+
+                        {enableCompare && filterType === 'year' && (
+                            <div className="filter-group compare-box">
+                                <label className="filter-label">So với năm:</label>
+                                <select className="filter-select" value={compareTargetYear} onChange={(e) => setCompareTargetYear(e.target.value)}>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
+                                </select>
+                            </div>
+                        )}
+
+                        <button className="filter-submit-btn">Áp dụng</button>
+                    </div>
+                </div>
+
                 <div className="stats-grid">
                     <div className="stat-card">
                         <span className="stat-title">Doanh thu tháng này</span>
                         <div className="stat-value">1.240.000.000đ</div>
-                        <div className="stat-badge positive">+12.4% so với tháng trước</div>
+                        {enableCompare ? (
+                            <div className="stat-badge positive">
+                                +12.4% so với {filterType === 'month' ? `Tháng ${compareMonth}/${compareYear}` : filterType === 'quarter' ? `${compareQuarter} (${compareYear})` : `Năm ${compareTargetYear}`}
+                            </div>
+                        ) : (
+                            <div className="stat-badge neutral">Không so sánh</div>
+                        )}
                     </div>
 
                     <div className="stat-card">
@@ -44,7 +192,7 @@ const WorkshopDashboard = () => {
 
                 <div className="content-grid">
                     <div className="card chart-card">
-                        <h3 className="card-title">Doanh thu xưởng theo tháng (Năm 2023)</h3>
+                        <h3 className="card-title">Doanh thu xưởng theo thời gian đã chọn</h3>
                         <div className="chart-container">
                             <svg viewBox="0 0 500 150" className="chart-svg">
                                 <defs>
@@ -58,12 +206,10 @@ const WorkshopDashboard = () => {
                                 <circle cx="250" cy="50" r="4" fill="#ffffff" stroke="#e63946" strokeWidth="2" />
                             </svg>
                             <div className="chart-labels">
-                                <span>Tháng 5</span>
-                                <span>Tháng 6</span>
-                                <span>Tháng 7</span>
-                                <span>Tháng 8</span>
-                                <span>Tháng 9</span>
-                                <span>Tháng 10</span>
+                                <span>Giai đoạn 1</span>
+                                <span>Giai đoạn 2</span>
+                                <span>Giai đoạn 3</span>
+                                <span>Giai đoạn 4</span>
                             </div>
                         </div>
                     </div>
@@ -87,7 +233,6 @@ const WorkshopDashboard = () => {
                 </div>
 
                 <div className="content-grid">
-                    {/* Top Selling Essential Oils */}
                     <div className="card">
                         <h3 className="card-title">Top 4 tinh dầu bán chạy tại xưởng</h3>
                         <div className="top-list">
