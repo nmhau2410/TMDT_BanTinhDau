@@ -3,6 +3,7 @@ import HomePage from "../pages/HomePage";
 import AuthRoutes from "./AuthRoutes";
 import CustomerRoutes from "./CustomerRoutes";
 import WorkshopRoutes from "./WorkshopRoutes";
+import AdminRoutes from "./AdminRoutes";
 
 function AppRoutes() {
   return (
@@ -14,6 +15,7 @@ function AppRoutes() {
         <Route path="/review/*" element={<CustomerRoutes />} />
         <Route path="/write-review" element={<CustomerRoutes />} />
         <Route path="/workshop/*" element={<WorkshopRoutes />} />
+        <Route path="/admin/*" element={<AdminRoutes />} />
       </Routes>
     </BrowserRouter>
   );
