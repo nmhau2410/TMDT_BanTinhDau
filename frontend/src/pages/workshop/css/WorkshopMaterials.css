@@ -1,5 +1,3 @@
-/* WorkshopMaterials.css - Giao diện Kho nguyên liệu gọn gàng, chuẩn SQL oilia_db */
-
 .wm-container {
     display: flex;
     min-height: 100vh;
@@ -14,7 +12,6 @@
     overflow-y: auto;
 }
 
-/* Breadcrumb */
 .wm-breadcrumb {
     font-size: 13px;
     color: #94a3b8;
@@ -33,7 +30,6 @@
     font-weight: 600;
 }
 
-/* Header */
 .wm-header {
     display: flex;
     justify-content: space-between;
@@ -102,7 +98,6 @@
     border-color: #94a3b8;
 }
 
-/* 4 Thẻ Thống Kê Gọn Gàng */
 .wm-stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -170,7 +165,6 @@
     margin-top: 3px;
 }
 
-/* Toolbar Tìm Kiếm & Bộ Lọc */
 .wm-toolbar {
     background: #ffffff;
     border-radius: 10px;
@@ -241,7 +235,6 @@
     white-space: nowrap;
 }
 
-/* Bảng Danh Sách */
 .wm-table-card {
     background: #ffffff;
     border-radius: 10px;
@@ -279,7 +272,6 @@
     background-color: #fcfdfe;
 }
 
-/* Cột Nguyên Liệu */
 .wm-mat-cell {
     display: flex;
     align-items: center;
@@ -309,7 +301,6 @@
     font-size: 11px;
 }
 
-/* Tầng Hương (Note Type) Badges */
 .wm-note-badge {
     display: inline-block;
     padding: 3px 8px;
@@ -335,7 +326,6 @@
     color: #be185d;
 }
 
-/* Danh mục (Category) Badges */
 .wm-cat-badge {
     display: inline-block;
     padding: 3px 9px;
@@ -345,31 +335,30 @@
     white-space: nowrap;
 }
 
-.wm-cat-badge.cat-1 { /* Tinh dầu */
+.wm-cat-badge.cat-1 {
     background-color: #ecfeff;
     color: #0891b2;
     border: 1px solid #cffafe;
 }
 
-.wm-cat-badge.cat-2 { /* Hương liệu */
+.wm-cat-badge.cat-2 {
     background-color: #fff7ed;
     color: #c2410c;
     border: 1px solid #ffedd5;
 }
 
-.wm-cat-badge.cat-3 { /* Chiết xuất tự nhiên */
+.wm-cat-badge.cat-3 {
     background-color: #ecfdf5;
     color: #047857;
     border: 1px solid #d1fae5;
 }
 
-.wm-cat-badge.cat-4 { /* Nguyên liệu khác */
+.wm-cat-badge.cat-4 {
     background-color: #f3e8ff;
     color: #7e22ce;
     border: 1px solid #ede9fe;
 }
 
-/* Mùi Hương (Scent Profile) */
 .wm-scent-text {
     color: #475569;
     font-size: 12px;
@@ -379,7 +368,6 @@
     text-overflow: ellipsis;
 }
 
-/* Tồn Kho & Thanh Tiến Độ */
 .wm-stock-cell {
     min-width: 150px;
 }
@@ -428,7 +416,6 @@
     font-weight: 600;
 }
 
-/* Đơn Giá */
 .wm-price-text {
     font-size: 13px;
     font-weight: 600;
@@ -436,7 +423,6 @@
     font-family: ui-monospace, SFMono-Regular, monospace;
 }
 
-/* Trạng Thái */
 .wm-status-pill {
     display: inline-flex;
     align-items: center;
@@ -466,7 +452,6 @@
     background-color: currentColor;
 }
 
-/* Thao Tác */
 .wm-actions {
     display: flex;
     align-items: center;
@@ -503,7 +488,6 @@
     border-color: #38bdf8;
 }
 
-/* Modals */
 .wm-modal-backdrop {
     position: fixed;
     top: 0;
@@ -571,8 +555,8 @@
     margin-bottom: 4px;
 }
 
-.wm-form-group input, 
-.wm-form-group select, 
+.wm-form-group input,
+.wm-form-group select,
 .wm-form-group textarea {
     width: 100%;
     padding: 8px 12px;
@@ -583,7 +567,7 @@
     outline: none;
 }
 
-.wm-form-group input:focus, 
+.wm-form-group input:focus,
 .wm-form-group select:focus {
     border-color: #e63946;
 }

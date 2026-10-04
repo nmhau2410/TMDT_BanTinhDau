@@ -1,27 +1,24 @@
 import React, { useState, useMemo } from 'react';
 import Sidebar from '../../../components/workshop/Sidebar';
 import '../css/WorkshopMaterials.css';
-import { 
-    FiPlus, 
-    FiSearch, 
-    FiDroplet, 
-    FiBox, 
-    FiAlertTriangle, 
-    FiSlash, 
-    FiEdit3, 
-    FiArrowDownCircle, 
-    FiX 
+import {
+    FiPlus,
+    FiSearch,
+    FiDroplet,
+    FiBox,
+    FiAlertTriangle,
+    FiSlash,
+    FiEdit3,
+    FiArrowDownCircle,
+    FiX
 } from 'react-icons/fi';
 
-// Danh mục chuẩn theo bảng material_categories trong SQL
 const CATEGORIES = [
     { id: 1, code: 'ESSENTIAL_OIL', name: 'Tinh dầu' },
     { id: 2, code: 'FRAGRANCE_OIL', name: 'Hương liệu' },
     { id: 3, code: 'NATURAL_EXTRACT', name: 'Chiết xuất tự nhiên' },
     { id: 4, code: 'OTHER', name: 'Nguyên liệu khác' }
 ];
-
-// Dữ liệu mẫu chuẩn cấu trúc bảng materials & workshop_inventory
 const INITIAL_INVENTORY = [
     {
         id: 1,
@@ -35,7 +32,7 @@ const INITIAL_INVENTORY = [
         image_url: 'https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?w=120&auto=format&fit=crop&q=80',
         stock_quantity: 4200,
         minimum_stock: 1000,
-        unit_price: 3500, // 3,500 đ / ml
+        unit_price: 3500,
         status: 1
     },
     {
@@ -64,7 +61,7 @@ const INITIAL_INVENTORY = [
         unit: 'ML',
         image_url: 'https://images.unsplash.com/photo-1577234286642-fc512a5f8f11?w=120&auto=format&fit=crop&q=80',
         stock_quantity: 215,
-        minimum_stock: 500, // Sắp hết hàng
+        minimum_stock: 500,
         unit_price: 3200,
         status: 1
     },
@@ -109,7 +106,7 @@ const INITIAL_INVENTORY = [
         unit: 'GRAM',
         image_url: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=120&auto=format&fit=crop&q=80',
         stock_quantity: 80,
-        minimum_stock: 200, // Sắp hết hàng
+        minimum_stock: 200,
         unit_price: 15000,
         status: 1
     },
@@ -126,7 +123,7 @@ const INITIAL_INVENTORY = [
         stock_quantity: 0,
         minimum_stock: 300,
         unit_price: 8500,
-        status: 0 // Tạm ngưng / hết hàng
+        status: 0
     }
 ];
 
@@ -136,14 +133,10 @@ const WorkshopMaterials = () => {
     const [selectedCategory, setSelectedCategory] = useState('ALL');
     const [selectedNote, setSelectedNote] = useState('ALL');
     const [stockFilter, setStockFilter] = useState('ALL');
-
-    // Modal state
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isStockInModalOpen, setIsStockInModalOpen] = useState(false);
     const [currentStockInItem, setCurrentStockInItem] = useState(null);
     const [stockInAmount, setStockInAmount] = useState('');
-
-    // Form thêm nguyên liệu mới
     const [newMaterial, setNewMaterial] = useState({
         name: '',
         scientific_name: '',
@@ -155,17 +148,13 @@ const WorkshopMaterials = () => {
         minimum_stock: '',
         unit_price: ''
     });
-
-    // Thống kê nhanh gọn
     const totalItems = inventory.length;
     const totalVolume = inventory.reduce((sum, item) => sum + Number(item.stock_quantity), 0);
     const lowStockCount = inventory.filter(item => item.status === 1 && item.stock_quantity <= item.minimum_stock).length;
     const inactiveCount = inventory.filter(item => item.status === 0).length;
-
-    // Lọc dữ liệu
     const filteredInventory = useMemo(() => {
         return inventory.filter(item => {
-            const matchesSearch = 
+            const matchesSearch =
                 item.name.toLowerCase().includes(searchTerm.toLowerCase().trim()) ||
                 item.scientific_name.toLowerCase().includes(searchTerm.toLowerCase().trim()) ||
                 item.scent_profile.toLowerCase().includes(searchTerm.toLowerCase().trim());
@@ -194,21 +183,16 @@ const WorkshopMaterials = () => {
         });
     }, [inventory, searchTerm, selectedCategory, selectedNote, stockFilter]);
 
-    // Bật tắt trạng thái nguyên liệu
     const handleToggleStatus = (id) => {
-        setInventory(prev => prev.map(item => 
+        setInventory(prev => prev.map(item =>
             item.id === id ? { ...item, status: item.status === 1 ? 0 : 1 } : item
         ));
     };
-
-    // Mở modal nhập thêm tồn kho
     const handleOpenStockIn = (item) => {
         setCurrentStockInItem(item);
         setStockInAmount('');
         setIsStockInModalOpen(true);
     };
-
-    // Xác nhận nhập thêm kho
     const handleConfirmStockIn = (e) => {
         e.preventDefault();
         const addAmount = Number(stockInAmount);
@@ -219,7 +203,7 @@ const WorkshopMaterials = () => {
                 return {
                     ...item,
                     stock_quantity: item.stock_quantity + addAmount,
-                    status: 1 // Tự động active nếu trước đó hết hàng
+                    status: 1
                 };
             }
             return item;
@@ -227,8 +211,6 @@ const WorkshopMaterials = () => {
 
         setIsStockInModalOpen(false);
     };
-
-    // Thêm nguyên liệu mới vào kho
     const handleSaveNewMaterial = (e) => {
         e.preventDefault();
         if (!newMaterial.name) return;
@@ -274,14 +256,11 @@ const WorkshopMaterials = () => {
             <Sidebar />
 
             <main className="wm-main">
-                {/* Breadcrumb */}
                 <div className="wm-breadcrumb">
                     <span>Quản lý xưởng</span>
                     <span>/</span>
                     <span className="active">Kho nguyên liệu</span>
                 </div>
-
-                {/* Header */}
                 <div className="wm-header">
                     <div className="wm-header-title">
                         <h1>Kho Nguyên Liệu Pha Chế</h1>
@@ -296,7 +275,6 @@ const WorkshopMaterials = () => {
                     </div>
                 </div>
 
-                {/* 4 Thống kê ngắn gọn */}
                 <div className="wm-stats-grid">
                     <div className="wm-stat-card">
                         <div className="wm-stat-icon blue">
@@ -341,19 +319,18 @@ const WorkshopMaterials = () => {
                     </div>
                 </div>
 
-                {/* Toolbar Tìm kiếm & Bộ lọc */}
                 <div className="wm-toolbar">
                     <div className="wm-search-wrap">
                         <FiSearch />
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             placeholder="Tìm tên nguyên liệu, tên khoa học, mùi hương..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
 
-                    <select 
+                    <select
                         className="wm-filter-select"
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
@@ -364,7 +341,7 @@ const WorkshopMaterials = () => {
                         ))}
                     </select>
 
-                    <select 
+                    <select
                         className="wm-filter-select"
                         value={selectedNote}
                         onChange={(e) => setSelectedNote(e.target.value)}
@@ -375,7 +352,7 @@ const WorkshopMaterials = () => {
                         <option value="BASE">Hương cuối (BASE)</option>
                     </select>
 
-                    <select 
+                    <select
                         className="wm-filter-select"
                         value={stockFilter}
                         onChange={(e) => setStockFilter(e.target.value)}
@@ -391,7 +368,6 @@ const WorkshopMaterials = () => {
                     </span>
                 </div>
 
-                {/* Bảng Danh Sách Nguyên Liệu */}
                 <div className="wm-table-card">
                     <table className="wm-table">
                         <thead>
@@ -411,7 +387,7 @@ const WorkshopMaterials = () => {
                                 filteredInventory.map(item => {
                                     const isLowStock = item.stock_quantity <= item.minimum_stock;
                                     const progressPercent = Math.min(
-                                        100, 
+                                        100,
                                         Math.round((item.stock_quantity / (item.minimum_stock * 2.5 || 100)) * 100)
                                     );
 
@@ -454,7 +430,7 @@ const WorkshopMaterials = () => {
                                                         </span>
                                                     </div>
                                                     <div className="wm-stock-progress-bar">
-                                                        <div 
+                                                        <div
                                                             className={`wm-stock-progress ${item.stock_quantity === 0 ? 'danger' : isLowStock ? 'warning' : 'safe'}`}
                                                             style={{ width: `${item.stock_quantity === 0 ? 0 : Math.max(8, progressPercent)}%` }}
                                                         ></div>
@@ -469,7 +445,7 @@ const WorkshopMaterials = () => {
                                             </td>
 
                                             <td>
-                                                <span 
+                                                <span
                                                     className={`wm-status-pill ${item.status === 1 ? 'active' : 'inactive'}`}
                                                     onClick={() => handleToggleStatus(item.id)}
                                                     title="Bấm để đổi trạng thái"
@@ -481,7 +457,7 @@ const WorkshopMaterials = () => {
 
                                             <td>
                                                 <div className="wm-actions">
-                                                    <button 
+                                                    <button
                                                         className="wm-btn-action stock-in"
                                                         onClick={() => handleOpenStockIn(item)}
                                                         title="Nhập thêm lượng tồn kho"
@@ -504,8 +480,6 @@ const WorkshopMaterials = () => {
                         </tbody>
                     </table>
                 </div>
-
-                {/* Modal Nhập thêm số lượng tồn kho */}
                 {isStockInModalOpen && currentStockInItem && (
                     <div className="wm-modal-backdrop" onClick={() => setIsStockInModalOpen(false)}>
                         <div className="wm-modal" onClick={e => e.stopPropagation()} style={{ maxWidth: '420px' }}>
@@ -523,20 +497,20 @@ const WorkshopMaterials = () => {
 
                                 <div className="wm-form-group">
                                     <label>Số lượng nhập thêm ({currentStockInItem.unit})</label>
-                                    <input 
-                                        type="number" 
-                                        placeholder="VD: 500, 1000..." 
+                                    <input
+                                        type="number"
+                                        placeholder="VD: 500, 1000..."
                                         value={stockInAmount}
                                         onChange={e => setStockInAmount(e.target.value)}
                                         min="1"
-                                        required 
+                                        required
                                         autoFocus
                                     />
                                 </div>
 
                                 <div className="wm-modal-actions">
-                                    <button 
-                                        type="button" 
+                                    <button
+                                        type="button"
                                         className="wm-btn-secondary"
                                         onClick={() => setIsStockInModalOpen(false)}
                                     >
@@ -550,8 +524,6 @@ const WorkshopMaterials = () => {
                         </div>
                     </div>
                 )}
-
-                {/* Modal Thêm nguyên liệu mới vào kho */}
                 {isAddModalOpen && (
                     <div className="wm-modal-backdrop" onClick={() => setIsAddModalOpen(false)}>
                         <div className="wm-modal" onClick={e => e.stopPropagation()}>
@@ -565,21 +537,21 @@ const WorkshopMaterials = () => {
                                 <div className="wm-form-row">
                                     <div className="wm-form-group">
                                         <label>Tên nguyên liệu *</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             placeholder="VD: Tinh dầu Cam Ngọt"
                                             value={newMaterial.name}
-                                            onChange={e => setNewMaterial({...newMaterial, name: e.target.value})}
-                                            required 
+                                            onChange={e => setNewMaterial({ ...newMaterial, name: e.target.value })}
+                                            required
                                         />
                                     </div>
                                     <div className="wm-form-group">
                                         <label>Tên khoa học</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             placeholder="VD: Citrus sinensis"
                                             value={newMaterial.scientific_name}
-                                            onChange={e => setNewMaterial({...newMaterial, scientific_name: e.target.value})}
+                                            onChange={e => setNewMaterial({ ...newMaterial, scientific_name: e.target.value })}
                                         />
                                     </div>
                                 </div>
@@ -587,9 +559,9 @@ const WorkshopMaterials = () => {
                                 <div className="wm-form-row">
                                     <div className="wm-form-group">
                                         <label>Danh mục</label>
-                                        <select 
+                                        <select
                                             value={newMaterial.category_id}
-                                            onChange={e => setNewMaterial({...newMaterial, category_id: e.target.value})}
+                                            onChange={e => setNewMaterial({ ...newMaterial, category_id: e.target.value })}
                                         >
                                             {CATEGORIES.map(cat => (
                                                 <option key={cat.id} value={cat.id}>{cat.name}</option>
@@ -598,9 +570,9 @@ const WorkshopMaterials = () => {
                                     </div>
                                     <div className="wm-form-group">
                                         <label>Tầng hương (Note type)</label>
-                                        <select 
+                                        <select
                                             value={newMaterial.note_type}
-                                            onChange={e => setNewMaterial({...newMaterial, note_type: e.target.value})}
+                                            onChange={e => setNewMaterial({ ...newMaterial, note_type: e.target.value })}
                                         >
                                             <option value="TOP">Hương đầu (TOP)</option>
                                             <option value="MIDDLE">Hương giữa (MIDDLE)</option>
@@ -611,20 +583,20 @@ const WorkshopMaterials = () => {
 
                                 <div className="wm-form-group">
                                     <label>Mô tả mùi hương (Scent profile)</label>
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         placeholder="VD: Ngọt ngào, ấm áp, thư thái..."
                                         value={newMaterial.scent_profile}
-                                        onChange={e => setNewMaterial({...newMaterial, scent_profile: e.target.value})}
+                                        onChange={e => setNewMaterial({ ...newMaterial, scent_profile: e.target.value })}
                                     />
                                 </div>
 
                                 <div className="wm-form-row">
                                     <div className="wm-form-group">
                                         <label>Đơn vị tính</label>
-                                        <select 
+                                        <select
                                             value={newMaterial.unit}
-                                            onChange={e => setNewMaterial({...newMaterial, unit: e.target.value})}
+                                            onChange={e => setNewMaterial({ ...newMaterial, unit: e.target.value })}
                                         >
                                             <option value="ML">ML (Mililít)</option>
                                             <option value="GRAM">GRAM (Gam)</option>
@@ -632,12 +604,12 @@ const WorkshopMaterials = () => {
                                     </div>
                                     <div className="wm-form-group">
                                         <label>Đơn giá (VNĐ / đơn vị)</label>
-                                        <input 
-                                            type="number" 
+                                        <input
+                                            type="number"
                                             placeholder="VD: 3000"
                                             value={newMaterial.unit_price}
-                                            onChange={e => setNewMaterial({...newMaterial, unit_price: e.target.value})}
-                                            required 
+                                            onChange={e => setNewMaterial({ ...newMaterial, unit_price: e.target.value })}
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -645,29 +617,29 @@ const WorkshopMaterials = () => {
                                 <div className="wm-form-row">
                                     <div className="wm-form-group">
                                         <label>Số lượng tồn ban đầu</label>
-                                        <input 
-                                            type="number" 
+                                        <input
+                                            type="number"
                                             placeholder="VD: 1000"
                                             value={newMaterial.stock_quantity}
-                                            onChange={e => setNewMaterial({...newMaterial, stock_quantity: e.target.value})}
-                                            required 
+                                            onChange={e => setNewMaterial({ ...newMaterial, stock_quantity: e.target.value })}
+                                            required
                                         />
                                     </div>
                                     <div className="wm-form-group">
                                         <label>Định mức tồn tối thiểu</label>
-                                        <input 
-                                            type="number" 
+                                        <input
+                                            type="number"
                                             placeholder="VD: 300"
                                             value={newMaterial.minimum_stock}
-                                            onChange={e => setNewMaterial({...newMaterial, minimum_stock: e.target.value})}
-                                            required 
+                                            onChange={e => setNewMaterial({ ...newMaterial, minimum_stock: e.target.value })}
+                                            required
                                         />
                                     </div>
                                 </div>
 
                                 <div className="wm-modal-actions">
-                                    <button 
-                                        type="button" 
+                                    <button
+                                        type="button"
                                         className="wm-btn-secondary"
                                         onClick={() => setIsAddModalOpen(false)}
                                     >
