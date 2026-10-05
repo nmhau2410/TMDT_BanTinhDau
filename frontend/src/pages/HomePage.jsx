@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from "react";
-import ProductCard from "../components/ProductCard/ProductCard";
+import React, { useEffect, useState } from "react";
+
+import HomeProductCard from "../components/HomeProductCard/HomeProductCard";
 import SkeletonProductCard from "../components/ProductCard/SkeletonProductCard.jsx";
+
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
@@ -19,6 +21,7 @@ import "./HomePage.css";
 const INITIAL_COUNTDOWN = 2 * 3600 + 45 * 60 + 18;
 
 export default function HomePage() {
+
     const [data, setData] = useState(null);
 
     const [activeTab, setActiveTab] = useState("Tất cả");
@@ -27,133 +30,272 @@ export default function HomePage() {
 
     const [savedVoucher, setSavedVoucher] = useState(null);
 
-    const [countdown, setCountdown] = useState(INITIAL_COUNTDOWN);
+    const [countdown, setCountdown] = useState(
+        INITIAL_COUNTDOWN
+    );
 
-    // ==============================
-    // Lấy dữ liệu Homepage
-    // ==============================
+    /* ==============================
+       LẤY DỮ LIỆU HOMEPAGE
+    ============================== */
 
     useEffect(() => {
+
         getHomeData().then((result) => {
             setData(result);
         });
+
     }, []);
 
-    // ==============================
-    // Countdown Flash Sale
-    // ==============================
+
+    /* ==============================
+       COUNTDOWN FLASH SALE
+    ============================== */
 
     useEffect(() => {
+
         const timer = window.setInterval(() => {
+
             setCountdown((value) => {
+
                 if (value > 0) {
                     return value - 1;
                 }
 
                 return INITIAL_COUNTDOWN;
             });
+
         }, 1000);
 
-        return () => window.clearInterval(timer);
+        return () => {
+            window.clearInterval(timer);
+        };
+
     }, []);
 
-    // Tự động chuyển Banner
+
+    /* ==============================
+       AUTO SLIDE BANNER
+    ============================== */
+
     useEffect(() => {
+
         if (!data?.hero?.length) {
             return;
         }
+
         const timer = window.setInterval(() => {
+
             setHeroIndex((value) => {
-                return (value + 1) % data.hero.length;
+
+                return (
+                    (value + 1) %
+                    data.hero.length
+                );
+
             });
+
         }, 5000);
-        return () => window.clearInterval(timer);
+
+        return () => {
+            window.clearInterval(timer);
+        };
+
     }, [data]);
 
-    // Loading
+
+    /* ==============================
+       LOADING
+    ============================== */
+
     if (!data) {
+
         return (
-            <main className="home-page">
-                <section className="home-container home-loading">
-                    <div className="skeleton hero-skeleton"/>
-                    <div className="skeleton-section-title"/>
-                    <div className="product-grid product-grid--4">
-                        {Array.from({length: 4}).map((_, index) => (
-                            <SkeletonProductCard key={index}/>
-                        ))}
-                    </div>
-                    <div className="skeleton-section-title"/>
-                    <div className="product-grid product-grid--4">
-                        {Array.from({length: 4}).map((_, index) => (
-                            <SkeletonProductCard key={index}/>
-                        ))}
-                    </div>
-                </section>
-            </main>
+            <>
+                <Header />
+
+                <main className="home-page">
+
+                    <section className="home-container home-loading">
+
+                        <div className="skeleton hero-skeleton" />
+
+                        <div className="skeleton-section-title" />
+
+                        <div className="product-grid product-grid--4">
+
+                            {Array.from({ length: 4 }).map(
+                                (_, index) => (
+                                    <SkeletonProductCard
+                                        key={index}
+                                    />
+                                )
+                            )}
+
+                        </div>
+
+
+                        <div className="skeleton-section-title" />
+
+                        <div className="product-grid product-grid--4">
+
+                            {Array.from({ length: 4 }).map(
+                                (_, index) => (
+                                    <SkeletonProductCard
+                                        key={index}
+                                    />
+                                )
+                            )}
+
+                        </div>
+
+                    </section>
+
+                </main>
+
+                <Footer />
+            </>
         );
     }
 
-    // Dữ liệu Homepage
-    const hero = getHero(data, heroIndex);
-    const bestProducts = getBestSellerProducts(
-        data,
-        activeTab
-    );
-    const countdownTime = formatCountdown(countdown);
 
-    // Banner
-    const handlePreviousHero = () => {
-        setHeroIndex(
-            (heroIndex - 1 + data.hero.length) % data.hero.length
+    /* ==============================
+       DATA
+    ============================== */
+
+    const hero = getHero(
+        data,
+        heroIndex
+    );
+
+    const bestProducts =
+        getBestSellerProducts(
+            data,
+            activeTab
         );
+
+    const countdownTime =
+        formatCountdown(countdown);
+
+
+    /* ==============================
+       HERO
+    ============================== */
+
+    const handlePreviousHero = () => {
+
+        setHeroIndex(
+            (heroIndex - 1 + data.hero.length) %
+            data.hero.length
+        );
+
     };
+
 
     const handleNextHero = () => {
+
         setHeroIndex(
-            (heroIndex + 1) % data.hero.length
+            (heroIndex + 1) %
+            data.hero.length
         );
+
     };
 
-    // Voucher
+
+    /* ==============================
+       PROMOTION
+    ============================== */
+
     const handlePromotion = (promotion) => {
-        const result = handlePromotionAction(promotion);
+
+        const result =
+            handlePromotionAction(
+                promotion
+            );
+
         if (result === "voucher") {
-            setSavedVoucher(promotion.id);
+
+            setSavedVoucher(
+                promotion.id
+            );
+
         }
+
     };
+
 
     return (
         <>
-            <Header/>
+            <Header />
+
             <main className="home-page">
-          {/*A. Banner giới thiệu chính*/}
+
+                {/* =====================================================
+                    A. HERO BANNER
+                ===================================================== */}
+
                 <section className="home-container hero">
+
                     <div className="hero__copy">
-                        <span className="hero__badge"> ☁ WORKSHOP MIỄN PHÍ MỖI TUẦN </span>
-                        <h1>{hero.title}</h1>
-                        <p>{hero.description}</p>
+
+                        <span className="hero__badge">
+                            ☁ WORKSHOP MIỄN PHÍ MỖI TUẦN
+                        </span>
+
+                        <h1>
+                            {hero.title}
+                        </h1>
+
+                        <p>
+                            {hero.description}
+                        </p>
+
                         <div className="hero__actions">
-                            <button className="hero__primary"> Tham gia ngay →</button>
-                            <button className="hero__secondary"> Xem lịch workshop ▦</button>
+
+                            <button
+                                className="hero__primary"
+                                type="button"
+                            >
+                                Tham gia ngay →
+                            </button>
+
+                            <button
+                                className="hero__secondary"
+                                type="button"
+                            >
+                                Xem lịch workshop ▦
+                            </button>
+
                         </div>
+
                     </div>
 
+
                     <div className="hero__image-wrap">
-                        <img src={hero.image} alt={hero.title}/>
+
+                        <img
+                            src={hero.image}
+                            alt={hero.title}
+                        />
+
                     </div>
+
+
+                    {/* PREVIOUS */}
 
                     <button
                         className="hero__arrow hero__arrow--left"
                         onClick={handlePreviousHero}
                         aria-label="Banner trước"
+                        type="button"
                     >
+
                         <svg
                             width="20"
                             height="20"
                             viewBox="0 0 24 24"
                             fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
                         >
+
                             <path
                                 d="M15 18L9 12L15 6"
                                 stroke="currentColor"
@@ -161,21 +303,28 @@ export default function HomePage() {
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                             />
+
                         </svg>
+
                     </button>
+
+
+                    {/* NEXT */}
 
                     <button
                         className="hero__arrow hero__arrow--right"
                         onClick={handleNextHero}
                         aria-label="Banner tiếp theo"
+                        type="button"
                     >
+
                         <svg
                             width="20"
                             height="20"
                             viewBox="0 0 24 24"
                             fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
                         >
+
                             <path
                                 d="M9 18L15 12L9 6"
                                 stroke="currentColor"
@@ -183,89 +332,106 @@ export default function HomePage() {
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                             />
+
                         </svg>
+
                     </button>
 
+
+                    {/* DOTS */}
+
                     <div className="hero__dots">
-                        {data.hero.map((item, index) => (
-                            <button key={item.id} className={index === heroIndex ? "active" : ""}
-                                    onClick={() => setHeroIndex(index)}
-                                    aria-label={`Banner ${index + 1}`}
-                            />
-                        ))}
+
+                        {data.hero.map(
+                            (item, index) => (
+
+                                <button
+                                    key={item.id}
+                                    type="button"
+                                    className={
+                                        index === heroIndex
+                                            ? "active"
+                                            : ""
+                                    }
+                                    onClick={() =>
+                                        setHeroIndex(index)
+                                    }
+                                    aria-label={
+                                        `Banner ${index + 1}`
+                                    }
+                                />
+
+                            )
+                        )}
+
                     </div>
+
                 </section>
 
-                {/* B. FLASH SALE */}
+
+                {/* =====================================================
+                    B. FLASH SALE
+                ===================================================== */}
 
                 <section className="home-container section-box">
+
                     <div className="section-heading section-heading--flash">
+
                         <div className="flash-heading">
+
                             <span className="flash-label">
-                              ⚡ FLASH SALE
+                                ⚡ FLASH SALE
                             </span>
+
                             <span className="countdown-box">
                                 {countdownTime.hours}
                             </span>
+
                             <b>:</b>
+
                             <span className="countdown-box">
                                 {countdownTime.minutes}
                             </span>
+
                             <b>:</b>
+
                             <span className="countdown-box countdown-box--orange">
-                                    {countdownTime.seconds}
+                                {countdownTime.seconds}
                             </span>
+
                             <span className="countdown-note">
                                 | Kết thúc trong hôm nay
                             </span>
+
                         </div>
 
-                        <a className="section-link" href="#" >
+
+                        <a
+                            className="section-link"
+                            href="#"
+                            onClick={(e) =>
+                                e.preventDefault()
+                            }
+                        >
                             Xem tất cả ưu đãi ›
                         </a>
-                    </div>
-
-                    <div className="product-grid product-grid--4">
-                        {data.flashSales.map((product) => (
-                            <ProductCard key={product.id} product={product} variant="flash" onBuy={() => buyProduct(product)}/>
-                        ))}
-                    </div>
-                </section>
-
-                {/* C. SẢN PHẨM MỚI VỀ*/}
-                <section className="home-container section">
-
-                    <div className="section-heading">
-
-                        <div>
-
-                            <span className="section-eyebrow">
-                              BỘ SƯU TẬP MÙA NÀY
-                            </span>
-
-                            <h2>
-                                Sản Phẩm Mới Về
-                            </h2>
-
-                        </div>
-
-                        <a className="section-link" href="#">
-                            Xem tất cả sản phẩm mới →
-                        </a>
 
                     </div>
 
 
                     <div className="product-grid product-grid--4">
 
-                        {data.newProducts
-                            .slice(0, 4)
+                        {data.flashSales
+                            ?.slice(0, 4)
                             .map((product) => (
 
-                                <ProductCard
+                                <HomeProductCard
                                     key={product.id}
                                     product={product}
-                                    onAdd={() => addToCart(product)}
+                                    variant="flash"
+                                    onBuy={() =>
+                                        buyProduct(product)
+                                    }
                                 />
 
                             ))}
@@ -275,9 +441,65 @@ export default function HomePage() {
                 </section>
 
 
-                {/* =========================================
-          D. TOP 8 SẢN PHẨM BÁN CHẠY
-      ========================================= */}
+                {/* =====================================================
+                    C. SẢN PHẨM MỚI VỀ
+                ===================================================== */}
+
+                <section className="home-container section">
+
+                    <div className="section-heading">
+
+                        <div>
+
+                            <span className="section-eyebrow">
+                                BỘ SƯU TẬP MÙA NÀY
+                            </span>
+
+                            <h2>
+                                Sản Phẩm Mới Về
+                            </h2>
+
+                        </div>
+
+
+                        <a
+                            className="section-link"
+                            href="#"
+                            onClick={(e) =>
+                                e.preventDefault()
+                            }
+                        >
+                            Xem tất cả sản phẩm mới →
+                        </a>
+
+                    </div>
+
+
+                    <div className="product-grid product-grid--4">
+
+                        {data.newProducts
+                            ?.slice(0, 4)
+                            .map((product) => (
+
+                                <HomeProductCard
+                                    key={product.id}
+                                    product={product}
+                                    variant="new"
+                                    onAdd={() =>
+                                        addToCart(product)
+                                    }
+                                />
+
+                            ))}
+
+                    </div>
+
+                </section>
+
+
+                {/* =====================================================
+                    D. TOP 8 SẢN PHẨM BÁN CHẠY
+                ===================================================== */}
 
                 <section className="home-container section">
 
@@ -285,9 +507,9 @@ export default function HomePage() {
 
                         <div>
 
-            <span className="section-eyebrow section-eyebrow--orange">
-              ĐƯỢC YÊU THÍCH NHẤT
-            </span>
+                            <span className="section-eyebrow section-eyebrow--orange">
+                                ĐƯỢC YÊU THÍCH NHẤT
+                            </span>
 
                             <h2>
                                 Top Sản Phẩm Bán Chạy
@@ -298,23 +520,26 @@ export default function HomePage() {
 
                         <div className="filter-tabs">
 
-                            {Object.keys(data.bestSellerTabs).map(
-                                (tab) => (
+                            {Object.keys(
+                                data.bestSellerTabs || {}
+                            ).map((tab) => (
 
-                                    <button
-                                        key={tab}
-                                        className={
-                                            activeTab === tab
-                                                ? "active"
-                                                : ""
-                                        }
-                                        onClick={() => setActiveTab(tab)}
-                                    >
-                                        {tab}
-                                    </button>
+                                <button
+                                    key={tab}
+                                    type="button"
+                                    className={
+                                        activeTab === tab
+                                            ? "active"
+                                            : ""
+                                    }
+                                    onClick={() =>
+                                        setActiveTab(tab)
+                                    }
+                                >
+                                    {tab}
+                                </button>
 
-                                )
-                            )}
+                            ))}
 
                         </div>
 
@@ -324,14 +549,16 @@ export default function HomePage() {
                     <div className="product-grid product-grid--4">
 
                         {bestProducts
-                            .slice(0, 8)
+                            ?.slice(0, 8)
                             .map((product) => (
 
-                                <ProductCard
+                                <HomeProductCard
                                     key={`${activeTab}-${product.id}`}
                                     product={product}
                                     variant="best"
-                                    onAdd={() => addToCart(product)}
+                                    onAdd={() =>
+                                        addToCart(product)
+                                    }
                                 />
 
                             ))}
@@ -341,66 +568,74 @@ export default function HomePage() {
                 </section>
 
 
-                {/* =========================================
-          E. PROMOTION / VOUCHER
-      ========================================= */}
+                {/* =====================================================
+                    E. PROMOTION / VOUCHER
+                ===================================================== */}
 
                 <section className="home-container promotion-grid">
 
-                    {data.promotions.map((promotion) => (
+                    {data.promotions?.map(
+                        (promotion) => (
 
-                        <article
-                            key={promotion.id}
-                            className="promotion-card"
-                            style={{
-                                backgroundImage:
-                                    `url(${promotion.image})`,
-                            }}
-                        >
+                            <article
+                                key={promotion.id}
+                                className="promotion-card"
+                                style={{
+                                    backgroundImage:
+                                        `url(${promotion.image})`,
+                                }}
+                            >
 
-                            <div className="promotion-card__overlay"/>
-
-
-                            <div className="promotion-card__content">
-
-              <span>
-                {promotion.badge}
-              </span>
-
-                                <h3>
-                                    {promotion.title}
-                                </h3>
-
-                                <p>
-                                    {promotion.description}
-                                </p>
+                                <div className="promotion-card__overlay" />
 
 
-                                <button
-                                    onClick={() =>
-                                        handlePromotion(promotion)
-                                    }
-                                >
-                                    {
-                                        savedVoucher === promotion.id
-                                            ? "✓ Đã lưu voucher"
-                                            : promotion.button
-                                    }
+                                <div className="promotion-card__content">
 
-                                    {" →"}
+                                    <span>
+                                        {promotion.badge}
+                                    </span>
 
-                                </button>
+                                    <h3>
+                                        {promotion.title}
+                                    </h3>
 
-                            </div>
+                                    <p>
+                                        {promotion.description}
+                                    </p>
 
-                        </article>
 
-                    ))}
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            handlePromotion(
+                                                promotion
+                                            )
+                                        }
+                                    >
+
+                                        {
+                                            savedVoucher ===
+                                            promotion.id
+                                                ? "✓ Đã lưu voucher"
+                                                : promotion.button
+                                        }
+
+                                        {" →"}
+
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+                        )
+                    )}
 
                 </section>
 
             </main>
-            <Footer/>
+
+            <Footer />
         </>
     );
 }

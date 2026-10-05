@@ -788,6 +788,89 @@ const products = [
 const getProduct = (id) =>
     products.find((item) => item.id === id);
 
+
+/*
+|--------------------------------------------------------------------------
+| Dữ liệu dùng chung cho Product Page
+|--------------------------------------------------------------------------
+*/
+
+export const productDatabase = {
+    products,
+
+    searchSuggestions: [
+        "Ngủ ngon",
+        "Đuổi muỗi",
+        "Trị liệu stress",
+        "Sả Java",
+        "Máy khuếch tán gốm",
+    ],
+
+    categories: [
+        {
+            value: "Kháng khuẩn",
+            label: "Kháng khuẩn",
+        },
+        {
+            value: "Thư giãn",
+            label: "Thư giãn",
+        },
+        {
+            value: "Tập trung",
+            label: "Tập trung",
+        },
+        {
+            value: "Chăm sóc tóc",
+            label: "Chăm sóc tóc",
+        },
+    ],
+
+    priceRanges: [
+        {
+            value: "under-250",
+            label: "Dưới 250.000đ",
+            min: 0,
+            max: 249999,
+        },
+        {
+            value: "250-500",
+            label: "250.000đ - 500.000đ",
+            min: 250000,
+            max: 500000,
+        },
+        {
+            value: "over-500",
+            label: "Trên 500.000đ",
+            min: 500001,
+            max: Infinity,
+        },
+    ],
+
+    ratings: [
+        {
+            value: 5,
+            label: "Từ 5 sao",
+        },
+        {
+            value: 4,
+            label: "Từ 4 sao",
+        },
+        {
+            value: 3,
+            label: "Từ 3 sao",
+        },
+        {
+            value: 2,
+            label: "Từ 2 sao",
+        },
+        {
+            value: 1,
+            label: "Từ 1 sao",
+        },
+    ],
+};
+
+
 /*
 |--------------------------------------------------------------------------
 | Dữ liệu Homepage
@@ -808,21 +891,24 @@ export const homeDatabase = {
     hero: [
         {
             id: 1,
-            title: "Liệu Pháp Hương Thơm & Nghệ Thuật Pha Chế Tinh Dầu",
+            title:
+                "Liệu Pháp Hương Thơm & Nghệ Thuật Pha Chế Tinh Dầu",
             description:
                 "Khám phá 24 công thức cân bằng cảm xúc từ thảo mộc hữu cơ nguyên chất dưới sự hướng dẫn từ các chuyên gia Aromatherapy hàng đầu.",
             image: img.workshop,
         },
         {
             id: 2,
-            title: "Workshop Aromatherapy miễn phí mỗi tuần",
+            title:
+                "Workshop Aromatherapy miễn phí mỗi tuần",
             description:
                 "Học cách phối hương, chọn tinh dầu và xây dựng không gian thư giãn phù hợp với nhu cầu của bạn.",
             image: img.workshop2,
         },
         {
             id: 3,
-            title: "Chạm vào thiên nhiên, chăm sóc bản thân",
+            title:
+                "Chạm vào thiên nhiên, chăm sóc bản thân",
             description:
                 "Những sản phẩm tinh dầu nguyên chất được chọn lọc kỹ càng cho không gian sống lành mạnh.",
             image: img.spa,
@@ -893,7 +979,8 @@ export const homeDatabase = {
         {
             id: 401,
             badge: "TIẾT KIỆM ĐẾN 35%",
-            title: "Combo Máy Xông Siêu Âm & Tinh Dầu Trị Liệu",
+            title:
+                "Combo Máy Xông Siêu Âm & Tinh Dầu Trị Liệu",
             description:
                 "Tặng kèm 2 chai tinh dầu khi mua máy khuếch tán gốm cao cấp.",
             button: "Xem ưu đãi combo",
@@ -903,8 +990,10 @@ export const homeDatabase = {
         {
             id: 402,
             badge: "BỘ QUÀ TẶNG SANG TRỌNG",
-            title: "Hộp Quà Thơm Chữa Lành Cho Người Thương",
-            description: "Thiết kế hộp quà theo yêu cầu cá nhân.",
+            title:
+                "Hộp Quà Thơm Chữa Lành Cho Người Thương",
+            description:
+                "Thiết kế hộp quà theo yêu cầu cá nhân.",
             button: "Lưu voucher",
             image: img.gift,
             action: "voucher",
