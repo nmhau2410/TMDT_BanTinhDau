@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
+import ProductPage from "../pages/ProductPage";
 import AuthRoutes from "./AuthRoutes";
 import CustomerRoutes from "./CustomerRoutes";
 import WorkshopRoutes from "./WorkshopRoutes";
@@ -10,6 +11,7 @@ function AppRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/products" element={<ProductPage />} />
         <Route path="/auth/*" element={<AuthRoutes />} />
         <Route path="/customer/*" element={<CustomerRoutes />} />
         <Route path="/review/*" element={<CustomerRoutes />} />
