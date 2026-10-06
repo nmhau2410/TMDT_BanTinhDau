@@ -6,12 +6,12 @@ import {
     FiChevronDown,
 } from "react-icons/fi";
 
-import Header from "../components/Header/Header";
-import ProductCard from "../components/ProductCard/ProductCard";
+import Header from "../../../components/Header/Header.jsx";
+import ProductCard from "../../../components/ProductCard/ProductCard.jsx";
 
-import { productDatabase } from "../test/data.js";
+import { productDatabase } from "../../../test/data.js";
 
-import "./ProductPage.css";
+import "../css/ProductPage.css";
 
 function ProductPage() {
     const products = productDatabase?.products || [];
