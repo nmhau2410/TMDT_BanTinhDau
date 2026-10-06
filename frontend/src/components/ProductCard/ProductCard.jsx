@@ -1,100 +1,290 @@
 import React from "react";
+import {
+    FiHeart,
+    FiShoppingBag,
+    FiZap,
+} from "react-icons/fi";
+
 import "./ProductCard.css";
 
-const formatPrice = (value) =>
-  new Intl.NumberFormat("vi-VN").format(value) + "đ";
+const formatPrice = (value) => {
+    if (!value) return "0đ";
 
-export default function ProductCard({
-  product,
-  variant = "default",
-  onAdd,
-  onBuy,
-}) {
-  const isFlash = variant === "flash";
-  const isBest = variant === "best";
+    return (
+        new Intl.NumberFormat("vi-VN").format(value) +
+        "đ"
+    );
+};
 
-  return (
-    <article className={`product-card product-card--${variant}`}>
-      {product.badge && <span className="product-card__badge">{product.badge}</span>}
+function ProductCard({
+                         product,
+                         favorite = false,
+                         onFavorite,
+                         onAdd,
+                         onBuy,
+                     }) {
+    const image =
+        product.images?.[0] ||
+        product.image;
 
-      <div className="product-card__image">
-        <img
-          src={product.image}
-          alt={product.name}
-          loading="lazy"
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-            e.currentTarget.parentElement.classList.add("product-card__image--fallback");
-          }}
-        />
-      </div>
+    const price =
+        Number(product.price || 0);
 
-      <div className="product-card__content">
-        {isFlash && product.category && (
-          <span className="product-card__category">{product.category}</span>
-        )}
+    const oldPrice =
+        Number(
+            product.oldPrice ||
+            product.originalPrice ||
+            0
+        );
 
-        {isBest && (
-          <div className="product-card__rating">
-            <span className="product-card__star">★</span>
-            <strong>{product.rating}</strong>
-            <span>({product.reviews})</span>
-          </div>
-        )}
+    let discount = 0;
 
-        <h3 className="product-card__name">{product.name}</h3>
+    if (oldPrice > price) {
+        discount = Math.round(
+            ((oldPrice - price) / oldPrice) *
+            100
+        );
+    }
 
-        {product.description && (
-          <p className="product-card__description">{product.description}</p>
-        )}
+    const stockText =
+        product.stockText ||
+        "Còn hàng";
 
-        <p className="product-card__origin">
-          <span>⌁</span> {product.origin}
-        </p>
+    const isOutOfStock =
+        stockText
+            .toLowerCase()
+            .includes("hết");
 
-        {isFlash && (
-          <div className="product-card__progress">
-            <div className="product-card__progress-track">
-              <span style={{ width: `${product.progress || 0}%` }} />
+    const isLowStock =
+        stockText
+            .toLowerCase()
+            .includes("sắp");
+
+    return (
+        <article className="product-card">
+
+            {/* =========================
+          IMAGE
+      ========================= */}
+
+            <div className="product-card-image">
+
+                {product.badge && (
+                    <span className="product-badge">
+            {product.badge}
+          </span>
+                )}
+
+                <button
+                    type="button"
+                    className={
+                        favorite
+                            ? "product-favorite active"
+                            : "product-favorite"
+                    }
+                    onClick={() =>
+                        onFavorite?.(product)
+                    }
+                    aria-label="Yêu thích"
+                >
+                    <FiHeart />
+                </button>
+
+                {image ? (
+                    <img
+                        src={image}
+                        alt={product.name}
+                        onError={(e) => {
+                            e.currentTarget.style.display =
+                                "none";
+
+                            const fallback =
+                                e.currentTarget.parentElement.querySelector(
+                                    ".product-image-fallback"
+                                );
+
+                            if (fallback) {
+                                fallback.style.display =
+                                    "flex";
+                            }
+                        }}
+                    />
+                ) : null}
+
+                <div
+                    className="product-image-fallback"
+                    style={{
+                        display: image
+                            ? "none"
+                            : "flex",
+                    }}
+                >
+                    <span>🌿</span>
+                    <small>
+                        Oiila
+                    </small>
+                </div>
+
             </div>
-            <div className="product-card__progress-info">
-              <span>Đã bán {product.progress || 0}%</span>
-              <span>{product.stockText}</span>
+
+            {/* =========================
+          CONTENT
+      ========================= */}
+
+            <div className="product-card-content">
+
+                {/* Rating */}
+
+                <div className="product-rating">
+
+          <span className="rating-star">
+            ★
+          </span>
+
+                    <strong>
+                        {product.rating || "5.0"}
+                    </strong>
+
+                    <span>
+            (
+                        {product.reviews || "0"}
+                        + đã bán)
+          </span>
+
+                </div>
+
+                {/* Name */}
+
+                <h3 className="product-name">
+                    {product.name}
+                </h3>
+
+                {/* Description */}
+
+                {product.description && (
+                    <p className="product-description">
+                        {product.description}
+                    </p>
+                )}
+
+                {/* Origin */}
+
+                {product.origin && (
+                    <div className="product-origin">
+
+            <span>
+              ❧
+            </span>
+
+                        <span>
+              {product.origin}
+            </span>
+
+                    </div>
+                )}
+
+                <div className="product-divider" />
+
+                {/* Price */}
+
+                <div className="product-price-row">
+
+                    <div className="product-price">
+
+                        <strong>
+                            {formatPrice(price)}
+                        </strong>
+
+                        {product.variants?.[0]?.volume && (
+                            <span>
+                /{product.variants[0].volume}
+              </span>
+                        )}
+
+                    </div>
+
+                    <div
+                        className={
+                            isOutOfStock
+                                ? "stock-status out"
+                                : isLowStock
+                                    ? "stock-status low"
+                                    : "stock-status"
+                        }
+                    >
+                        <span />
+
+                        {stockText}
+                    </div>
+
+                </div>
+
+                {/* Old price */}
+
+                <div className="product-old-price">
+
+                    {oldPrice > price && (
+                        <>
+                            <del>
+                                {formatPrice(oldPrice)}
+                            </del>
+
+                            <span className="discount">
+                -{discount}%
+              </span>
+                        </>
+                    )}
+
+                </div>
+
+                {/* Buttons */}
+
+                <div className="product-actions">
+
+                    <button
+                        type="button"
+                        className={
+                            isOutOfStock
+                                ? "product-button add disabled"
+                                : "product-button add"
+                        }
+                        disabled={isOutOfStock}
+                        onClick={() =>
+                            onAdd?.(product)
+                        }
+                    >
+                        <FiShoppingBag />
+
+                        <span>
+              Thêm giỏ
+            </span>
+                    </button>
+
+                    <button
+                        type="button"
+                        className={
+                            isOutOfStock
+                                ? "product-button buy disabled"
+                                : "product-button buy"
+                        }
+                        disabled={isOutOfStock}
+                        onClick={() =>
+                            onBuy?.(product)
+                        }
+                    >
+                        <FiZap />
+
+                        <span>
+              Mua ngay
+            </span>
+                    </button>
+
+                </div>
+
             </div>
-          </div>
-        )}
 
-        <div className="product-card__bottom">
-          <div className="product-card__prices">
-            <strong>{formatPrice(product.price)}</strong>
-            {product.oldPrice && <del>{formatPrice(product.oldPrice)}</del>}
-          </div>
-
-          {isFlash ? (
-            <button
-              className="product-card__buy"
-              onClick={() => onBuy?.(product)}
-            >
-              🛒 Mua ngay
-            </button>
-          ) : isBest ? (
-            <button
-              className="product-card__buy"
-              onClick={() => onAdd?.(product)}
-            >
-              Chọn mua
-            </button>
-          ) : (
-            <button
-              className="product-card__add"
-              aria-label={`Thêm ${product.name}`}
-              onClick={() => onAdd?.(product)}
-            >
-              +
-            </button>
-          )}
-        </div>
-      </div>
-    </article>
-  );
+        </article>
+    );
 }
+
+export default ProductCard;

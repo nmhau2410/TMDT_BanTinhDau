@@ -1,0 +1,760 @@
+import React, { useMemo, useState } from "react";
+import {
+    FiSearch,
+    FiSliders,
+    FiHeart,
+    FiChevronDown,
+} from "react-icons/fi";
+
+import Header from "../components/Header/Header";
+import ProductCard from "../components/ProductCard/ProductCard";
+
+import { productDatabase } from "../test/data.js";
+
+import "./ProductPage.css";
+
+function ProductPage() {
+    const products = productDatabase?.products || [];
+
+    const [search, setSearch] = useState("");
+    const [category, setCategory] = useState("all");
+    const [priceRange, setPriceRange] = useState("all");
+    const [rating, setRating] = useState("all");
+    const [sort, setSort] = useState("default");
+
+    const [selectedGroups, setSelectedGroups] = useState([]);
+
+    const [favorites, setFavorites] = useState([]);
+
+    /* =========================
+       FILTER
+    ========================= */
+
+    const filteredProducts = useMemo(() => {
+        let result = [...products];
+
+        // /* Tìm kiếm */
+        // if (search.trim()) {
+        //     const keyword = search.toLowerCase().trim();
+        //
+        //     result = result.filter((product) =>
+        //         product.name?.toLowerCase().includes(keyword)
+        //     );
+        // }
+
+        /* Danh mục */
+        if (category !== "all") {
+            result = result.filter(
+                (product) => product.category === category
+            );
+        }
+
+        /* Giá */
+        if (priceRange !== "all") {
+            const range = productDatabase.priceRanges?.find(
+                (item) => item.value === priceRange
+            );
+
+            if (range) {
+                result = result.filter((product) => {
+                    const price = Number(product.price || 0);
+
+                    return (
+                        price >= range.min &&
+                        price <= range.max
+                    );
+                });
+            }
+        }
+
+        /* Rating */
+        if (rating !== "all") {
+            result = result.filter(
+                (product) =>
+                    Number(product.rating || 0) >= Number(rating)
+            );
+        }
+
+        /* Nhóm mùi */
+        if (selectedGroups.length > 0) {
+            result = result.filter((product) =>
+                selectedGroups.includes(product.scent)
+            );
+        }
+
+        /* Sắp xếp */
+        if (sort === "price-asc") {
+            result.sort(
+                (a, b) =>
+                    Number(a.price || 0) -
+                    Number(b.price || 0)
+            );
+        }
+
+        if (sort === "price-desc") {
+            result.sort(
+                (a, b) =>
+                    Number(b.price || 0) -
+                    Number(a.price || 0)
+            );
+        }
+
+        if (sort === "rating") {
+            result.sort(
+                (a, b) =>
+                    Number(b.rating || 0) -
+                    Number(a.rating || 0)
+            );
+        }
+
+        if (sort === "sold") {
+            result.sort(
+                (a, b) =>
+                    Number(b.sold || 0) -
+                    Number(a.sold || 0)
+            );
+        }
+
+        return result;
+    }, [
+        products,
+        search,
+        category,
+        priceRange,
+        rating,
+        selectedGroups,
+        sort,
+    ]);
+
+    /* =========================
+       FAVORITE
+    ========================= */
+
+    const toggleFavorite = (product) => {
+        setFavorites((current) => {
+            if (current.includes(product.id)) {
+                return current.filter(
+                    (id) => id !== product.id
+                );
+            }
+
+            return [...current, product.id];
+        });
+    };
+
+    /* =========================
+       RESET
+    ========================= */
+
+    const resetFilters = () => {
+        setSearch("");
+        setCategory("all");
+        setPriceRange("all");
+        setRating("all");
+        setSelectedGroups([]);
+        setSort("default");
+    };
+
+    /* =========================
+       CART / BUY
+    ========================= */
+
+    const handleAdd = (product) => {
+        console.log("Thêm vào giỏ hàng:", product);
+    };
+
+    const handleBuy = (product) => {
+        console.log("Mua ngay:", product);
+    };
+
+    /* =========================
+       GROUP CHECKBOX
+    ========================= */
+
+    const toggleGroup = (group) => {
+        setSelectedGroups((current) => {
+            if (current.includes(group)) {
+                return current.filter(
+                    (item) => item !== group
+                );
+            }
+
+            return [...current, group];
+        });
+    };
+
+    /* =========================
+       GROUPS
+    ========================= */
+
+    const scentGroups = [
+        "Cam Bergamot",
+        "Lavender Pháp",
+        "Trầm hương",
+        "Tuyết tùng",
+        "Tràm trà Sa Pa",
+    ];
+
+    return (
+        <div className="product-page">
+
+            {/* HEADER */}
+            <Header />
+
+            <main>
+
+                {/* =========================
+            SEARCH SUGGESTIONS
+        ========================= */}
+
+
+                {/* =========================
+            PRODUCT AREA
+        ========================= */}
+
+                <section className="product-layout">
+
+                    {/* =========================
+              SIDEBAR
+          ========================= */}
+
+                    <aside className="product-sidebar">
+
+                        <div className="sidebar-heading">
+
+                            <div>
+                                <FiSliders />
+
+                                <strong>
+                                    Bộ lọc tìm kiếm
+                                </strong>
+                            </div>
+
+                            <button
+                                type="button"
+                                onClick={resetFilters}
+                            >
+                                Đặt lại
+                            </button>
+
+                        </div>
+
+                        {/* DANH MỤC */}
+
+                        <div className="filter-section">
+
+                            <h3>
+                                DANH MỤC
+                            </h3>
+
+                            <button
+                                className={
+                                    category === "all"
+                                        ? "filter-check active"
+                                        : "filter-check"
+                                }
+                                onClick={() =>
+                                    setCategory("all")
+                                }
+                            >
+                <span className="check-box">
+                  {category === "all" && "✓"}
+                </span>
+
+                                <span>
+                  Tất cả sản phẩm
+                </span>
+
+                                <small>
+                                    ({products.length})
+                                </small>
+                            </button>
+
+                            {productDatabase.categories?.map(
+                                (item) => (
+                                    <button
+                                        key={item.value}
+                                        className={
+                                            category === item.value
+                                                ? "filter-check active"
+                                                : "filter-check"
+                                        }
+                                        onClick={() =>
+                                            setCategory(item.value)
+                                        }
+                                    >
+                    <span className="check-box">
+                      {category === item.value &&
+                          "✓"}
+                    </span>
+
+                                        <span>
+                      {item.label}
+                    </span>
+                                    </button>
+                                )
+                            )}
+
+                        </div>
+
+                        {/* GIÁ */}
+
+                        <div className="filter-section">
+
+                            <h3>
+                                KHOẢNG GIÁ (VNĐ)
+                            </h3>
+
+                            <label className="radio-filter">
+                                <input
+                                    type="radio"
+                                    name="price"
+                                    checked={priceRange === "all"}
+                                    onChange={() =>
+                                        setPriceRange("all")
+                                    }
+                                />
+
+                                <span>
+                  Tất cả
+                </span>
+                            </label>
+
+                            {productDatabase.priceRanges?.map(
+                                (item) => (
+                                    <label
+                                        className="radio-filter"
+                                        key={item.value}
+                                    >
+                                        <input
+                                            type="radio"
+                                            name="price"
+                                            checked={
+                                                priceRange === item.value
+                                            }
+                                            onChange={() =>
+                                                setPriceRange(item.value)
+                                            }
+                                        />
+
+                                        <span>
+                      {item.label}
+                    </span>
+                                    </label>
+                                )
+                            )}
+
+                            <div className="price-inputs">
+
+                                <input
+                                    type="text"
+                                    placeholder="200.000"
+                                />
+
+                                <span>-</span>
+
+                                <input
+                                    type="text"
+                                    placeholder="700.000"
+                                />
+
+                            </div>
+
+                        </div>
+
+                        {/* NHÓM MÙI */}
+
+                        <div className="filter-section">
+
+                            <h3>
+                                NHÓM MÙI
+                            </h3>
+
+                            <div className="scent-tags">
+
+                                {scentGroups.map(
+                                    (group) => (
+                                        <button
+                                            type="button"
+                                            key={group}
+                                            className={
+                                                selectedGroups.includes(
+                                                    group
+                                                )
+                                                    ? "scent-tag active"
+                                                    : "scent-tag"
+                                            }
+                                            onClick={() =>
+                                                toggleGroup(group)
+                                            }
+                                        >
+                                            {group}
+                                        </button>
+                                    )
+                                )}
+
+                            </div>
+
+                        </div>
+
+                        {/* RATING */}
+
+                        <div className="filter-section">
+
+                            <h3>
+                                ĐÁNH GIÁ SAO
+                            </h3>
+
+                            {[5, 4, 3, 2, 1].map(
+                                (value) => (
+                                    <label
+                                        className="rating-filter"
+                                        key={value}
+                                    >
+                                        <input
+                                            type="radio"
+                                            name="rating"
+                                            checked={
+                                                rating === String(value)
+                                            }
+                                            onChange={() =>
+                                                setRating(String(value))
+                                            }
+                                        />
+
+                                        <span className="stars">
+                      {"★".repeat(value)}
+                                            <span className="empty-stars">
+                        {"★".repeat(5 - value)}
+                      </span>
+                    </span>
+
+                                        <small>
+                                            (Từ {value} sao)
+                                        </small>
+
+                                    </label>
+                                )
+                            )}
+
+                        </div>
+
+                        {/* NÔNG TRẠI */}
+
+                        <div className="filter-section">
+
+                            <h3>
+                                NÔNG TRẠI & XUẤT XỨ
+                            </h3>
+
+                            <label className="filter-check">
+                                <span className="check-box" />
+                                <span>
+                  Đà Lạt Organic
+                </span>
+                                <small>(14)</small>
+                            </label>
+
+                            <label className="filter-check">
+                                <span className="check-box" />
+                                <span>
+                  Bảo Lộc Farm
+                </span>
+                                <small>(8)</small>
+                            </label>
+
+                            <label className="filter-check">
+                                <span className="check-box" />
+                                <span>
+                  Hạ Giang Native
+                </span>
+                                <small>(6)</small>
+                            </label>
+
+                            <label className="filter-check">
+                                <span className="check-box" />
+                                <span>
+                  Nhập khẩu Pháp
+                </span>
+                                <small>(10)</small>
+                            </label>
+
+                        </div>
+
+                        {/* BUTTON */}
+
+                        <div className="filter-actions">
+
+                            <button
+                                type="button"
+                                onClick={() => {}}
+                            >
+                                Áp dụng
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={resetFilters}
+                            >
+                                Đặt lại
+                            </button>
+
+                        </div>
+
+                    </aside>
+
+                    {/* =========================
+              PRODUCTS
+          ========================= */}
+
+                    <section className="product-results">
+
+                        <div className="product-results-header">
+
+                            <div>
+                                <span>
+                                  Hiển thị{" "}
+                                    <strong>
+                                    {filteredProducts.length}
+                                  </strong>{" "}
+                                    sản phẩm phù hợp tiêu chí
+                                </span>
+                                <div className="search-suggestions">
+
+                                    {productDatabase.searchSuggestions?.map(
+                                        (item) => (
+                                            <button
+                                                key={item}
+                                                type="button"
+                                                onClick={() =>
+                                                    setSearch(item)
+                                                }
+                                            >
+                                                {item}
+                                            </button>
+                                        )
+                                    )}
+
+                                </div>
+                            </div>
+
+                            <div className="sort-box">
+
+                                <select
+                                    value={sort}
+                                    onChange={(e) =>
+                                        setSort(e.target.value)
+                                    }
+                                >
+                                    <option value="default">
+                                        Sắp xếp
+                                    </option>
+
+                                    <option value="sold">
+                                        Bán chạy nhất
+                                    </option>
+
+                                    <option value="rating">
+                                        Đánh giá cao nhất
+                                    </option>
+
+                                    <option value="price-asc">
+                                        Giá thấp đến cao
+                                    </option>
+
+                                    <option value="price-desc">
+                                        Giá cao đến thấp
+                                    </option>
+                                </select>
+
+                                <FiChevronDown />
+
+                            </div>
+
+                        </div>
+
+                        {filteredProducts.length > 0 ? (
+
+                            <div className="product-grid">
+
+                                {filteredProducts.map(
+                                    (product) => (
+                                        <ProductCard
+                                            key={product.id}
+                                            product={product}
+                                            favorite={favorites.includes(
+                                                product.id
+                                            )}
+                                            onFavorite={() =>
+                                                toggleFavorite(product)
+                                            }
+                                            onAdd={handleAdd}
+                                            onBuy={handleBuy}
+                                        />
+                                    )
+                                )}
+
+                            </div>
+
+                        ) : (
+
+                            <div className="empty-products">
+
+                                <div>
+                                    🔍
+                                </div>
+
+                                <h2>
+                                    Không tìm thấy sản phẩm
+                                </h2>
+
+                                <p>
+                                    Hãy thử thay đổi bộ lọc hoặc
+                                    từ khóa tìm kiếm.
+                                </p>
+
+                                <button
+                                    type="button"
+                                    onClick={resetFilters}
+                                >
+                                    Xóa bộ lọc
+                                </button>
+
+                            </div>
+
+                        )}
+
+                    </section>
+
+                </section>
+
+            </main>
+
+            {/* =========================
+          FOOTER
+      ========================= */}
+
+            <footer className="product-footer">
+
+                <div className="footer-inner">
+
+                    <div className="footer-brand">
+
+                        <div className="footer-logo">
+                            <span />
+                            Oiila
+                        </div>
+
+                        <p>
+                            Welcome to Oiila, nơi tinh dầu
+                            thiên nhiên kết hợp cùng nghệ thuật
+                            chăm sóc sức khỏe và không gian sống.
+                        </p>
+
+                    </div>
+
+                    <div className="footer-column">
+
+                        <h3>
+                            Categories
+                        </h3>
+
+                        <span>
+              Tinh dầu
+            </span>
+
+                        <span>
+              Máy khuếch tán
+            </span>
+
+                        <span>
+              Combo
+            </span>
+
+                        <span>
+              Quà tặng
+            </span>
+
+                    </div>
+
+                    <div className="footer-column">
+
+                        <h3>
+                            Shopping
+                        </h3>
+
+                        <span>
+              Thanh toán
+            </span>
+
+                        <span>
+              Giao hàng
+            </span>
+
+                        <span>
+              Bảo vệ người mua
+            </span>
+
+                    </div>
+
+                    <div className="footer-column">
+
+                        <h3>
+                            Customer care
+                        </h3>
+
+                        <span>
+              Trung tâm hỗ trợ
+            </span>
+
+                        <span>
+              Điều khoản
+            </span>
+
+                        <span>
+              Chính sách bảo mật
+            </span>
+
+                        <span>
+              Đổi trả
+            </span>
+
+                    </div>
+
+                    <div className="footer-column">
+
+                        <h3>
+                            Pages
+                        </h3>
+
+                        <span>
+              Về chúng tôi
+            </span>
+
+                        <span>
+              Cửa hàng
+            </span>
+
+                        <span>
+              Liên hệ
+            </span>
+
+                        <span>
+              Blog
+            </span>
+
+                    </div>
+
+                </div>
+
+                <div className="footer-bottom">
+                    © 2023 Oiila Inc. All rights reserved
+                </div>
+
+            </footer>
+
+        </div>
+    );
+}
+
+export default ProductPage;
