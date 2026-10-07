@@ -7,7 +7,7 @@ import CartPage from "../pages/customer/jsx/CartPage.jsx";
 import AccountPage from "../pages/customer/jsx/AccountPage.jsx";
 import ChangePasswordPage from "../pages/customer/jsx/ChangePasswordPage.jsx";
 import FavoriteProducts from "../pages/customer/jsx/FavoriteProducts";
-import OrdersPage from "../pages/customer/jsx/OrdersPage";
+import MyOrdersPage from "../pages/customer/jsx/MyOrdersPage.jsx";
 import WorkshopList from "../pages/customer/jsx/WorkshopList";
 import WorkshopDetail from "../pages/customer/jsx/WorkshopDetail";
 function CustomerRoutes() {
@@ -28,7 +28,7 @@ function CustomerRoutes() {
       <Route path="account" element={<AccountPage />}/>
       <Route path="change-password" element={<ChangePasswordPage />} />
         <Route path="favorites" element={<FavoriteProducts />}/>
-        <Route path="orders" element={<OrdersPage />}/>
+        <Route path="myorders" element={<MyOrdersPage />}/>
         <Route path="workshop" element={<WorkshopList />} />
         <Route path="workshop/:id" element={<WorkshopDetail />} />
 
