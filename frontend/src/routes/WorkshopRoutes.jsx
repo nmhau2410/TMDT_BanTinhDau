@@ -7,6 +7,7 @@ import WorkshopCategories from "../pages/workshop/jsx/WorkshopCategories";
 import WorkshopOrders from "../pages/workshop/jsx/WorkshopOrders";
 import WorkshopRules from "../pages/workshop/jsx/WorkshopRules";
 import WorkshopInfo from "../pages/workshop/jsx/WorkshopInfo";
+import WorkshopProducts from "../pages/workshop/jsx/WorkshopProducts";
 
 function WorkshopRoutes() {
     return (
@@ -15,6 +16,7 @@ function WorkshopRoutes() {
 
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="orders" element={<WorkshopOrders />} />
+            <Route path="products" element={<WorkshopProducts />} />
             <Route path="materials" element={<WorkshopMaterials />} />
             <Route path="reviews" element={<WorkshopReviews />} />
             <Route path="categories" element={<WorkshopCategories />} />
