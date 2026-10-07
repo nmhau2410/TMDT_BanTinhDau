@@ -87,7 +87,7 @@ const AdminSidebar = () => {
                 </NavLink>
 
                 <NavLink
-                    to="/admin/vouchers"
+                    to="/admin/promotions"
                     className={({isActive}) => isActive ? "menu-item active" : "menu-item"}
                 >
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
