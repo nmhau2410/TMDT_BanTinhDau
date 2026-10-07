@@ -5,8 +5,10 @@ import {
     FiHeart,
     FiChevronDown,
 } from "react-icons/fi";
-
+import { useNavigate } from "react-router-dom";
+import { addToCart } from "../../../services/CartService.js";
 import Header from "../../../components/Header/Header.jsx";
+import Footer from "../../../components/Footer/Footer";
 import ProductCard from "../../../components/ProductCard/ProductCard.jsx";
 
 import { productDatabase } from "../../../test/data.js";
@@ -14,6 +16,8 @@ import { productDatabase } from "../../../test/data.js";
 import "../css/ProductPage.css";
 
 function ProductPage() {
+    const navigate = useNavigate();
+
     const products = productDatabase?.products || [];
 
     const [search, setSearch] = useState("");
@@ -160,11 +164,19 @@ function ProductPage() {
     ========================= */
 
     const handleAdd = (product) => {
-        console.log("Thêm vào giỏ hàng:", product);
+        if (!product) return;
+
+        addToCart(product, 1);
+
+        alert(`Đã thêm "${product.name}" vào giỏ hàng`);
     };
 
     const handleBuy = (product) => {
-        console.log("Mua ngay:", product);
+        if (!product) return;
+
+        addToCart(product, 1);
+
+        navigate("/cart");
     };
 
     /* =========================
@@ -634,124 +646,7 @@ function ProductPage() {
           FOOTER
       ========================= */}
 
-            <footer className="product-footer">
-
-                <div className="footer-inner">
-
-                    <div className="footer-brand">
-
-                        <div className="footer-logo">
-                            <span />
-                            Oiila
-                        </div>
-
-                        <p>
-                            Welcome to Oiila, nơi tinh dầu
-                            thiên nhiên kết hợp cùng nghệ thuật
-                            chăm sóc sức khỏe và không gian sống.
-                        </p>
-
-                    </div>
-
-                    <div className="footer-column">
-
-                        <h3>
-                            Categories
-                        </h3>
-
-                        <span>
-              Tinh dầu
-            </span>
-
-                        <span>
-              Máy khuếch tán
-            </span>
-
-                        <span>
-              Combo
-            </span>
-
-                        <span>
-              Quà tặng
-            </span>
-
-                    </div>
-
-                    <div className="footer-column">
-
-                        <h3>
-                            Shopping
-                        </h3>
-
-                        <span>
-              Thanh toán
-            </span>
-
-                        <span>
-              Giao hàng
-            </span>
-
-                        <span>
-              Bảo vệ người mua
-            </span>
-
-                    </div>
-
-                    <div className="footer-column">
-
-                        <h3>
-                            Customer care
-                        </h3>
-
-                        <span>
-              Trung tâm hỗ trợ
-            </span>
-
-                        <span>
-              Điều khoản
-            </span>
-
-                        <span>
-              Chính sách bảo mật
-            </span>
-
-                        <span>
-              Đổi trả
-            </span>
-
-                    </div>
-
-                    <div className="footer-column">
-
-                        <h3>
-                            Pages
-                        </h3>
-
-                        <span>
-              Về chúng tôi
-            </span>
-
-                        <span>
-              Cửa hàng
-            </span>
-
-                        <span>
-              Liên hệ
-            </span>
-
-                        <span>
-              Blog
-            </span>
-
-                    </div>
-
-                </div>
-
-                <div className="footer-bottom">
-                    © 2023 Oiila Inc. All rights reserved
-                </div>
-
-            </footer>
+            <Footer />
 
         </div>
     );
