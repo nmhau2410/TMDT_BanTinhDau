@@ -1,0 +1,706 @@
+.workshop-detail-page {
+    min-height: 100vh;
+    background: #f7f8fc;
+    color: #182438;
+}
+
+.workshop-detail-container {
+    width: min(1400px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.workshop-detail-breadcrumb {
+    padding: 18px 0;
+    color: #7d8796;
+    font-size: 12px;
+}
+
+.workshop-detail-breadcrumb span {
+    margin: 0 9px;
+    color: #c3c8d0;
+}
+
+/* Company */
+
+.workshop-company-section {
+    background: #fff;
+    padding-bottom: 42px;
+}
+
+.workshop-company-grid {
+    display: grid;
+    grid-template-columns: 44% 56%;
+    gap: 30px;
+}
+
+.workshop-gallery {
+    min-width: 0;
+}
+
+.workshop-main-image {
+    position: relative;
+    height: 365px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.workshop-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-button {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,.92);
+    cursor: pointer;
+}
+
+.gallery-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 28px 18px 17px;
+    background: linear-gradient(transparent, rgba(0,0,0,.7));
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.workshop-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.workshop-thumbnail {
+    position: relative;
+    height: 85px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.workshop-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.workshop-thumbnail span {
+    position: absolute;
+    left: 8px;
+    bottom: 7px;
+    color: #fff;
+    font-size: 9px;
+    text-shadow: 0 1px 3px #000;
+}
+
+/* Company info */
+
+.workshop-company-info {
+    padding: 12px 0;
+}
+
+.workshop-company-title h1 {
+    margin: 0;
+    font-size: 32px;
+    letter-spacing: -.8px;
+}
+
+.workshop-company-title p {
+    margin: 7px 0 15px;
+    color: #697488;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.workshop-rating-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    font-size: 12px;
+    color: #687486;
+}
+
+.workshop-rating-row strong {
+    color: #ef9d00;
+    letter-spacing: 1px;
+}
+
+.workshop-rating-row b {
+    color: #273247;
+    font-size: 14px;
+}
+
+.workshop-rating-row i {
+    width: 1px;
+    height: 14px;
+    background: #d9dde4;
+    margin: 0 7px;
+}
+
+.workshop-contact-box {
+    margin-top: 20px;
+    padding: 17px;
+    border-radius: 10px;
+    background: #edf3ff;
+}
+
+.contact-block + .contact-block {
+    margin-top: 15px;
+}
+
+.contact-block span {
+    display: block;
+    margin-bottom: 5px;
+    color: #728099;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.contact-block strong {
+    display: block;
+    color: #34435a;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.workshop-company-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 17px;
+}
+
+.workshop-company-actions button,
+.workshop-company-actions a {
+    min-height: 42px;
+    padding: 0 17px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.bulk-button {
+    background: #ed1747;
+    color: #fff;
+}
+
+.consult-button {
+    border: none;
+    background: #dce9ff;
+    color: #3d506a;
+}
+
+.vr-button {
+    border: none;
+    background: #edf1f8;
+    color: #738096;
+}
+
+/* Capacity */
+
+.workshop-capacity-section {
+    padding: 30px 0;
+    background: #f5f7fc;
+}
+
+.workshop-capacity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.capacity-card {
+    position: relative;
+    padding: 25px;
+    background: #fff;
+    border: 1px solid #e7eaf0;
+    border-radius: 13px;
+}
+
+.capacity-icon {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 35px;
+    height: 35px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: #edf3ff;
+    color: #4775bb;
+}
+
+.capacity-card > span {
+    display: block;
+    margin-bottom: 13px;
+    color: #8790a0;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.capacity-card > strong {
+    display: block;
+    font-size: 28px;
+}
+
+.capacity-card p {
+    min-height: 34px;
+    margin: 5px 0 15px;
+    color: #788294;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.capacity-card small {
+    display: block;
+    padding-top: 11px;
+    border-top: 1px solid #e7ebf1;
+    color: #24936e;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+/* Products */
+
+.workshop-products-section {
+    padding: 10px 0 50px;
+    background: #f5f7fc;
+}
+
+.workshop-products-heading h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.workshop-products-heading p {
+    margin: 6px 0 15px;
+    color: #7b8595;
+    font-size: 11px;
+}
+
+.workshop-product-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+    overflow-x: auto;
+}
+
+.workshop-product-tabs button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 7px;
+    background: #fff;
+    color: #7c8594;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.workshop-product-tabs button.active {
+    background: #ed1747;
+    color: #fff;
+}
+
+.workshop-product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.workshop-product-card {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e5e9ef;
+    border-radius: 12px;
+}
+
+.workshop-product-image {
+    position: relative;
+    height: 205px;
+    margin: 8px;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f1f2ee;
+}
+
+.workshop-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.favorite-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 29px;
+    height: 29px;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    color: #ed1747;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+
+.workshop-product-content {
+    padding: 5px 12px 13px;
+}
+
+.product-rating {
+    color: #e99b00;
+    font-size: 10px;
+}
+
+.product-rating span {
+    color: #9098a5;
+    margin-left: 5px;
+}
+
+.workshop-product-content h3 {
+    margin: 7px 0;
+    height: 33px;
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 1.35;
+}
+
+.workshop-product-content > p {
+    height: 28px;
+    overflow: hidden;
+    margin: 0;
+    color: #7d8795;
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+.product-workshop {
+    display: block;
+    margin-top: 8px;
+    color: #218d69;
+    font-size: 9px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.product-price-row strong {
+    display: block;
+    font-size: 16px;
+}
+
+.product-price-row del {
+    display: block;
+    margin-top: 2px;
+    color: #9da3ad;
+    font-size: 9px;
+}
+
+.discount {
+    padding: 4px 6px;
+    border-radius: 4px;
+    background: #ffe8ed;
+    color: #e51d4d;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.product-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+.product-actions button {
+    height: 31px;
+    border: none;
+    border-radius: 6px;
+    background: #eaf0ff;
+    color: #e91e4d;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.product-actions .buy-button {
+    background: #ed1747;
+    color: #fff;
+}
+
+/* Bulk order */
+
+.bulk-order-section {
+    padding: 35px 0 70px;
+    background: #f5f7fc;
+}
+
+.bulk-order-box {
+    display: grid;
+    grid-template-columns: 43% 57%;
+    gap: 25px;
+    padding: 30px;
+    border: 1px solid #dfe6f0;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #edf4ff, #fff);
+    box-shadow: 0 8px 25px rgba(38, 58, 90, .07);
+}
+
+.bulk-eyebrow {
+    color: #e91e4d;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.bulk-order-info h2 {
+    margin: 10px 0;
+    font-size: 29px;
+    line-height: 1.25;
+}
+
+.bulk-order-info > p {
+    max-width: 520px;
+    color: #748093;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.bulk-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.bulk-benefits > div {
+    display: flex;
+    gap: 10px;
+}
+
+.bulk-benefits > div > b {
+    width: 27px;
+    height: 27px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 6px;
+    background: #fff;
+    color: #e91e4d;
+}
+
+.bulk-benefits strong {
+    display: block;
+    font-size: 11px;
+}
+
+.bulk-benefits small {
+    display: block;
+    margin-top: 3px;
+    color: #7b8595;
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+.bulk-support {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 22px;
+    padding: 13px;
+    border-radius: 8px;
+    background: #dce9ff;
+}
+
+.bulk-support strong {
+    font-size: 10px;
+}
+
+.bulk-support span {
+    color: #ed1747;
+    font-size: 15px;
+}
+
+.bulk-support small {
+    color: #78869a;
+    font-size: 9px;
+}
+
+/* Form */
+
+.bulk-order-form {
+    padding: 22px;
+    border: 1px solid #e5e9f0;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+    margin-bottom: 13px;
+}
+
+.bulk-order-form label,
+.form-field {
+    display: block;
+    color: #536073;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.bulk-order-form input,
+.bulk-order-form select,
+.bulk-order-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 6px;
+    padding: 10px 11px;
+    border: 1px solid #e0e5ec;
+    border-radius: 6px;
+    outline: none;
+    background: #fff;
+    color: #536073;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.bulk-order-form input:focus,
+.bulk-order-form select:focus,
+.bulk-order-form textarea:focus {
+    border-color: #ed1747;
+}
+
+.form-field {
+    margin-top: 13px;
+}
+
+.package-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    margin-top: 6px;
+}
+
+.package-options label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 9px;
+    border: 1px solid #e1e6ed;
+    border-radius: 6px;
+    background: #f7f9fc;
+    font-size: 8px;
+    font-weight: 500;
+}
+
+.package-options input {
+    width: auto;
+    margin: 0;
+}
+
+.bulk-order-form textarea {
+    resize: vertical;
+}
+
+.form-note {
+    color: #9299a5;
+    font-size: 8px;
+}
+
+.submit-bulk {
+    width: 100%;
+    height: 39px;
+    border: none;
+    border-radius: 7px;
+    background: #ed1747;
+    color: #fff;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+    .workshop-company-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .workshop-product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .bulk-order-box {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 800px) {
+    .workshop-capacity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .workshop-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .workshop-company-actions {
+        flex-wrap: wrap;
+    }
+
+    .workshop-company-actions a,
+    .workshop-company-actions button {
+        flex: 1;
+    }
+
+    .package-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 550px) {
+    .workshop-detail-container {
+        width: min(100% - 28px, 1400px);
+    }
+
+    .workshop-product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .workshop-main-image {
+        height: 280px;
+    }
+
+    .workshop-company-title h1 {
+        font-size: 26px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .bulk-order-box {
+        padding: 18px;
+    }
+}
