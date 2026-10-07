@@ -5,6 +5,7 @@ import AdminWorkshop from "../pages/admin/jsx/AdminWorkshop.jsx";
 import AdminCustomer from "../pages/admin/jsx/AdminCustomer.jsx";
 import AdminMaterials from "../pages/admin/jsx/AdminMaterials.jsx";
 import AdminOrder from "../pages/admin/jsx/AdminOrder.jsx";
+import AdminReview from "../pages/admin/jsx/AdminReview.jsx";
 
 const AdminRoutes = () => {
     return (
@@ -16,6 +17,7 @@ const AdminRoutes = () => {
             <Route path="customers" element={<AdminCustomer />} />
             <Route path="materials" element={<AdminMaterials />} />
             <Route path="orders" element={<AdminOrder />} />
+            <Route path="reviews" element={<AdminReview />} />
 
             <Route path="*" element={<Navigate to="dashboard" replace />} />
         </Routes>
