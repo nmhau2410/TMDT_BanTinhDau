@@ -912,3 +912,130 @@
   }
 
 }
+
+/* =========================================================
+   PERSONALIZE BANNER
+========================================================= */
+
+.personalize-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  background: linear-gradient(135deg, #1a3a2a 0%, #2f7c57 50%, #38a169 100%);
+  border-radius: 20px;
+  padding: 40px 48px;
+  margin: 12px 0 32px;
+  overflow: hidden;
+  position: relative;
+}
+
+.personalize-banner::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: 80px;
+  width: 220px;
+  height: 220px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+}
+
+.personalize-banner__badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.personalize-banner__text h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+.personalize-banner__text h2 em {
+  font-style: italic;
+  color: #f6ad55;
+}
+
+.personalize-banner__text p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 24px;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.personalize-banner__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: #2f7c57;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s;
+}
+
+.personalize-banner__btn:hover {
+  background: #f6ad55;
+  color: #1a202c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+}
+
+.personalize-banner__icons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.pb-icon {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+/* Hero Link buttons (Link acts as button) */
+.home-page .hero__primary,
+.home-page .hero__secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .personalize-banner {
+    flex-direction: column;
+    padding: 28px 24px;
+    gap: 20px;
+  }
+  .personalize-banner__icons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .personalize-banner__text h2 { font-size: 22px; }
+}
