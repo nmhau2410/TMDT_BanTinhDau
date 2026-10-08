@@ -191,7 +191,7 @@ const WorkshopManagement = () => {
                     </div>
                     <div className="header-actions">
                         <button className="export-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <i className="fa-solid fa-file-export icon-btn"></i>
                             Xuất dữ liệu Excel
                         </button>
                         <button className="primary-btn red">
@@ -204,7 +204,9 @@ const WorkshopManagement = () => {
                     <div className="ws-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">TỔNG XƯỞNG GIA CÔNG</span>
-                            <span className="icon-badge">🏢</span>
+                            <span className="icon-badge">
+                                <i className="fa-solid fa-building"></i>
+                            </span>
                         </div>
                         <div className="stat-number">
                             48 <small>cơ sở đối tác</small>
@@ -219,7 +221,9 @@ const WorkshopManagement = () => {
                     <div className="ws-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">CHỜ DUYỆT KYC & PHÁP LÝ</span>
-                            <span className="icon-badge pink">📋</span>
+                            <span className="icon-badge pink">
+                                <i className="fa-solid fa-clipboard-check"></i>
+                            </span>
                         </div>
                         <div className="stat-number">
                             6 <small>hồ sơ gửi thẩm định</small>
@@ -233,7 +237,9 @@ const WorkshopManagement = () => {
                     <div className="ws-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">GIAO HÀNG ĐÚNG HẸN (SLA)</span>
-                            <span className="icon-badge green">⏱️</span>
+                            <span className="icon-badge green">
+                                <i className="fa-regular fa-clock"></i>
+                            </span>
                         </div>
                         <div className="stat-number green-text">
                             98.5% <span className="trend-badge">+1,2%</span>
@@ -247,7 +253,9 @@ const WorkshopManagement = () => {
                     <div className="ws-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">TỶ LỆ THẮNG THẦU & BÁO GIÁ</span>
-                            <span className="icon-badge purple">⚡</span>
+                            <span className="icon-badge purple">
+                                <i className="fa-solid fa-bolt"></i>
+                            </span>
                         </div>
                         <div className="stat-number">
                             34.2% <small>trung bình / xưởng</small>
@@ -262,14 +270,16 @@ const WorkshopManagement = () => {
                 <div className="ws-filter-card">
                     <div className="search-bar-row">
                         <div className="search-input-wrapper">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            <i className="fa-solid fa-magnifying-glass search-icon"></i>
                             <input type="text" placeholder="Tìm kiếm theo mã WS, tên xưởng, chủ cơ sở, số điện thoại, email..." />
                         </div>
                         <select className="ws-select"><option>Đang hoạt động</option></select>
                         <select className="ws-select"><option>Đã xác thực KYC</option></select>
                         <select className="ws-select"><option>Khu vực: Toàn quốc</option></select>
                         <select className="ws-select"><option>Chiết khấu Take-rate: Tất cả</option></select>
-                        <button className="reset-btn">🔄 Đặt lại</button>
+                        <button className="reset-btn">
+                            <i className="fa-solid fa-rotate-right icon-btn"></i> Đặt lại
+                        </button>
                     </div>
 
                     <div className="bulk-actions-row">
@@ -346,7 +356,9 @@ const WorkshopManagement = () => {
                                     </td>
                                     <td>
                                         <div className="rating-cell">
-                                            <span className="star-text">★ {ws.rating}</span>
+                                            <span className="star-text">
+                                                <i className="fa-solid fa-star star-icon"></i> {ws.rating}
+                                            </span>
                                             <small className="orders-count">({ws.ordersCount})</small>
                                         </div>
                                     </td>
@@ -361,8 +373,8 @@ const WorkshopManagement = () => {
                                     </td>
                                     <td>
                                             <span className={`kyc-badge ${ws.kycType}`}>
-                                                {ws.kycType === 'verified' && '✔ '}
-                                                {ws.kycType === 'pending' && '🕒 '}
+                                                {ws.kycType === 'verified' && <i className="fa-solid fa-check icon-status"></i>}
+                                                {ws.kycType === 'pending' && <i className="fa-regular fa-clock icon-status"></i>}
                                                 {ws.kycStatus}
                                             </span>
                                     </td>
@@ -401,7 +413,9 @@ const WorkshopManagement = () => {
                                 <div className="drawer-top-info">
                                     <span className="ws-code-badge">MÃ WS: {activeWorkshop.id}</span>
                                     <span className="created-time">Thành lập: 2021</span>
-                                    <button className="drawer-close-btn" onClick={() => setActiveWorkshop(null)}>✕</button>
+                                    <button className="drawer-close-btn" onClick={() => setActiveWorkshop(null)}>
+                                        <i className="fa-solid fa-xmark"></i>
+                                    </button>
                                 </div>
 
                                 <div className="drawer-profile-row">
@@ -423,7 +437,9 @@ const WorkshopManagement = () => {
                                 <div className="drawer-actions-row">
                                     <button className="drawer-btn outline" onClick={handleOpenRateModal}>Sửa chiết khấu</button>
                                     <button className="drawer-btn pink">Tạm khóa xưởng</button>
-                                    <a href="#" className="public-page-link">🔗 Mở trang công khai</a>
+                                    <a href="#" className="public-page-link">
+                                        <i className="fa-solid fa-link icon-btn"></i> Mở trang công khai
+                                    </a>
                                 </div>
 
                                 <div className="drawer-tabs">
@@ -466,7 +482,9 @@ const WorkshopManagement = () => {
                                         <div className="detail-section">
                                             <div className="section-header">
                                                 <span className="section-title">THÔNG TIN ĐỊNH DANH PHÁP LÝ</span>
-                                                <span className="verify-badge">✔ Đã xác minh OCR & CQT</span>
+                                                <span className="verify-badge">
+                                                    <i className="fa-solid fa-circle-check icon-btn"></i> Đã xác minh OCR & CQT
+                                                </span>
                                             </div>
 
                                             <div className="info-grid-2col">
@@ -489,7 +507,9 @@ const WorkshopManagement = () => {
                                             </div>
 
                                             <div className="pdf-download-card">
-                                                <div className="pdf-icon">D</div>
+                                                <div className="pdf-icon">
+                                                    <i className="fa-solid fa-file-pdf"></i>
+                                                </div>
                                                 <div className="pdf-info">
                                                     <strong>Chung_nhan_CGMP_MocLab_2024.pdf</strong>
                                                     <p>Tiêu chuẩn ISO 22716 & CGMP ASEAN • Hiệu lực: 12/2026</p>
@@ -498,7 +518,9 @@ const WorkshopManagement = () => {
                                             </div>
 
                                             <div className="escrow-notice">
-                                                <span className="check-round">✔</span>
+                                                <span className="check-round">
+                                                    <i className="fa-solid fa-check"></i>
+                                                </span>
                                                 <span>Đã ký hợp đồng số nguyên tắc bảo chứng quỹ thanh toán Escrow với Olla ScentOS.</span>
                                             </div>
                                         </div>
@@ -584,10 +606,14 @@ const WorkshopManagement = () => {
                         <div className="rate-modal-card" onClick={(e) => e.stopPropagation()}>
                             <div className="modal-header-row">
                                 <div className="title-with-icon">
-                                    <span className="purple-square">%</span>
+                                    <span className="purple-square">
+                                        <i className="fa-solid fa-percent"></i>
+                                    </span>
                                     <h3>Điều chỉnh chiết khấu {activeWorkshop ? activeWorkshop.id : 'WS-102'}</h3>
                                 </div>
-                                <button className="modal-close-icon" onClick={() => setShowRateModal(false)}>✕</button>
+                                <button className="modal-close-icon" onClick={() => setShowRateModal(false)}>
+                                    <i className="fa-solid fa-xmark"></i>
+                                </button>
                             </div>
 
                             <p className="modal-sub-desc">

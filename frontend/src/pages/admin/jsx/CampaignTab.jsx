@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import '../css/CampaignTab.css';
 
 const initialCampaigns = [{
@@ -108,24 +108,20 @@ const CampaignTab = () => {
         setShowDetailReport(true);
     };
 
-    return (<div className="campaign-tab-container">
+    return (
+        <div className="campaign-tab-container">
             <div className="tab-header-row">
                 <div>
-                    <h1 className="page-title">Quản lý chương trình khuến mãi</h1>
+                    <h1 className="page-title">Quản lý chương trình khuyến mãi</h1>
                     <p className="page-sub">Quản lý các khung giờ vàng và tồn kho sản phẩm trợ giá sàn</p>
                 </div>
                 <div className="tab-header-actions">
                     <button className="btn-light">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                             strokeWidth="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                            <polyline points="7 10 12 15 17 10"/>
-                            <line x1="12" y1="15" x2="12" y2="3"/>
-                        </svg>
+                        <i className="fa-solid fa-file-export icon-btn"></i>
                         Xuất báo cáo
                     </button>
                     <button className="primary-btn red" onClick={() => setShowCreateModal(true)}>
-                        + Tạo chương trình
+                        <i className="fa-solid fa-plus icon-btn"></i> Tạo chương trình
                     </button>
                 </div>
             </div>
@@ -134,7 +130,9 @@ const CampaignTab = () => {
                 <div className="promo-stat-card">
                     <div className="stat-top">
                         <span className="stat-label">DOANH THU</span>
-                        <span className="icon-pink">💳</span>
+                        <span className="icon-pink">
+                            <i className="fa-solid fa-credit-card"></i>
+                        </span>
                     </div>
                     <div className="stat-val-row">
                         <span className="stat-number">645.2Mđ</span>
@@ -145,7 +143,9 @@ const CampaignTab = () => {
                 <div className="promo-stat-card">
                     <div className="stat-top">
                         <span className="stat-label">ĐƠN HÀNG</span>
-                        <span className="icon-gray">🛍️</span>
+                        <span className="icon-gray">
+                            <i className="fa-solid fa-bag-shopping"></i>
+                        </span>
                     </div>
                     <div className="stat-val-row">
                         <span className="stat-number">1.420</span>
@@ -156,7 +156,9 @@ const CampaignTab = () => {
                 <div className="promo-stat-card">
                     <div className="stat-top">
                         <span className="stat-label">TỶ LỆ BÁN</span>
-                        <span className="icon-yellow">⚡</span>
+                        <span className="icon-yellow">
+                            <i className="fa-solid fa-bolt"></i>
+                        </span>
                     </div>
                     <div className="stat-val-row">
                         <span className="stat-number">85%</span>
@@ -167,7 +169,9 @@ const CampaignTab = () => {
                 <div className="promo-stat-card">
                     <div className="stat-top">
                         <span className="stat-label">NGÂN SÁCH TRỢ GIÁ</span>
-                        <span className="icon-purple">🏪</span>
+                        <span className="icon-purple">
+                            <i className="fa-solid fa-store"></i>
+                        </span>
                     </div>
                     <div className="stat-val-row">
                         <span className="stat-number">86.5Mđ</span>
@@ -213,8 +217,7 @@ const CampaignTab = () => {
                     </div>
                     <div className="chart-svg-container">
                         <svg viewBox="0 0 500 120" className="chart-line-svg">
-                            <path d="M 10 90 Q 100 80 200 60 T 350 20 T 450 90 T 490 70" fill="none" stroke="#e63946"
-                                  strokeWidth="3"/>
+                            <path d="M 10 90 Q 100 80 200 60 T 350 20 T 450 90 T 490 70" fill="none" stroke="#e63946" strokeWidth="3"/>
                             <circle cx="260" cy="40" r="5" fill="#e63946"/>
                         </svg>
                         <div className="chart-x-axis">
@@ -278,7 +281,9 @@ const CampaignTab = () => {
                         <tr key={c.id} className="clickable-tr" onClick={() => handleOpenDetailReport(c)}>
                             <td>
                                 <div className="camp-title-cell">
-                                    <span className="camp-icon">⚡</span>
+                                    <span className="camp-icon">
+                                        <i className="fa-solid fa-bolt"></i>
+                                    </span>
                                     <div>
                                         <strong>{c.name}</strong>
                                         <small>{c.channel}</small>
@@ -296,15 +301,16 @@ const CampaignTab = () => {
                             <td><strong>{c.revenue}</strong></td>
                             <td><span className="roas-green">{c.roas}</span></td>
                             <td>
-                                    <span className={`status-pill ${c.statusType}`}>
-                                        • {c.status}
-                                    </span>
+                                <span className={`status-pill ${c.statusType}`}>
+                                    • {c.status}
+                                </span>
                             </td>
                             <td>
                                 <button className="arrow-btn" onClick={(e) => {
                                     e.stopPropagation();
                                     handleOpenDetailReport(c);
-                                }}>→
+                                }}>
+                                    <i className="fa-solid fa-arrow-right"></i>
                                 </button>
                             </td>
                         </tr>))}
@@ -312,7 +318,8 @@ const CampaignTab = () => {
                 </table>
             </div>
 
-            {showCreateModal && (<div className="modal-backdrop" onClick={() => setShowCreateModal(false)}>
+            {showCreateModal && (
+                <div className="modal-backdrop" onClick={() => setShowCreateModal(false)}>
                     <div className="create-campaign-modal" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-top-row">
                             <h2 className="modal-title">• Chiến dịch quảng cáo</h2>
@@ -322,7 +329,9 @@ const CampaignTab = () => {
                         <div className="form-group">
                             <label>Tên chiến dịch quảng cáo *</label>
                             <div className="input-with-icon">
-                                <span className="icon">📢</span>
+                                <span className="icon">
+                                    <i className="fa-solid fa-bullhorn"></i>
+                                </span>
                                 <input
                                     type="text"
                                     value={createForm.name}
@@ -335,7 +344,9 @@ const CampaignTab = () => {
                             <div className="form-group">
                                 <label>Ngày bắt đầu *</label>
                                 <div className="input-with-icon">
-                                    <span className="icon">📅</span>
+                                    <span className="icon">
+                                        <i className="fa-regular fa-calendar-days"></i>
+                                    </span>
                                     <input
                                         type="text"
                                         value={createForm.startDate}
@@ -346,7 +357,9 @@ const CampaignTab = () => {
                             <div className="form-group">
                                 <label>Thời gian bắt đầu *</label>
                                 <div className="input-with-icon">
-                                    <span className="icon">🕒</span>
+                                    <span className="icon">
+                                        <i className="fa-regular fa-clock"></i>
+                                    </span>
                                     <input
                                         type="text"
                                         value={createForm.startTime}
@@ -367,13 +380,13 @@ const CampaignTab = () => {
                                         className={createForm.discountType === 'percent' ? 'active' : ''}
                                         onClick={() => setCreateForm({...createForm, discountType: 'percent'})}
                                     >
-                                        🔥 Theo phần trăm (%)
+                                        <i className="fa-solid fa-fire icon-btn"></i> Theo phần trăm (%)
                                     </button>
                                     <button
                                         className={createForm.discountType === 'amount' ? 'active' : ''}
                                         onClick={() => setCreateForm({...createForm, discountType: 'amount'})}
                                     >
-                                        🏷️ Theo số tiền cụ thể (đ)
+                                        <i className="fa-solid fa-tag icon-btn"></i> Theo số tiền cụ thể (đ)
                                     </button>
                                 </div>
                                 <div className="val-input-wrapper">
@@ -394,7 +407,7 @@ const CampaignTab = () => {
                             </div>
 
                             <div className="product-search-input">
-                                <span>🔍</span>
+                                <span><i className="fa-solid fa-magnifying-glass"></i></span>
                                 <input type="text" placeholder="Tìm theo tên sản phẩm, mã SKU..."/>
                             </div>
 
@@ -411,11 +424,14 @@ const CampaignTab = () => {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {createForm.products.map((prod) => (<tr key={prod.id}>
+                                {createForm.products.map((prod) => (
+                                    <tr key={prod.id}>
                                         <td><input type="checkbox" defaultChecked/></td>
                                         <td>
                                             <div className="p-name-cell">
-                                                <span className="p-icon">💧</span>
+                                                <span className="p-icon">
+                                                    <i className="fa-solid fa-droplet"></i>
+                                                </span>
                                                 <div>
                                                     <strong>{prod.name}</strong>
                                                     <small>{prod.workshop} • SKU: {prod.id}</small>
@@ -431,19 +447,20 @@ const CampaignTab = () => {
                                         <td><strong className="new-price-red">{prod.promoPrice}</strong></td>
                                         <td><span className="stock-val">{prod.stock}</span></td>
                                         <td>
-                                            <button className="delete-btn"
-                                                    onClick={() => handleRemoveProduct(prod.id)}>🗑️
+                                            <button className="delete-btn" onClick={() => handleRemoveProduct(prod.id)}>
+                                                <i className="fa-solid fa-trash-can"></i>
                                             </button>
                                         </td>
-                                    </tr>))}
+                                    </tr>
+                                ))}
                                 </tbody>
                             </table>
 
                             <div className="products-summary-footer">
-                                <span
-                                    className="green-text">✔ Đã chọn {createForm.products.length} sản phẩm tham gia</span>
-                                <span
-                                    className="est-budget">Tổng ngân sách khuyến mãi ước tính: <strong>5.200.000đ</strong></span>
+                                <span className="green-text">
+                                    <i className="fa-solid fa-circle-check icon-btn"></i> Đã chọn {createForm.products.length} sản phẩm tham gia
+                                </span>
+                                <span className="est-budget">Tổng ngân sách khuyến mãi ước tính: <strong>5.200.000đ</strong></span>
                             </div>
                         </div>
 
@@ -452,38 +469,51 @@ const CampaignTab = () => {
                             <button className="btn-save-red" onClick={() => {
                                 alert('Tạo chương trình khuyến mãi thành công!');
                                 setShowCreateModal(false);
-                            }}>💾 Lưu
+                            }}>
+                                <i className="fa-solid fa-floppy-disk icon-btn"></i> Lưu
                             </button>
                         </div>
                     </div>
-                </div>)}
+                </div>
+            )}
 
-            {showDetailReport && (<div className="modal-backdrop" onClick={() => setShowDetailReport(false)}>
+            {showDetailReport && (
+                <div className="modal-backdrop" onClick={() => setShowDetailReport(false)}>
                     <div className="detail-report-modal" onClick={(e) => e.stopPropagation()}>
                         <div className="report-header">
                             <div className="left">
                                 <div className="code-row">
-                                    <span
-                                        className="campaign-code-tag">🎟️ {selectedCampaign ? selectedCampaign.id : 'SCENTFIRST20'}</span>
+                                    <span className="campaign-code-tag">
+                                        <i className="fa-solid fa-ticket icon-btn"></i> {selectedCampaign ? selectedCampaign.id : 'SCENTFIRST20'}
+                                    </span>
                                     <span className="status-badge green">• Đang diễn ra</span>
                                 </div>
-                                <h2>Báo cáo hiệu quả thống
-                                    kê: {selectedCampaign ? selectedCampaign.name : 'Khai phóng giác quan đơn đầu'}</h2>
+                                <h2>Báo cáo hiệu quả thống kê: {selectedCampaign ? selectedCampaign.name : 'Khai phóng giác quan đơn đầu'}</h2>
                             </div>
                             <div className="right">
                                 <select className="date-filter-select">
                                     <option>Toàn bộ chiến dịch (01/10/2023 - 31/10/2023)</option>
                                 </select>
-                                <button className="btn-light-export">📥 Xuất báo cáo</button>
-                                <button className="btn-pause-red">⏸ Tạm dừng chiến dịch</button>
-                                <button className="close-x-btn" onClick={() => setShowDetailReport(false)}>✕</button>
+                                <button className="btn-light-export">
+                                    <i className="fa-solid fa-file-arrow-down icon-btn"></i> Xuất báo cáo
+                                </button>
+                                <button className="btn-pause-red">
+                                    <i className="fa-solid fa-pause icon-btn"></i> Tạm dừng chiến dịch
+                                </button>
+                                <button className="close-x-btn" onClick={() => setShowDetailReport(false)}>
+                                    <i className="fa-solid fa-xmark"></i>
+                                </button>
                             </div>
                         </div>
 
                         <div className="report-stats-grid">
                             <div className="r-stat-card">
-                                <div className="r-top"><span className="r-label">Tổng thu nhập / Đã dùng</span><span
-                                    className="r-icon pink">🎟️</span></div>
+                                <div className="r-top">
+                                    <span className="r-label">Tổng thu nhập / Đã dùng</span>
+                                    <span className="r-icon pink">
+                                        <i className="fa-solid fa-ticket"></i>
+                                    </span>
+                                </div>
                                 <div className="r-num">1.820 <small>/ 2.000 (91.0%)</small></div>
                                 <div className="r-progress-bar">
                                     <div className="fill" style={{width: '91%'}}></div>
@@ -492,22 +522,36 @@ const CampaignTab = () => {
                             </div>
 
                             <div className="r-stat-card">
-                                <div className="r-top"><span className="r-label">Doanh thu GMV kích cầu</span><span
-                                    className="r-icon green">💵</span></div>
+                                <div className="r-top">
+                                    <span className="r-label">Doanh thu GMV kích cầu</span>
+                                    <span className="r-icon green">
+                                        <i className="fa-solid fa-money-bill-wave"></i>
+                                    </span>
+                                </div>
                                 <div className="r-num">546.000.000đ</div>
-                                <small className="r-sub green">📈 +34.5% so với chiến dịch trước</small>
+                                <small className="r-sub green">
+                                    <i className="fa-solid fa-arrow-trend-up icon-btn"></i> +34.5% so với chiến dịch trước
+                                </small>
                             </div>
 
                             <div className="r-stat-card">
-                                <div className="r-top"><span className="r-label">Ngân sách đã trợ giá</span><span
-                                    className="r-icon blue">💳</span></div>
+                                <div className="r-top">
+                                    <span className="r-label">Ngân sách đã trợ giá</span>
+                                    <span className="r-icon blue">
+                                        <i className="fa-solid fa-credit-card"></i>
+                                    </span>
+                                </div>
                                 <div className="r-num red-text">145.600.000đ</div>
                                 <small className="r-sub">Hạn mức tối đa: 160.000.000đ</small>
                             </div>
 
                             <div className="r-stat-card">
-                                <div className="r-top"><span className="r-label">Hiệu suất đầu tư (ROI)</span><span
-                                    className="r-icon teal">⚡</span></div>
+                                <div className="r-top">
+                                    <span className="r-label">Hiệu suất đầu tư (ROI)</span>
+                                    <span className="r-icon teal">
+                                        <i className="fa-solid fa-bolt"></i>
+                                    </span>
+                                </div>
                                 <div className="r-num">x3.75 <small>Lần</small></div>
                                 <small className="r-sub">Chi phí / Đơn mới (CAC): 80.000đ / đơn</small>
                             </div>
@@ -520,16 +564,16 @@ const CampaignTab = () => {
                             </div>
                             <div className="report-svg-wrapper">
                                 <svg viewBox="0 0 600 120" className="report-line-chart">
-                                    <path d="M 10 100 Q 150 70 300 40 T 590 10" fill="none" stroke="#e63946"
-                                          strokeWidth="3"/>
-                                    <path d="M 10 110 Q 150 90 300 70 T 590 50" fill="none" stroke="#9333ea"
-                                          strokeWidth="2" strokeDasharray="4"/>
+                                    <path d="M 10 100 Q 150 70 300 40 T 590 10" fill="none" stroke="#e63946" strokeWidth="3"/>
+                                    <path d="M 10 110 Q 150 90 300 70 T 590 50" fill="none" stroke="#9333ea" strokeWidth="2" strokeDasharray="4"/>
                                 </svg>
                                 <div className="chart-weeks-row">
                                     <div><strong>Tuần 1 (01-07/10)</strong><small>360 đơn / 28.8tr</small></div>
                                     <div><strong>Tuần 2 (08-14/10)</strong><small>620 đơn / 49.6tr</small></div>
-                                    <div className="active"><strong>Tuần 3 (15-21/10) ★</strong><small
-                                        className="red-text">840 đơn / 67.2tr</small></div>
+                                    <div className="active">
+                                        <strong>Tuần 3 (15-21/10) <i className="fa-solid fa-star"></i></strong>
+                                        <small className="red-text">840 đơn / 67.2tr</small>
+                                    </div>
                                     <div><strong>Tuần 4 (Dự báo)</strong><small>Hết 180 mã còn lại</small></div>
                                 </div>
                             </div>
@@ -565,7 +609,7 @@ const CampaignTab = () => {
                                         </div>
                                         <small>96.8%</small>
                                     </td>
-                                    <td><span className="star-rating">★ 4.9</span></td>
+                                    <td><span className="star-rating"><i className="fa-solid fa-star"></i> 4.9</span></td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -582,7 +626,7 @@ const CampaignTab = () => {
                                         </div>
                                         <small>94.2%</small>
                                     </td>
-                                    <td><span className="star-rating">★ 5.0</span></td>
+                                    <td><span className="star-rating"><i className="fa-solid fa-star"></i> 5.0</span></td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -599,14 +643,16 @@ const CampaignTab = () => {
                                         </div>
                                         <small>91.5%</small>
                                     </td>
-                                    <td><span className="star-rating">★ 4.8</span></td>
+                                    <td><span className="star-rating"><i className="fa-solid fa-star"></i> 4.8</span></td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>)}
-        </div>);
+                </div>
+            )}
+        </div>
+    );
 };
 
 export default CampaignTab;

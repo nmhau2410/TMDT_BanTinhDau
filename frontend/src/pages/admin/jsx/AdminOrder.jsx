@@ -161,11 +161,11 @@ const OrderManagement = () => {
                     </div>
                     <div className="header-actions">
                         <button className="btn-light">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <i className="fa-solid fa-file-export icon-btn"></i>
                             Xuất file vận đơn
                         </button>
                         <button className="primary-btn red">
-                            <span className="plus-icon">+</span> Tạo đơn điều phối
+                            + Tạo đơn điều phối
                         </button>
                     </div>
                 </div>
@@ -174,7 +174,9 @@ const OrderManagement = () => {
                     <div className="order-stat-card">
                         <div className="stat-top">
                             <span className="stat-label">Tất cả đơn</span>
-                            <span className="stat-icon-box">📦</span>
+                            <span className="stat-icon-box">
+                                <i className="fa-solid fa-box"></i>
+                            </span>
                         </div>
                         <div className="stat-val-row">
                             <span className="stat-number">1,420</span>
@@ -229,7 +231,9 @@ const OrderManagement = () => {
                     <div className="order-stat-card">
                         <div className="stat-top">
                             <span className="stat-label">Hoàn thành / Trả</span>
-                            <span className="stat-icon-box check">✔</span>
+                            <span className="stat-icon-box check">
+                                <i className="fa-solid fa-check"></i>
+                            </span>
                         </div>
                         <div className="stat-val-row">
                             <span className="stat-number">493</span>
@@ -240,7 +244,7 @@ const OrderManagement = () => {
 
                 <div className="order-filter-card">
                     <div className="search-input-wrapper">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <i className="fa-solid fa-magnifying-glass search-icon"></i>
                         <input type="text" placeholder="Tìm kiếm mã vận đơn, tên khách, SĐT, mẻ hương.." />
                     </div>
                     <select className="order-select"><option>Thời gian đặt hàng</option></select>
@@ -250,7 +254,9 @@ const OrderManagement = () => {
 
                 <div className="table-top-bar">
                     <span className="total-orders-text">Hiển thị 1 - 6 trên tổng số 142 đơn đặt hàng trực tiếp</span>
-                    <button className="print-btn">🖨 In phiếu giao loạt</button>
+                    <button className="print-btn">
+                        <i className="fa-solid fa-print icon-btn"></i> In phiếu giao loạt
+                    </button>
                 </div>
 
                 <div className="order-table-container">
@@ -298,7 +304,9 @@ const OrderManagement = () => {
                                     </td>
                                     <td>
                                         <div className="prod-info-cell">
-                                            <div className="prod-thumb">🍾</div>
+                                            <div className="prod-thumb">
+                                                <i className="fa-solid fa-bottle-droplet"></i>
+                                            </div>
                                             <div>
                                                 <div className="prod-title">{order.product.name}</div>
                                                 <div className={`prod-type ${order.product.typeClass}`}>
@@ -325,7 +333,9 @@ const OrderManagement = () => {
                                             </span>
                                     </td>
                                     <td>
-                                        <button className="eye-btn" title="Xem chi tiết">👁️</button>
+                                        <button className="eye-btn" title="Xem chi tiết">
+                                            <i className="fa-solid fa-eye"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             );
@@ -340,13 +350,17 @@ const OrderManagement = () => {
                             <span>dòng mỗi trang</span>
                         </div>
                         <div className="pagination-right">
-                            <button className="page-btn disabled">&lt;</button>
+                            <button className="page-btn disabled">
+                                <i className="fa-solid fa-chevron-left"></i>
+                            </button>
                             <button className="page-btn active">1</button>
                             <button className="page-btn">2</button>
                             <button className="page-btn">3</button>
                             <span className="dots">...</span>
                             <button className="page-btn">15</button>
-                            <button className="page-btn">&gt;</button>
+                            <button className="page-btn">
+                                <i className="fa-solid fa-chevron-right"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

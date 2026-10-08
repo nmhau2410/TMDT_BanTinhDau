@@ -196,18 +196,24 @@ const ReviewManagement = () => {
                     <div className="review-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">ĐÁNH GIÁ CHUNG XƯỞNG</span>
-                            <span className="stat-icon red">⭐</span>
+                            <span className="stat-icon red">
+                                <i className="fa-solid fa-star"></i>
+                            </span>
                         </div>
                         <div className="stat-number">
                             4.82 <small>/ 5.0 (Tổng 1,842 lượt)</small>
                         </div>
-                        <div className="stat-sub green-text">📈 +0.15 so với chu kỳ trước</div>
+                        <div className="stat-sub green-text">
+                            <i className="fa-solid fa-arrow-trend-up icon-btn"></i> +0.15 so với chu kỳ trước
+                        </div>
                     </div>
 
                     <div className="review-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">TỶ LỆ Ảnh/Video THỰC TẾ</span>
-                            <span className="stat-icon blue">🖼️</span>
+                            <span className="stat-icon blue">
+                                <i className="fa-solid fa-images"></i>
+                            </span>
                         </div>
                         <div className="stat-number">
                             78.5% <small>Được đính kèm</small>
@@ -217,12 +223,16 @@ const ReviewManagement = () => {
                     <div className="review-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">TỐC ĐỘ XƯỞNG PHẢN HỒI</span>
-                            <span className="stat-icon purple">⚡</span>
+                            <span className="stat-icon purple">
+                                <i className="fa-solid fa-bolt"></i>
+                            </span>
                         </div>
                         <div className="stat-number">
                             1h 42m <small>Trung bình</small>
                         </div>
-                        <div className="stat-sub green-text">✔ 98% phản hồi &lt; 4 giờ</div>
+                        <div className="stat-sub green-text">
+                            <i className="fa-solid fa-check icon-btn"></i> 98% phản hồi &lt; 4 giờ
+                        </div>
                     </div>
                 </div>
 
@@ -234,7 +244,7 @@ const ReviewManagement = () => {
                         </div>
                         <div className="filter-group">
                             <label>Đánh giá chung (Sao)</label>
-                            <select><option>Mọi mức sao (1 - 5 sao)⭐</option></select>
+                            <select><option>Mọi mức sao (1 - 5 sao)</option></select>
                         </div>
                         <div className="filter-group">
                             <label>Trạng thái kiểm duyệt</label>
@@ -242,11 +252,15 @@ const ReviewManagement = () => {
                         </div>
                         <div className="filter-group">
                             <label>Đa phương tiện</label>
-                            <select><option>Có hình ảnh & Video thực tế 📷</option></select>
+                            <select><option>Có hình ảnh & Video thực tế</option></select>
                         </div>
                         <div className="filter-actions">
-                            <button className="btn-reset">Đặt lại</button>
-                            <button className="btn-apply">🌪️ Áp dụng</button>
+                            <button className="btn-reset">
+                                Đặt lại
+                            </button>
+                            <button className="btn-apply">
+                                <i className="fa-solid fa-filter icon-btn"></i> Áp dụng
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -258,7 +272,7 @@ const ReviewManagement = () => {
                             <th width="160">KHÁCH HÀNG & ĐƠN</th>
                             <th width="160">XƯỞNG & SẢN PHẨM</th>
                             <th width="110">ĐÁNH GIÁ</th>
-                            <th>NỘI DUNG NHẬN XÉT</th>
+                            <th>NỘI DUNG NHẬN XẾT</th>
                             <th width="100">ẢNH/VIDEO</th>
                             <th width="110">TRẠNG THÁI</th>
                             <th width="100">THAO TÁC</th>
@@ -284,7 +298,13 @@ const ReviewManagement = () => {
                                 </td>
                                 <td>
                                     <div className="stars-cell">
-                                        <span className="star-rating">★★★★★</span>
+                                        <span className="star-rating">
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                        </span>
                                         <strong>{rev.rating.toFixed(1)}</strong>
                                     </div>
                                 </td>
@@ -302,7 +322,7 @@ const ReviewManagement = () => {
                                             className="img-badge-btn"
                                             onClick={(e) => handleOpenImageModal(rev.images, e)}
                                         >
-                                            📷 {rev.images.length} ảnh
+                                            <i className="fa-solid fa-camera icon-btn"></i> {rev.images.length} ảnh
                                         </button>
                                     ) : (
                                         <span className="no-img">-</span>
@@ -318,7 +338,7 @@ const ReviewManagement = () => {
                                         className="btn-edit-reply"
                                         onClick={(e) => handleOpenEditModal(rev, e)}
                                     >
-                                        Chỉnh sửa
+                                        <i className="fa-solid fa-pen-to-square icon-btn"></i> Chỉnh sửa
                                     </button>
                                 </td>
                             </tr>
@@ -329,13 +349,17 @@ const ReviewManagement = () => {
                     <div className="table-pagination">
                         <span>Hiển thị 1 - {reviews.length} trên tổng số 1,842 đánh giá • Trang 1 / 615</span>
                         <div className="pagination-right">
-                            <button className="page-btn disabled">&lt;</button>
+                            <button className="page-btn disabled">
+                                <i className="fa-solid fa-chevron-left"></i>
+                            </button>
                             <button className="page-btn active">1</button>
                             <button className="page-btn">2</button>
                             <button className="page-btn">3</button>
                             <span className="dots">...</span>
                             <button className="page-btn">615</button>
-                            <button className="page-btn">&gt;</button>
+                            <button className="page-btn">
+                                <i className="fa-solid fa-chevron-right"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -345,13 +369,17 @@ const ReviewManagement = () => {
                         <div className="edit-modal-card" onClick={(e) => e.stopPropagation()}>
                             <div className="modal-header-line">
                                 <div className="modal-title-left">
-                                    <span className="icon-edit-bg">📝</span>
+                                    <span className="icon-edit-bg">
+                                        <i className="fa-solid fa-pen-to-square"></i>
+                                    </span>
                                     <div>
                                         <h3>Chỉnh sửa phản hồi</h3>
-                                        <p>Đơn hàng <strong>{selectedReview.orderId}</strong> • 🏪 Xưởng: <strong>{selectedReview.workshop}</strong></p>
+                                        <p>Đơn hàng <strong>{selectedReview.orderId}</strong> • <i className="fa-solid fa-store icon-btn"></i> Xưởng: <strong>{selectedReview.workshop}</strong></p>
                                     </div>
                                 </div>
-                                <button className="close-btn" onClick={() => setSelectedReview(null)}>✕</button>
+                                <button className="close-btn" onClick={() => setSelectedReview(null)}>
+                                    <i className="fa-solid fa-xmark"></i>
+                                </button>
                             </div>
 
                             <div className="customer-review-detail-card">
@@ -369,12 +397,18 @@ const ReviewManagement = () => {
                                 <div className="detail-body-grid">
                                     <div className="criteria-col">
                                         <div className="overall-stars">
-                                            Đánh giá chung: <span className="stars">★★★★★</span> <strong>{selectedReview.rating.toFixed(1)}</strong> <small>(Cực kỳ hài lòng)</small>
+                                            Đánh giá chung: <span className="stars">
+                                                <i className="fa-solid fa-star"></i>
+                                                <i className="fa-solid fa-star"></i>
+                                                <i className="fa-solid fa-star"></i>
+                                                <i className="fa-solid fa-star"></i>
+                                                <i className="fa-solid fa-star"></i>
+                                            </span> <strong>{selectedReview.rating.toFixed(1)}</strong> <small>(Cực kỳ hài lòng)</small>
                                         </div>
                                         <p className="criteria-title">CHI TIẾT THEO TIÊU CHÍ KIỂM ĐỊNH</p>
-                                        <div className="criteria-row"><span>Chất lượng mùi hương:</span> <span className="stars">★★★★★</span> <strong>5/5</strong></div>
-                                        <div className="criteria-row"><span>Độ tỏa hương thơm:</span> <span className="stars">★★★★☆</span> <strong>4/5</strong></div>
-                                        <div className="criteria-row"><span>Độ tinh khiết tinh dầu:</span> <span className="stars">★★★★★</span> <strong>5/5</strong></div>
+                                        <div className="criteria-row"><span>Chất lượng mùi hương:</span> <span className="stars"><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i></span> <strong>5/5</strong></div>
+                                        <div className="criteria-row"><span>Độ tỏa hương thơm:</span> <span className="stars"><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-regular fa-star"></i></span> <strong>4/5</strong></div>
+                                        <div className="criteria-row"><span>Độ tinh khiết tinh dầu:</span> <span className="stars"><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i></span> <strong>5/5</strong></div>
                                     </div>
 
                                     <div className="content-col">
@@ -406,7 +440,7 @@ const ReviewManagement = () => {
 
                             <div className="official-reply-box">
                                 <div className="reply-header">
-                                    <span>🏪 Phản hồi từ {selectedReview.workshop}</span>
+                                    <span><i className="fa-solid fa-store icon-btn"></i> Phản hồi từ {selectedReview.workshop}</span>
                                     <small>{selectedReview.replyDate || 'Hôm nay, 10:48'}</small>
                                 </div>
 
@@ -428,30 +462,34 @@ const ReviewManagement = () => {
 
                             <div className="platform-intervention-card">
                                 <div className="intervene-header">
-                                    <span className="shield-icon">🛡️</span>
+                                    <span className="shield-icon">
+                                        <i className="fa-solid fa-shield-halved"></i>
+                                    </span>
                                     <h4>Can thiệp & Giám sát vận hành Sàn</h4>
                                 </div>
                                 <div className="intervene-buttons-grid">
                                     <button className="btn-intervene outline" onClick={handleToggleHideCustomer}>
-                                        👁️‍🗨️ {selectedReview.isCustHidden ? 'Hiện bình luận khách hàng' : 'Ẩn bình luận khách hàng'}
+                                        <i className="fa-solid fa-eye-slash icon-btn"></i> {selectedReview.isCustHidden ? 'Hiện bình luận khách hàng' : 'Ẩn bình luận khách hàng'}
                                     </button>
                                     <button className="btn-intervene outline" onClick={handleToggleHideWorkshop}>
-                                        👁️‍🗨️ {selectedReview.isWorkshopHidden ? 'Hiện bình luận của xưởng' : 'Ẩn bình luận của xưởng'}
+                                        <i className="fa-solid fa-eye-slash icon-btn"></i> {selectedReview.isWorkshopHidden ? 'Hiện bình luận của xưởng' : 'Ẩn bình luận của xưởng'}
                                     </button>
                                     <button className="btn-intervene danger" onClick={handleDeleteCustomerReview}>
-                                        ⚠️ Xóa bình luận khách hàng
+                                        <i className="fa-solid fa-trash-can icon-btn"></i> Xóa bình luận khách hàng
                                     </button>
                                     <button className="btn-intervene danger" onClick={handleDeleteWorkshopReply}>
-                                        ⚠️ Xóa bình luận của xưởng
+                                        <i className="fa-solid fa-trash-can icon-btn"></i> Xóa bình luận của xưởng
                                     </button>
                                 </div>
                             </div>
 
                             <div className="modal-actions-footer">
                                 <button className="btn-cancel" onClick={() => setSelectedReview(null)}>Hủy bỏ</button>
-                                <button className="btn-preview">👁️ Xem trước hiển thị</button>
+                                <button className="btn-preview">
+                                    <i className="fa-solid fa-eye icon-btn"></i> Xem trước hiển thị
+                                </button>
                                 <button className="btn-save-red" onClick={handleSaveReply}>
-                                    ✔ Lưu & Cập nhật phản hồi
+                                    <i className="fa-solid fa-check icon-btn"></i> Lưu & Cập nhật phản hồi
                                 </button>
                             </div>
                         </div>
@@ -461,7 +499,9 @@ const ReviewManagement = () => {
                 {previewImages && (
                     <div className="image-lightbox-overlay" onClick={() => setPreviewImages(null)}>
                         <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-                            <button className="lightbox-close" onClick={() => setPreviewImages(null)}>✕</button>
+                            <button className="lightbox-close" onClick={() => setPreviewImages(null)}>
+                                <i className="fa-solid fa-xmark"></i>
+                            </button>
                             <div className="lightbox-main-img-wrapper">
                                 <img src={previewImages[activeImageIndex].url} alt="Enlarged review" />
                             </div>
