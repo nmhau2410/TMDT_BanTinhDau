@@ -17,7 +17,7 @@ import {
 } from "../services/HomeService.js";
 
 import "./HomePage.css";
-
+import { Link } from "react-router-dom";
 const INITIAL_COUNTDOWN = 2 * 3600 + 45 * 60 + 18;
 
 export default function HomePage() {
@@ -251,19 +251,21 @@ export default function HomePage() {
 
                         <div className="hero__actions">
 
-                            <button
+                            <Link
+                                to="/customer/products"
                                 className="hero__primary"
                                 type="button"
                             >
-                                Tham gia ngay →
-                            </button>
+                                Xem sản phẩm →
+                            </Link>
 
-                            <button
+                            <Link
+                                to="/customer/customize"
                                 className="hero__secondary"
                                 type="button"
                             >
-                                Xem lịch workshop ▦
-                            </button>
+                                ✦ Thiết kế cá nhân hóa
+                            </Link>
 
                         </div>
 
@@ -406,15 +408,12 @@ export default function HomePage() {
                         </div>
 
 
-                        <a
+                        <Link
                             className="section-link"
-                            href="#"
-                            onClick={(e) =>
-                                e.preventDefault()
-                            }
+                            to="/customer/products"
                         >
                             Xem tất cả ưu đãi ›
-                        </a>
+                        </Link>
 
                     </div>
 
@@ -462,15 +461,12 @@ export default function HomePage() {
                         </div>
 
 
-                        <a
+                        <Link
                             className="section-link"
-                            href="#"
-                            onClick={(e) =>
-                                e.preventDefault()
-                            }
+                            to="/customer/products"
                         >
                             Xem tất cả sản phẩm mới →
-                        </a>
+                        </Link>
 
                     </div>
 
@@ -495,7 +491,24 @@ export default function HomePage() {
                     </div>
 
                 </section>
-
+                <section className="home-container">
+                    <div className="personalize-banner">
+                        <div className="personalize-banner__text">
+                            <span className="personalize-banner__badge">✦ OILIA ATELIER · MỚI</span>
+                            <h2>Thiết kế tinh dầu <em>độc bản</em> của riêng bạn</h2>
+                            <p>Chọn nguyên liệu, phối tỷ lệ 3 tầng hương, khắc tên laser — tất cả trong một giao diện trực quan.</p>
+                            <Link to="/customer/customize" className="personalize-banner__btn">
+                                Bắt đầu sáng tạo →
+                            </Link>
+                        </div>
+                        <div className="personalize-banner__icons">
+                            <div className="pb-icon">Nguyên liệu tự nhiên</div>
+                            <div className="pb-icon">18 nốt hương</div>
+                            <div className="pb-icon">Khắc tên laser</div>
+                            <div className="pb-icon">3 xưởng uy tín</div>
+                        </div>
+                    </div>
+                </section>
 
                 {/* =====================================================
                     D. TOP 8 SẢN PHẨM BÁN CHẠY

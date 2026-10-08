@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
-
+import { Link, useLocation } from "react-router-dom";
 export default function Header() {
+    const location = useLocation();
+    const [menuOpen, setMenuOpen] = useState(false);
+    const isActive = (path) => location.pathname.startsWith(path);
+
     return (
         <header className="site-header">
             <div className="header-top">
@@ -19,18 +23,22 @@ export default function Header() {
             <div className="header-main">
                 <div className="header-container">
 
-                    <a href="/" className="header-logo">
+                    <Link to="/" className="header-logo">
                         <span className="header-logo__icon"></span>
                         <span>Oilia</span>
-                    </a>
+                    </Link>
 
                     <nav className="header-nav">
-                        <a href="/">Tất cả</a>
-                        <a href="/xuong">Xưởng</a>
-                        <a href="/products">Bộ sản phẩm</a>
-                        <a href="/uu-dai" className="active">
-                            Ưu đãi
-                        </a>
+                        <Link to="/" className={location.pathname === "/" ? "active" : ""}>
+                            Trang chủ</Link>
+                        <Link to="/customer/products" className={isActive("/customer/products") ? "active" : ""}>
+                            Sản phẩm</Link>
+                        <Link to="/customer/customize" className={`nav-personalize${isActive("/customer/customize") ? " active" : ""}`}>
+                            ✦ Thiết kế cá nhân</Link>
+                        <Link to="/workshop/dashboard" className={isActive("/workshop") ? "active" : ""}>
+                            Xưởng</Link>
+                        <Link to="/uu-dai" className={isActive("/uu-dai") ? "active" : ""}>
+                            Ưu đãi</Link>
                     </nav>
 
                     <div className="header-search">
@@ -61,8 +69,8 @@ export default function Header() {
                     <div className="header-actions">
 
                         {/* Đăng nhập */}
-                        <a
-                            href="/auth/login"
+                        <Link
+                            to="/auth/login"
                             className="login-button"
                         >
               <span className="login-button__icon">
@@ -80,11 +88,11 @@ export default function Header() {
               </span>
 
                             <span>Đăng nhập</span>
-                        </a>
+                        </Link>
 
                         {/* Giỏ hàng */}
-                        <a
-                            href="/cart"
+                        <Link
+                            to="/cart"
                             className="cart-button"
                         >
               <span className="cart-button__icon">
@@ -110,7 +118,7 @@ export default function Header() {
                 <small>CART</small>
                 <strong>$0.00</strong>
               </span>
-                        </a>
+                        </Link>
 
                     </div>
                 </div>
