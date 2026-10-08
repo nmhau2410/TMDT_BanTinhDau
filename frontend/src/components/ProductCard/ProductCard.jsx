@@ -5,6 +5,7 @@ import {
     FiZap,
 } from "react-icons/fi";
 
+import { Link } from "react-router-dom";
 import "./ProductCard.css";
 
 const formatPrice = (value) => {
@@ -67,7 +68,7 @@ function ProductCard({
           IMAGE
       ========================= */}
 
-            <div className="product-card-image">
+            <Link to={`/products/${product.id}`} className="product-card-image">
 
                 {product.badge && (
                     <span className="product-badge">
@@ -82,9 +83,10 @@ function ProductCard({
                             ? "product-favorite active"
                             : "product-favorite"
                     }
-                    onClick={() =>
-                        onFavorite?.(product)
-                    }
+                    onClick={(e) => {
+                        e.preventDefault();
+                        onFavorite?.(product);
+                    }}
                     aria-label="Yêu thích"
                 >
                     <FiHeart />
@@ -125,7 +127,7 @@ function ProductCard({
                     </small>
                 </div>
 
-            </div>
+            </Link>
 
             {/* =========================
           CONTENT
@@ -155,9 +157,11 @@ function ProductCard({
 
                 {/* Name */}
 
-                <h3 className="product-name">
-                    {product.name}
-                </h3>
+                <Link to={`/products/${product.id}`}>
+                    <h3 className="product-name">
+                        {product.name}
+                    </h3>
+                </Link>
 
                 {/* Description */}
 

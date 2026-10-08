@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import HomeProductCard from "../components/HomeProductCard/HomeProductCard";
+import ProductCard from "../components/ProductCard/ProductCard";
 import SkeletonProductCard from "../components/ProductCard/SkeletonProductCard.jsx";
 
 import Header from "../components/Header/Header";
@@ -252,7 +252,7 @@ export default function HomePage() {
                         <div className="hero__actions">
 
                             <Link
-                                to="/customer/products"
+                                to="/products"
                                 className="hero__primary"
                                 type="button"
                             >
@@ -260,7 +260,7 @@ export default function HomePage() {
                             </Link>
 
                             <Link
-                                to="/customer/customize"
+                                to="/customize"
                                 className="hero__secondary"
                                 type="button"
                             >
@@ -410,7 +410,7 @@ export default function HomePage() {
 
                         <Link
                             className="section-link"
-                            to="/customer/products"
+                            to="/products"
                         >
                             Xem tất cả ưu đãi ›
                         </Link>
@@ -424,13 +424,11 @@ export default function HomePage() {
                             ?.slice(0, 4)
                             .map((product) => (
 
-                                <HomeProductCard
+                                <ProductCard
                                     key={product.id}
                                     product={product}
-                                    variant="flash"
-                                    onBuy={() =>
-                                        buyProduct(product)
-                                    }
+                                    onAdd={() => addToCart(product)}
+                                    onBuy={() => buyProduct(product)}
                                 />
 
                             ))}
@@ -463,7 +461,7 @@ export default function HomePage() {
 
                         <Link
                             className="section-link"
-                            to="/customer/products"
+                            to="/products"
                         >
                             Xem tất cả sản phẩm mới →
                         </Link>
@@ -477,13 +475,11 @@ export default function HomePage() {
                             ?.slice(0, 4)
                             .map((product) => (
 
-                                <HomeProductCard
+                                <ProductCard
                                     key={product.id}
                                     product={product}
-                                    variant="new"
-                                    onAdd={() =>
-                                        addToCart(product)
-                                    }
+                                    onAdd={() => addToCart(product)}
+                                    onBuy={() => buyProduct(product)}
                                 />
 
                             ))}
@@ -497,7 +493,7 @@ export default function HomePage() {
                             <span className="personalize-banner__badge">✦ OILIA ATELIER · MỚI</span>
                             <h2>Thiết kế tinh dầu <em>độc bản</em> của riêng bạn</h2>
                             <p>Chọn nguyên liệu, phối tỷ lệ 3 tầng hương, khắc tên laser — tất cả trong một giao diện trực quan.</p>
-                            <Link to="/customer/customize" className="personalize-banner__btn">
+                            <Link to="/customize" className="personalize-banner__btn">
                                 Bắt đầu sáng tạo →
                             </Link>
                         </div>
@@ -565,13 +561,11 @@ export default function HomePage() {
                             ?.slice(0, 8)
                             .map((product) => (
 
-                                <HomeProductCard
+                                <ProductCard
                                     key={`${activeTab}-${product.id}`}
                                     product={product}
-                                    variant="best"
-                                    onAdd={() =>
-                                        addToCart(product)
-                                    }
+                                    onAdd={() => addToCart(product)}
+                                    onBuy={() => buyProduct(product)}
                                 />
 
                             ))}

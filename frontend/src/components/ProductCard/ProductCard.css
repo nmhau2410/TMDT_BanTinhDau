@@ -18,11 +18,13 @@
 
 .product-card-image {
   position: relative;
+  display: block;
   height: 235px;
   margin: 12px;
   overflow: hidden;
   border-radius: 13px;
   background: #f0eee5;
+  text-decoration: none;
 }
 
 .product-card-image img {
@@ -160,6 +162,13 @@
   -webkit-box-orient: vertical;
 
   overflow: hidden;
+}
+
+/* Link bọc tên sản phẩm */
+.product-card-content a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 /* =========================

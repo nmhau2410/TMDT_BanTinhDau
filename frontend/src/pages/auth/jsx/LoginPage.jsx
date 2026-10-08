@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import AuthLayout from '../../../components/AuthLayout.jsx';
 import { useLoginForm } from '../../../services/LoginForm.js';
 import '../css/LoginPage.css';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const {
     formData,
     errors,
@@ -20,7 +22,7 @@ const LoginPage = () => {
         <div className="badge-role">TÀI KHOẢN KHÁCH HÀNG</div>
         <h2>Chào mừng bạn trở lại</h2>
         <p className="form-subtitle">Đăng nhập để tiếp tục mua sắm và quản lý đơn hàng tinh dầu của bạn.</p>
-        <form onSubmit={handleSubmit} className="auth-form">
+        <form onSubmit={(e) => handleSubmit(e, navigate)} className="auth-form">
           <div className="form-group">
             <label>Email</label>
             <input type="text" name="email"placeholder="name@email.com" value={formData.email}onChange={handleChange}className={errors.email && formData.email !== '' ? 'input-error' : ''}/>

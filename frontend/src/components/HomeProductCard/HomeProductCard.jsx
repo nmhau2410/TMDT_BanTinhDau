@@ -6,6 +6,7 @@ import {
     FiStar,
 } from "react-icons/fi";
 
+import { Link } from "react-router-dom";
 import "./HomeProductCard.css";
 
 const formatPrice = (value) => {
@@ -30,7 +31,7 @@ export default function HomeProductCard({
         return (
             <article className="home-card home-card--flash">
 
-                <div className="home-card__image">
+                <Link to={`/products/${product.id || 1}`} className="home-card__image">
                     <img
                         src={product.image}
                         alt={product.name}
@@ -41,16 +42,18 @@ export default function HomeProductCard({
                             {product.badge}
                         </span>
                     )}
-                </div>
+                </Link>
 
                 <div className="home-card__category">
                     {product.categoryLabel ||
                         "THẢO MỘC THIÊN NHIÊN"}
                 </div>
 
-                <h3 className="home-card__name">
-                    {product.name}
-                </h3>
+                <Link to={`/products/${product.id || 1}`}>
+                    <h3 className="home-card__name">
+                        {product.name}
+                    </h3>
+                </Link>
 
                 <p className="home-card__origin">
                     ◇ {product.origin}
@@ -108,7 +111,7 @@ export default function HomeProductCard({
         return (
             <article className="home-card home-card--new">
 
-                <div className="home-card__image">
+                <Link to={`/products/${product.id || 1}`} className="home-card__image">
 
                     <img
                         src={product.image}
@@ -119,16 +122,18 @@ export default function HomeProductCard({
                         Mới
                     </span>
 
-                </div>
+                </Link>
 
                 <div className="home-card__category">
                     {product.categoryLabel ||
                         "BỘ SƯU TẬP MỚI"}
                 </div>
 
-                <h3 className="home-card__name">
-                    {product.name}
-                </h3>
+                <Link to={`/products/${product.id || 1}`}>
+                    <h3 className="home-card__name">
+                        {product.name}
+                    </h3>
+                </Link>
 
                 <p className="home-card__description">
                     {product.description ||
@@ -168,14 +173,14 @@ export default function HomeProductCard({
     return (
         <article className="home-card home-card--best">
 
-            <div className="home-card__image">
+            <Link to={`/products/${product.id || 1}`} className="home-card__image">
 
                 <img
                     src={product.image}
                     alt={product.name}
                 />
 
-            </div>
+            </Link>
 
             <div className="home-card__rating">
 
@@ -191,9 +196,11 @@ export default function HomeProductCard({
 
             </div>
 
-            <h3 className="home-card__name">
-                {product.name}
-            </h3>
+            <Link to={`/products/${product.id || 1}`}>
+                <h3 className="home-card__name">
+                    {product.name}
+                </h3>
+            </Link>
 
             <p className="home-card__description">
                 {product.description ||

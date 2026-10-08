@@ -33,13 +33,14 @@ export const useLoginForm = () => {
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, navigate) => {
     e.preventDefault();
     if (!isFormValid) return;
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      alert('Đăng nhập thành công!');}, 1500);
+      // Đăng nhập thành công → về trang Home
+      if (navigate) navigate('/');}, 1500);
   };
   return {formData,errors,showPassword,isLoading,isFormValid,handleChange,handleSubmit,togglePassword};
 };

@@ -191,7 +191,7 @@ export default function PersonalizedDesignPage() {
 
             <main className="pds-main">
                 <div className="pds-breadcrumb">
-                    <Link to="/customer/products">Trang chủ</Link>
+                    <Link to="/products">Trang chủ</Link>
                     <span>/</span>
                     <strong>Thiết kế tinh dầu cá nhân hóa</strong>
                 </div>

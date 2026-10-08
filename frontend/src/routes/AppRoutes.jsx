@@ -11,9 +11,9 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/auth/*" element={<AuthRoutes />} />
-        <Route path="/customer/*" element={<CustomerRoutes />} />
         <Route path="/workshop/*" element={<WorkshopRoutes />} />
         <Route path="/admin/*" element={<AdminRoutes />} />
+        <Route path="/*" element={<CustomerRoutes />} />
       </Routes>
     </BrowserRouter>
   );

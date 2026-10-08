@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
     FiSearch,
     FiSliders,
@@ -159,12 +160,15 @@ function ProductPage() {
        CART / BUY
     ========================= */
 
+    const navigate = useNavigate();
+
     const handleAdd = (product) => {
         console.log("Thêm vào giỏ hàng:", product);
+        // TODO: gọn vào giỏ hàng rồi hiện toast
     };
 
     const handleBuy = (product) => {
-        console.log("Mua ngay:", product);
+        navigate("/checkout");
     };
 
     /* =========================

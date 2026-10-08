@@ -1,0 +1,148 @@
+.wl-page { min-height: 100vh; background: #f9f8f5; font-family: "Inter", sans-serif; }
+
+.wl-main { max-width: 1180px; margin: 0 auto; padding: 32px 24px 80px; }
+
+/* HERO */
+.wl-hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    border-radius: 20px;
+    padding: 48px 40px;
+    margin-bottom: 32px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+.wl-hero::before {
+    content: "";
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 300px; height: 300px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 50%;
+}
+.wl-hero__badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+}
+.wl-hero h1 { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+.wl-hero p { color: rgba(255,255,255,0.7); font-size: 15px; margin-bottom: 28px; max-width: 500px; }
+.wl-hero__stats { display: flex; gap: 40px; }
+.wl-hero__stats div { display: flex; flex-direction: column; gap: 4px; }
+.wl-hero__stats strong { font-size: 24px; font-weight: 800; }
+.wl-hero__stats span { font-size: 12px; color: rgba(255,255,255,0.6); }
+
+/* SEARCH */
+.wl-search-bar {
+    position: relative;
+    margin-bottom: 28px;
+}
+.wl-search-bar input {
+    width: 100%;
+    padding: 14px 20px;
+    border: 2px solid #e8e8e8;
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+    background: white;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+.wl-search-bar input:focus { border-color: #1a1a2e; }
+.wl-search-bar button {
+    position: absolute;
+    right: 16px; top: 50%;
+    transform: translateY(-50%);
+    border: none; background: none;
+    cursor: pointer; color: #aaa; font-size: 16px;
+}
+
+/* GRID */
+.wl-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* CARD */
+.wl-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+.wl-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.wl-card__header {
+    position: relative;
+    background: linear-gradient(135deg, #f0eee5, #e8e6dc);
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wl-card__avatar {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    background: #1a1a2e;
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wl-card__badge {
+    position: absolute;
+    top: 12px; right: 12px;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+
+.wl-card__body { padding: 16px 18px; flex: 1; }
+.wl-card__name { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+.wl-card__location { font-size: 12px; color: #888; margin-bottom: 10px; }
+.wl-card__desc { font-size: 13px; color: #666; line-height: 1.55; margin-bottom: 10px; }
+.wl-card__specialty { font-size: 12px; color: #555; display: flex; gap: 6px; align-items: center; }
+
+.wl-card__footer {
+    padding: 14px 18px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.wl-card__stats { font-size: 12px; color: #888; display: flex; gap: 6px; align-items: center; }
+.wl-card__btn {
+    background: #1a1a2e;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s;
+    white-space: nowrap;
+}
+.wl-card__btn:hover { background: #c84b31; }
+
+.wl-empty { text-align: center; padding: 60px; color: #888; }
+.wl-empty div { font-size: 48px; margin-bottom: 12px; }
+.wl-empty h3 { font-size: 18px; font-weight: 700; color: #444; margin-bottom: 6px; }
+
+@media (max-width: 900px) { .wl-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .wl-grid { grid-template-columns: 1fr; } .wl-hero { padding: 32px 20px; } .wl-hero h1 { font-size: 22px; } }
