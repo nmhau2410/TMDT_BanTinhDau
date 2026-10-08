@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export const useRegisterForm = (initialData, validationRules) => {
+export const useRegisterForm = (initialData, validationRules, onSuccess) => {
   const [formData, setFormData] = useState(initialData);
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
@@ -54,14 +54,37 @@ export const useRegisterForm = (initialData, validationRules) => {
       [name]: type === 'checkbox' ? checked : value
     }));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isFormValid) return;
     setIsLoading(true);
-    setTimeout(() => {
+    try {
+      const response = await fetch('http://localhost:8080/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          fullName: formData.fullName || formData.representativeName || formData.factoryName,
+          phone: formData.phone,
+          roleName: formData.factoryName ? 'WORKSHOP' : 'CUSTOMER'
+        })
+      });
+      
       setIsLoading(false);
-      alert('Đăng ký thành công!');
-    }, 1500);
+      if (response.ok) {
+        if (onSuccess) {
+          onSuccess(formData.email);
+        }
+      } else {
+        const errorMsg = await response.text();
+        alert('Lỗi đăng ký: ' + errorMsg);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.error('Registration error:', error);
+      alert('Không thể kết nối tới server. Vui lòng thử lại sau.');
+    }
   };
   const togglePassword = () => setShowPassword(!showPassword);
   const toggleConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
