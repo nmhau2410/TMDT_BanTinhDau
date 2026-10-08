@@ -10,18 +10,19 @@ import FavoriteProducts from "../pages/customer/jsx/FavoriteProducts";
 import MyOrdersPage from "../pages/customer/jsx/MyOrdersPage.jsx";
 import WorkshopList from "../pages/customer/jsx/WorkshopList";
 import WorkshopDetail from "../pages/customer/jsx/WorkshopDetail";
-import CustomPerfumePage from "../pages/customer/jsx/CustomPerfumePage"; // Import trang vừa làm
+import CustomPerfumePage from "../pages/customer/jsx/CustomPerfumePage";
+import CheckoutPage from "../pages/customer/jsx/CheckoutPage";
 
 function CustomerRoutes() {
     return (
         <Routes>
-            {/* Trang chủ khách hàng */}
             <Route path="/" element={<ProductReviewPage />} />
             <Route path="write-review" element={<ProductReviewPage />} />
             <Route path="custom-perfume" element={<CustomPerfumePage />} />
             <Route path="products" element={<ProductPage />} />
             <Route path="products/:id" element={<ProductDetail />} />
             <Route path="cart" element={<CartPage />} />
+            <Route path="checkout" element={<CheckoutPage />} />
             <Route path="account" element={<AccountPage />} />
             <Route path="change-password" element={<ChangePasswordPage />} />
             <Route path="favorites" element={<FavoriteProducts />} />
