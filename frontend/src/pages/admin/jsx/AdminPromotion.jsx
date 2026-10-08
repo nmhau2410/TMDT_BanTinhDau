@@ -23,7 +23,7 @@ const PromotionManagement = () => {
                         className={`top-tab-btn ${activeTab === 'campaigns' ? 'active' : ''}`}
                         onClick={() => setActiveTab('campaigns')}
                     >
-                        ⚡ Chương trình khuyến mãi
+                        Chương trình khuyến mãi
                     </button>
                     <button
                         className={`top-tab-btn ${activeTab === 'vouchers' ? 'active' : ''}`}

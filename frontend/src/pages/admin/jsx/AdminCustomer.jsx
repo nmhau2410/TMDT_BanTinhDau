@@ -157,11 +157,11 @@ const CustomerManagement = () => {
                     </div>
                     <div className="header-actions">
                         <button className="btn-light">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <i className="fa-solid fa-file-export icon-btn"></i>
                             Xuất dữ liệu (GDPR/Excel)
                         </button>
                         <button className="btn-light-purple">
-                            🎁 Tặng Voucher hàng loạt
+                            <i className="fa-solid fa-ticket-simple icon-btn"></i> Tặng Voucher hàng loạt
                         </button>
                         <button className="primary-btn red">
                             + Thêm khách hàng thủ công
@@ -173,7 +173,9 @@ const CustomerManagement = () => {
                     <div className="cust-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">TỔNG KHÁCH HÀNG</span>
-                            <span className="icon-square blue">👤</span>
+                            <span className="icon-square blue">
+                                <i className="fa-solid fa-users"></i>
+                            </span>
                         </div>
                         <div className="stat-number">12.450</div>
                         <div className="stat-badges-row">
@@ -186,13 +188,17 @@ const CustomerManagement = () => {
                     <div className="cust-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">GIÁ TRỊ VÒNG ĐỜI TB (LTV)</span>
-                            <span className="icon-square green">💵</span>
+                            <span className="icon-square green">
+                                <i className="fa-solid fa-sack-dollar"></i>
+                            </span>
                         </div>
                         <div className="stat-number">
                             4.850.000đ <small>/ khách</small>
                         </div>
                         <div className="stat-trend-line">
-                            <span className="green-text">📈 +18.4% so với kỳ trước</span>
+                            <span className="green-text">
+                                <i className="fa-solid fa-arrow-trend-up icon-trend"></i> +18.4% so với kỳ trước
+                            </span>
                             <svg className="mini-chart" viewBox="0 0 60 20">
                                 <path d="M0 15 Q15 18 30 10 T60 2" fill="none" stroke="#10b981" strokeWidth="2" />
                             </svg>
@@ -202,7 +208,9 @@ const CustomerManagement = () => {
                     <div className="cust-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">TỶ LỆ RE-ORDER CÔNG THỨC HƯƠNG</span>
-                            <span className="icon-square purple">🔄</span>
+                            <span className="icon-square purple">
+                                <i className="fa-solid fa-rotate-right"></i>
+                            </span>
                         </div>
                         <div className="stat-number">
                             42.8% <span className="trend-badge green">+5.2%</span>
@@ -215,7 +223,9 @@ const CustomerManagement = () => {
                     <div className="cust-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">TÀI KHOẢN VIP & TIER CAO</span>
-                            <span className="icon-square yellow">⭐</span>
+                            <span className="icon-square yellow">
+                                <i className="fa-solid fa-crown"></i>
+                            </span>
                         </div>
                         <div className="stat-number">
                             1.820 <small>VIP</small>
@@ -230,7 +240,7 @@ const CustomerManagement = () => {
                 <div className="cust-filter-card">
                     <div className="search-bar-row">
                         <div className="search-input-wrapper">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            <i className="fa-solid fa-magnifying-glass search-icon"></i>
                             <input type="text" placeholder="Tìm theo Họ tên, Email, SĐT, hoặc Mã CUST-xxx..." />
                         </div>
                         <select className="cust-select"><option>Phân hạng: Tất cả</option></select>
@@ -297,7 +307,7 @@ const CustomerManagement = () => {
                                             <div>
                                                 <div className="cust-name-row">
                                                     <strong>{c.name}</strong>
-                                                    {c.isVip && <span className="vip-star-badge">★ VIP</span>}
+                                                    {c.isVip && <span className="vip-star-badge"><i className="fa-solid fa-star"></i> VIP</span>}
                                                 </div>
                                                 <small className="cust-id">Mã: {c.id}</small>
                                             </div>
@@ -314,7 +324,9 @@ const CustomerManagement = () => {
                                     </td>
                                     <td>
                                         <div className="formula-cell">
-                                            <span className="formula-title">🧪 {c.formulas}</span>
+                                            <span className="formula-title">
+                                                <i className="fa-solid fa-flask icon-flask"></i> {c.formulas}
+                                            </span>
                                             <small className={`formula-sub ${c.formulaSubAlert ? 'alert' : ''}`}>{c.formulaSub}</small>
                                         </div>
                                     </td>
@@ -383,7 +395,7 @@ const CustomerManagement = () => {
                                     <div className="user-title-col">
                                         <div className="user-name-line">
                                             <h2>{activeCustomer.name}</h2>
-                                            <span className="vip-badge-gold">★ VIP Diamond</span>
+                                            <span className="vip-badge-gold"><i className="fa-solid fa-star"></i> VIP Diamond</span>
                                         </div>
                                         <div className="user-sub-line">
                                             <span>Mã: <strong>{activeCustomer.id}</strong></span> •
@@ -392,9 +404,15 @@ const CustomerManagement = () => {
                                         </div>
                                     </div>
                                     <div className="drawer-header-actions">
-                                        <button className="icon-action-btn" title="Chỉnh sửa">🔑</button>
-                                        <button className="icon-action-btn" title="Tạm khóa">🚫</button>
-                                        <button className="close-drawer-btn" onClick={() => setActiveCustomer(null)}>✕</button>
+                                        <button className="icon-action-btn" title="Chỉnh sửa">
+                                            <i className="fa-solid fa-key"></i>
+                                        </button>
+                                        <button className="icon-action-btn" title="Tạm khóa">
+                                            <i className="fa-solid fa-ban"></i>
+                                        </button>
+                                        <button className="close-drawer-btn" onClick={() => setActiveCustomer(null)}>
+                                            <i className="fa-solid fa-xmark"></i>
+                                        </button>
                                     </div>
                                 </div>
 
@@ -471,7 +489,9 @@ const CustomerManagement = () => {
                                                     </div>
                                                     <p className="formula-sub-spec">Eau de Parfum (EDP 50ml) • Nồng độ tinh dầu: 20%</p>
                                                 </div>
-                                                <span className="reorder-status-badge green">✔ Đã gia công 3 lô (Re-ordered)</span>
+                                                <span className="reorder-status-badge green">
+                                                    <i className="fa-solid fa-check icon-btn"></i> Đã gia công 3 lô (Re-ordered)
+                                                </span>
                                             </div>
 
                                             <div className="exclusive-factory-banner">
@@ -513,7 +533,9 @@ const CustomerManagement = () => {
                                             <div className="formula-actions-bar">
                                                 <button className="btn-pink-soft">Xem chi tiết nốt hương Lab</button>
                                                 <button className="btn-white-outline">Tái đặt hàng với xưởng</button>
-                                                <button className="btn-text-link">📑 Tải IFRA Compliance</button>
+                                                <button className="btn-text-link">
+                                                    <i className="fa-solid fa-file-lines icon-btn"></i> Tải IFRA Compliance
+                                                </button>
                                             </div>
                                         </div>
 
@@ -544,7 +566,9 @@ const CustomerManagement = () => {
                                                 </div>
                                             </div>
                                             <div className="credit-action-row">
-                                                <button className="btn-dark-add">Cộng tiền vào ví khách</button>
+                                                <button className="btn-dark-add">
+                                                    <i className="fa-solid fa-plus icon-btn"></i> Cộng tiền vào ví khách
+                                                </button>
                                             </div>
                                         </div>
                                     </>

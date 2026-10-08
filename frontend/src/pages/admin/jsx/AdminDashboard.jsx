@@ -100,7 +100,7 @@ const AdminDashboard = () => {
                         <h1 className="page-title">Quản trị sản xuất nước hoa & hương thơm</h1>
                     </div>
                     <button className="export-btn" onClick={handleExportReport}>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <i className="fa-solid fa-file-export icon-btn"></i>
                         Xuất báo cáo Excel/PDF
                     </button>
                 </div>
@@ -139,25 +139,46 @@ const AdminDashboard = () => {
                     </label>
 
                     <div className="filter-badges">
-                        <span className="badge green-badge">• 12 xưởng đang vận hành</span>
-                        <span className="badge yellow-badge">• 4 điểm xuất chờ duyệt</span>
+                        <span className="badge green-badge">
+                            <i className="fa-solid fa-circle dot-icon"></i> 12 xưởng đang vận hành
+                        </span>
+                        <span className="badge yellow-badge">
+                            <i className="fa-solid fa-circle dot-icon"></i> 4 điểm xuất chờ duyệt
+                        </span>
                     </div>
                 </div>
 
                 <div className="section-title">
-                    <span>• CHỈ SỐ TÀI CHÍNH & GIAN HÀNG GIA CÔNG ({timeRange.toUpperCase()})</span>
+                    <span>
+                        <i className="fa-solid fa-circle-small dot-title"></i> CHỈ SỐ TÀI CHÍNH & GIAN HÀNG GIA CÔNG ({timeRange.toUpperCase()})
+                    </span>
                     <span className="sub">Đơn vị thanh toán: VND (Escrow bảo vệ)</span>
                 </div>
 
                 <div className="metrics-grid">
                     <div className="metric-card">
-                        <span className="metric-title">TỔNG GMV TIỀN TẢI <span className="icon-badge pink">🛒</span></span>
+                        <span className="metric-title">
+                            TỔNG GMV TIỀN TẢI
+                            <span className="icon-badge pink">
+                                <i className="fa-solid fa-cart-shopping"></i>
+                            </span>
+                        </span>
                         <div className="metric-val">{currentStats.gmv}</div>
-                        {compareWithPrev && <div className="metric-trend green">{currentStats.gmvTrend} so với kỳ trước 📈</div>}
+                        {compareWithPrev && (
+                            <div className="metric-trend green">
+                                {currentStats.gmvTrend} so với kỳ trước
+                                <i className="fa-solid fa-arrow-trend-up icon-trend"></i>
+                            </div>
+                        )}
                     </div>
 
                     <div className="metric-card">
-                        <span className="metric-title">HOA HỒNG & PHÍ SÀN THUẦN <span className="icon-badge green">💵</span></span>
+                        <span className="metric-title">
+                            HOA HỒNG & PHÍ SÀN THUẦN
+                            <span className="icon-badge green">
+                                <i className="fa-solid fa-money-bill-wave"></i>
+                            </span>
+                        </span>
                         <div className="metric-val">{currentStats.commission}</div>
                         <div className="metric-sub-row">
                             <span>Take-rate Tiền: 14.5%</span>
@@ -166,7 +187,12 @@ const AdminDashboard = () => {
                     </div>
 
                     <div className="metric-card">
-                        <span className="metric-title">KÝ QUỸ ESCROW BẢO ĐẢM <span className="icon-badge blue">🛡️</span></span>
+                        <span className="metric-title">
+                            KÝ QUỸ ESCROW BẢO ĐẢM
+                            <span className="icon-badge blue">
+                                <i className="fa-solid fa-shield-halved"></i>
+                            </span>
+                        </span>
                         <div className="metric-val">{currentStats.escrow}</div>
                         <div className="metric-sub-row">
                             <span>Đang giữ cho: <strong>8 xưởng</strong></span>
@@ -175,7 +201,12 @@ const AdminDashboard = () => {
                     </div>
 
                     <div className="metric-card">
-                        <span className="metric-title">GIÁ TRỊ ĐƠN TRB (AOV) <span className="icon-badge purple">🏷️</span></span>
+                        <span className="metric-title">
+                            GIÁ TRỊ ĐƠN TRB (AOV)
+                            <span className="icon-badge purple">
+                                <i className="fa-solid fa-tag"></i>
+                            </span>
+                        </span>
                         <div className="metric-val">{currentStats.aov} <small>/đơn</small></div>
                         <div className="metric-sub-row">
                             {compareWithPrev && <span className="green">+0.6% với cùng kỳ</span>}
@@ -185,13 +216,20 @@ const AdminDashboard = () => {
                 </div>
 
                 <div className="section-title">
-                    <span>• CHỈ SỐ HỆ THỐNG THÁI HƯƠNG & TỶ LỆ CHUYỂN ĐỔI</span>
+                    <span>
+                        <i className="fa-solid fa-circle-small dot-title"></i> CHỈ SỐ HỆ THỐNG THÁI HƯƠNG & TỶ LỆ CHUYỂN ĐỔI
+                    </span>
                     <span className="sub">Động cơ phối hương AI Olfactory™ v2.4</span>
                 </div>
 
                 <div className="metrics-grid">
                     <div className="metric-card">
-                        <span className="metric-title">HỆ THỐNG XƯỞNG & KHÁCH <span className="icon-badge blue">🏬</span></span>
+                        <span className="metric-title">
+                            HỆ THỐNG XƯỞNG & KHÁCH
+                            <span className="icon-badge blue">
+                                <i className="fa-solid fa-store"></i>
+                            </span>
+                        </span>
                         <div className="metric-val">1.240 <small>tài khoản</small></div>
                         <div className="metric-sub-row">
                             <span className="blue-link">40 Xưởng Active</span>
@@ -200,7 +238,12 @@ const AdminDashboard = () => {
                     </div>
 
                     <div className="metric-card">
-                        <span className="metric-title">CÔNG THỨC HƯƠNG TẠO MỚI <span className="icon-badge purple">🧪</span></span>
+                        <span className="metric-title">
+                            CÔNG THỨC HƯƠNG TẠO MỚI
+                            <span className="icon-badge purple">
+                                <i className="fa-solid fa-flask-vial"></i>
+                            </span>
+                        </span>
                         <div className="metric-val">4.820 <small>công thức</small></div>
                         <div className="metric-sub-row">
                             <span>Scent AI gợi ý: 72%</span>
@@ -209,7 +252,12 @@ const AdminDashboard = () => {
                     </div>
 
                     <div className="metric-card">
-                        <span className="metric-title">TỶ LỆ CHỐT & BÁO GIÁ <span className="icon-badge teal">🎯</span></span>
+                        <span className="metric-title">
+                            TỶ LỆ CHỐT & BÁO GIÁ
+                            <span className="icon-badge teal">
+                                <i className="fa-solid fa-bullseye"></i>
+                            </span>
+                        </span>
                         <div className="metric-val">36.8%</div>
                         <div className="metric-sub-row">
                             <span>Đạt KPI Quý IV: 105%</span>
@@ -218,7 +266,12 @@ const AdminDashboard = () => {
                     </div>
 
                     <div className="metric-card alert-card">
-                        <span className="metric-title">TÁC VỤ CHỜ DUYỆT GẤP <span className="icon-badge red">⏰</span></span>
+                        <span className="metric-title">
+                            TÁC VỤ CHỜ DUYỆT GẤP
+                            <span className="icon-badge red">
+                                <i className="fa-solid fa-clock"></i>
+                            </span>
+                        </span>
                         <div className="metric-val red-text">15 <small>yêu cầu</small></div>
                         <div className="metric-sub-row">
                             <span>6 Duyệt xưởng</span>
@@ -323,14 +376,19 @@ const AdminDashboard = () => {
                                 <td className="factory-cell">
                                     <div className="factory-avatar red">HM</div>
                                     <div>
-                                        <strong>Hương Mộc Lab & Factory <span className="check-icon">✔</span></strong>
+                                        <strong>
+                                            Hương Mộc Lab & Factory
+                                            <i className="fa-solid fa-circle-check check-icon"></i>
+                                        </strong>
                                         <p>Đồng Nai - ISO 22716 GMP</p>
                                     </div>
                                 </td>
                                 <td><strong>482.000.000đ</strong></td>
                                 <td>142</td>
                                 <td className="green-text">99.4%</td>
-                                <td className="star-cell">★ 4.95</td>
+                                <td className="star-cell">
+                                    <i className="fa-solid fa-star star-icon"></i> 4.95
+                                </td>
                             </tr>
                             <tr>
                                 <td className="factory-cell">
@@ -343,7 +401,9 @@ const AdminDashboard = () => {
                                 <td><strong>385.400.000đ</strong></td>
                                 <td>98</td>
                                 <td className="green-text">98.8%</td>
-                                <td className="star-cell">★ 4.92</td>
+                                <td className="star-cell">
+                                    <i className="fa-solid fa-star star-icon"></i> 4.92
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -367,22 +427,30 @@ const AdminDashboard = () => {
                         <p className="card-desc">Lưu tất cả thao tác có thẩm quyền cao nhất trên hệ thống ScentOS</p>
                         <div className="action-buttons-grid">
                             <button className="action-btn red" onClick={() => handleQuickAction('approve', 'Phê duyệt xưởng')}>
-                                <span className="btn-icon">➕</span>
+                                <span className="btn-icon">
+                                    <i className="fa-solid fa-plus"></i>
+                                </span>
                                 <strong>Phê duyệt xưởng</strong>
                                 <small>6 hồ sơ đang chờ</small>
                             </button>
                             <button className="action-btn dark" onClick={() => handleQuickAction('rate', 'Cấu hình Take-rate')}>
-                                <span className="btn-icon">⚙️</span>
+                                <span className="btn-icon">
+                                    <i className="fa-solid fa-gear"></i>
+                                </span>
                                 <strong>Cấu hình Take-rate</strong>
                                 <small>Hiện tại 14.5%</small>
                             </button>
                             <button className="action-btn dark" onClick={() => handleQuickAction('escrow', 'Đối soát ký quỹ')}>
-                                <span className="btn-icon">📦</span>
+                                <span className="btn-icon">
+                                    <i className="fa-solid fa-box-archive"></i>
+                                </span>
                                 <strong>Đối soát ký quỹ</strong>
                                 <small>Kỳ hạn ngày 15</small>
                             </button>
                             <button className="action-btn dark" onClick={() => handleQuickAction('notify', 'Thông báo toàn sàn')}>
-                                <span className="btn-icon">📢</span>
+                                <span className="btn-icon">
+                                    <i className="fa-solid fa-bullhorn"></i>
+                                </span>
                                 <strong>Thông báo toàn sàn</strong>
                                 <small>Push notification</small>
                             </button>

@@ -7,7 +7,7 @@ const initialIngredients = [
         sku: 'MAT-001',
         skuType: 'SKU CHUẨN',
         skuBadgeType: 'gray',
-        icon: '🍋',
+        iconClass: 'fa-solid fa-lemon',
         iconBg: 'yellow',
         nameVi: 'Cam Bergamot Calabria Ý',
         nameEn: 'Italian Bergamot',
@@ -16,7 +16,7 @@ const initialIngredients = [
         noteLayer: 'Hướng đầu (Top)',
         noteLayerType: 'top',
         olfactoryFamily: 'Citrus',
-        familyIcon: '🍋',
+        familyIconClass: 'fa-solid fa-lemon',
         familyType: 'citrus',
         sillage: '3/5',
         longevity: '2 – 3 giờ',
@@ -36,7 +36,7 @@ const initialIngredients = [
         skuType: 'HOT TREND',
         badgeNotice: 'Top 1 RFQ',
         skuBadgeType: 'red',
-        icon: '🌹',
+        iconClass: 'fa-solid fa-rose',
         iconBg: 'pink',
         nameVi: 'Hoa Hồng Grasse Pháp',
         nameEn: 'Grasse Centifolia Rose',
@@ -45,7 +45,7 @@ const initialIngredients = [
         noteLayer: 'Hương giữa (Middle)',
         noteLayerType: 'middle',
         olfactoryFamily: 'Floral',
-        familyIcon: '🌸',
+        familyIconClass: 'fa-solid fa-spa',
         familyType: 'floral',
         sillage: '4/5',
         longevity: '6 – 8 giờ',
@@ -65,7 +65,7 @@ const initialIngredients = [
         sku: 'MAT-089',
         skuType: 'SKU CHUẨN',
         skuBadgeType: 'gray',
-        icon: '🌲',
+        iconClass: 'fa-solid fa-tree',
         iconBg: 'blue',
         nameVi: 'Gỗ Tuyết Tùng Virginia',
         nameEn: 'Virginia Cedarwood',
@@ -74,7 +74,7 @@ const initialIngredients = [
         noteLayer: 'Hương cuối (Base)',
         noteLayerType: 'base',
         olfactoryFamily: 'Woody',
-        familyIcon: '🪵',
+        familyIconClass: 'fa-solid fa-tree',
         familyType: 'woody',
         sillage: '4/5',
         longevity: '8 – 12 giờ',
@@ -93,7 +93,7 @@ const initialIngredients = [
         sku: 'MAT-118',
         skuType: 'SKU CHUẨN',
         skuBadgeType: 'gray',
-        icon: '🫘',
+        iconClass: 'fa-solid fa-seedling',
         iconBg: 'amber',
         nameVi: 'Đậu Tonka Venezuela',
         nameEn: 'Venezuelan Tonka Bean',
@@ -102,7 +102,7 @@ const initialIngredients = [
         noteLayer: 'Hương cuối (Base)',
         noteLayerType: 'base',
         olfactoryFamily: 'Gourmand',
-        familyIcon: '🍞',
+        familyIconClass: 'fa-solid fa-cookie',
         familyType: 'gourmand',
         sillage: '5/5',
         longevity: '10 – 14 giờ',
@@ -187,20 +187,19 @@ const MasterIngredientsCatalog = () => {
                 <div className="admin-header">
                     <div>
                         <div className="breadcrumb">
-                            <span>Quản trị hệ thống</span> / <span>Danh mục Nguyên liệu Chuẩn</span> / <span className="active">Scent Engine Dictionary</span>
+                            <span>Quản trị hệ thống</span> / <span class="active">Quản lý danh mục</span>
                         </div>
                         <h1 className="page-title">
                             Quản lý Danh mục Nguyên liệu Chuẩn (Master Ingredients Catalog)
-                            <span className="ai-engine-tag">⚡ Động cơ AI OllaEngine™ v2.4</span>
                         </h1>
                     </div>
                     <div className="header-actions">
                         <button className="btn-light">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <i className="fa-solid fa-file-export icon-btn"></i>
                             Xuất từ điển Scent (Excel/JSON)
                         </button>
                         <button className="primary-btn red">
-                            + + Thêm nốt hương chuẩn mới
+                            + Thêm nốt hương chuẩn mới
                         </button>
                     </div>
                 </div>
@@ -209,7 +208,9 @@ const MasterIngredientsCatalog = () => {
                     <div className="ing-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">TỔNG NỐT HƯƠNG TỪ ĐIỂN</span>
-                            <span className="icon-badge pink">📚</span>
+                            <span className="icon-badge pink">
+                                <i className="fa-solid fa-book"></i>
+                            </span>
                         </div>
                         <div className="stat-number">
                             248 <small>nốt hương</small>
@@ -223,7 +224,9 @@ const MasterIngredientsCatalog = () => {
                     <div className="ing-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">PHÂN BỐ THÁP NỐT HƯƠNG</span>
-                            <span className="icon-badge blue">📐</span>
+                            <span className="icon-badge blue">
+                                <i className="fa-solid fa-ruler-combined"></i>
+                            </span>
                         </div>
                         <div className="pyramid-distribution-bar">
                             <div className="bar-part top" style={{ width: '30%' }}></div>
@@ -240,7 +243,9 @@ const MasterIngredientsCatalog = () => {
                     <div className="ing-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">ĐỀ XUẤT NỐT MỚI TỪ XƯỞNG</span>
-                            <span className="icon-badge yellow">⚠️</span>
+                            <span className="icon-badge yellow">
+                                <i className="fa-solid fa-triangle-exclamation"></i>
+                            </span>
                         </div>
                         <div className="stat-number">
                             8 <small>yêu cầu</small> <span className="urgent-badge">3 cần duyệt gấp</span>
@@ -253,7 +258,9 @@ const MasterIngredientsCatalog = () => {
                     <div className="ing-stat-card">
                         <div className="stat-header">
                             <span className="stat-label">NỐT HƯƠNG HOT TREND (Q3/2026)</span>
-                            <span className="icon-badge teal">🌐</span>
+                            <span className="icon-badge teal">
+                                <i className="fa-solid fa-globe"></i>
+                            </span>
                         </div>
                         <ul className="trend-notes-list">
                             <li><span>• Hoa hồng Grasse</span> <strong className="red-text">38% RFQ</strong></li>
@@ -265,10 +272,10 @@ const MasterIngredientsCatalog = () => {
 
                 <div className="catalog-tabs-bar">
                     <button className="tab-btn active">
-                        🎒 DANH MỤC NGUYÊN LIỆU CHUẨN (MASTER CATALOG) <span className="count-pill red">248</span>
+                        <i className="fa-solid fa-vials icon-btn"></i> DANH MỤC NGUYÊN LIỆU CHUẨN (MASTER CATALOG) <span className="count-pill red">248</span>
                     </button>
                     <button className="tab-btn">
-                        📑 DUYỆT ĐỀ XUẤT NỐT HƯƠNG TỪ XƯỞNG (PENDING REQUESTS) <span className="count-pill yellow">8 Chờ duyệt</span>
+                        <i className="fa-solid fa-clipboard-list icon-btn"></i> DUYỆT ĐỀ XUẤT NỐT HƯƠNG TỪ XƯỞNG (PENDING REQUESTS) <span className="count-pill yellow">8 Chờ duyệt</span>
                     </button>
                     <div className="sync-status">
                         <span className="green-dot">•</span> Thuật toán phối hương Scent Engine: <strong>Đang đồng bộ tức thì</strong>
@@ -278,14 +285,16 @@ const MasterIngredientsCatalog = () => {
                 <div className="catalog-filter-card">
                     <div className="search-bar-row">
                         <div className="search-input-wrapper">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            <i className="fa-solid fa-magnifying-glass search-icon"></i>
                             <input type="text" placeholder="Bergamot, Grasse Rose, Virginia..." />
                         </div>
                         <select className="cat-select"><option>Tất cả tầng hương (3)</option></select>
                         <select className="cat-select"><option>Nhóm hương (Tất cả)</option></select>
                         <select className="cat-select"><option>Đã liên kết (Có xưởng trữ kho)</option></select>
                         <select className="cat-select"><option>Đang kích hoạt</option></select>
-                        <button className="reset-btn">🔄</button>
+                        <button className="reset-btn">
+                            <i className="fa-solid fa-rotate-right"></i>
+                        </button>
                     </div>
 
                     <div className="tags-filter-row">
@@ -322,7 +331,7 @@ const MasterIngredientsCatalog = () => {
                             <th>TẦNG HƯƠNG</th>
                             <th>NHÓM HƯƠNG</th>
                             <th>ĐỘ TỎA (SILLAGE) & LƯU HƯƠNG</th>
-                            <th>XƯỞNG ĐÃ MAPPING</th>
+                            <th>XƯỞNG ĐẤU MAPPING</th>
                             <th>TRẠNG THÁI</th>
                             <th>THAO TÁC</th>
                         </tr>
@@ -345,12 +354,14 @@ const MasterIngredientsCatalog = () => {
                                     </td>
                                     <td>
                                         <div className="sku-cell">
-                                            <div className={`icon-box ${item.iconBg}`}>{item.icon}</div>
+                                            <div className={`icon-box ${item.iconBg}`}>
+                                                <i className={item.iconClass}></i>
+                                            </div>
                                             <div>
                                                 <strong className="sku-code">{item.sku}</strong>
                                                 <span className={`sku-badge ${item.skuBadgeType}`}>
-                                                        {item.skuType} {item.badgeNotice && `• ${item.badgeNotice}`}
-                                                    </span>
+                                                    {item.skuType} {item.badgeNotice && `• ${item.badgeNotice}`}
+                                                </span>
                                             </div>
                                         </div>
                                     </td>
@@ -367,9 +378,9 @@ const MasterIngredientsCatalog = () => {
                                         <span className={`layer-pill ${item.noteLayerType}`}>• {item.noteLayer}</span>
                                     </td>
                                     <td>
-                                            <span className={`family-pill ${item.familyType}`}>
-                                                {item.familyIcon} {item.olfactoryFamily}
-                                            </span>
+                                        <span className={`family-pill ${item.familyType}`}>
+                                            <i className={`${item.familyIconClass} icon-btn`}></i> {item.olfactoryFamily}
+                                        </span>
                                     </td>
                                     <td>
                                         <div className="sillage-cell">
@@ -378,18 +389,24 @@ const MasterIngredientsCatalog = () => {
                                         </div>
                                     </td>
                                     <td>
-                                            <span className={`mapping-btn ${item.mappedWarning ? 'warning' : 'pink'}`}>
-                                                {item.mappedFactories} ↗
-                                            </span>
+                                        <span className={`mapping-btn ${item.mappedWarning ? 'warning' : 'pink'}`}>
+                                            {item.mappedFactories} <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                                        </span>
                                     </td>
                                     <td>
                                         <span className={`status-pill ${item.statusType}`}>• {item.status}</span>
                                     </td>
                                     <td>
                                         <div className="action-icons-row" onClick={(e) => e.stopPropagation()}>
-                                            <button className="icon-btn" onClick={() => handleOpenModal(item)}>📝</button>
-                                            <button className="icon-btn">🔗</button>
-                                            <button className="icon-btn">👁️</button>
+                                            <button className="icon-btn" onClick={() => handleOpenModal(item)} title="Chỉnh sửa">
+                                                <i className="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                            <button className="icon-btn" title="Liên kết">
+                                                <i className="fa-solid fa-link"></i>
+                                            </button>
+                                            <button className="icon-btn" title="Xem chi tiết">
+                                                <i className="fa-solid fa-eye"></i>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -419,7 +436,9 @@ const MasterIngredientsCatalog = () => {
                 <div className="workflow-card">
                     <div className="workflow-header">
                         <div className="wf-title-group">
-                            <span className="wf-icon">📋</span>
+                            <span className="wf-icon">
+                                <i className="fa-solid fa-clipboard-check"></i>
+                            </span>
                             <div>
                                 <h3>Quy trình thẩm định nốt hương đề xuất từ Xưởng (Workflow USP)</h3>
                                 <p>Các đối tác Lab đề xuất thêm nguyên liệu độc quyền vào bánh xe hương Scent Engine</p>
@@ -452,7 +471,9 @@ const MasterIngredientsCatalog = () => {
                                     <small>Aquilaria crassna • Tầng cuối (Base Note)</small>
                                 </td>
                                 <td>
-                                    <span className="green-text font-bold">✔ Đã có COA & IFRA 51st Certificate</span>
+                                    <span className="green-text font-bold">
+                                        <i className="fa-solid fa-circle-check icon-btn"></i> Đã có COA & IFRA 51st Certificate
+                                    </span>
                                     <small>Độ tinh khiết chiết xuất CO2 siêu tới hạn: 99.2%</small>
                                 </td>
                                 <td>22/09/2026</td>
@@ -473,12 +494,16 @@ const MasterIngredientsCatalog = () => {
                         <div className="modal-drawer-content" onClick={(e) => e.stopPropagation()}>
                             <div className="modal-drawer-header">
                                 <div className="header-title-row">
-                                    <div className="edit-icon-box">📝</div>
+                                    <div className="edit-icon-box">
+                                        <i className="fa-solid fa-pen-to-square"></i>
+                                    </div>
                                     <div>
                                         <h2>Cấu hình Thông số <span className="sku-badge-red">{formState.sku}</span></h2>
                                         <p>Chỉnh sửa thông số thuật toán phối hương</p>
                                     </div>
-                                    <button className="drawer-close-icon" onClick={() => setActiveIngredient(null)}>✕</button>
+                                    <button className="drawer-close-icon" onClick={() => setActiveIngredient(null)}>
+                                        <i className="fa-solid fa-xmark"></i>
+                                    </button>
                                 </div>
                             </div>
 
@@ -553,10 +578,10 @@ const MasterIngredientsCatalog = () => {
                                                 value={formState.olfactoryFamily}
                                                 onChange={(e) => setFormState({...formState, olfactoryFamily: e.target.value})}
                                             >
-                                                <option>🌸 Floral (Hương Hoa cỏ)</option>
-                                                <option>🍋 Citrus (Hương Cam chanh)</option>
-                                                <option>🪵 Woody (Hương Gỗ)</option>
-                                                <option>🍞 Gourmand (Hương Thực phẩm)</option>
+                                                <option>Floral (Hương Hoa cỏ)</option>
+                                                <option>Citrus (Hương Cam chanh)</option>
+                                                <option>Woody (Hương Gỗ)</option>
+                                                <option>Gourmand (Hương Thực phẩm)</option>
                                             </select>
                                         </div>
                                     </div>
@@ -626,7 +651,9 @@ const MasterIngredientsCatalog = () => {
                                             {formState.notes.map(n => (
                                                 <span key={n.id} className="comp-tag">
                                                     {n.name}
-                                                    <button onClick={() => handleRemoveComplementaryNote(n.id)}>✕</button>
+                                                    <button onClick={() => handleRemoveComplementaryNote(n.id)}>
+                                                        <i className="fa-solid fa-xmark"></i>
+                                                    </button>
                                                 </span>
                                             ))}
                                             <input type="text" placeholder="+ Chọn thêm nốt hòa hợp..." className="tag-ghost-input" />
@@ -638,12 +665,16 @@ const MasterIngredientsCatalog = () => {
                                     <h4 className="section-heading red">• 4. TÀI SẢN ĐỒ HỌA & BIỂU TƯỢNG VECTOR</h4>
                                     <div className="grid-2col">
                                         <div className="upload-box">
-                                            <div className="upload-icon pink">🖼️</div>
+                                            <div className="upload-icon pink">
+                                                <i className="fa-solid fa-file-image"></i>
+                                            </div>
                                             <strong>Icon Vector SVG</strong>
                                             <small>rose_grasse_mono.svg</small>
                                         </div>
                                         <div className="upload-box">
-                                            <div className="upload-icon blue">☁️</div>
+                                            <div className="upload-icon blue">
+                                                <i className="fa-solid fa-cloud-arrow-up"></i>
+                                            </div>
                                             <strong>Ảnh minh họa Lab</strong>
                                             <small>Định dạng JPG/PNG 1:1</small>
                                         </div>
