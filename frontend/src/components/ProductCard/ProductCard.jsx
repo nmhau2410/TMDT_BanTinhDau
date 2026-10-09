@@ -1,9 +1,4 @@
 import React from "react";
-import {
-    FiHeart,
-    FiShoppingBag,
-    FiZap,
-} from "react-icons/fi";
 
 import "./ProductCard.css";
 
@@ -19,6 +14,7 @@ const formatPrice = (value) => {
 function ProductCard({
                          product,
                          favorite = false,
+                         variant,
                          onFavorite,
                          onAdd,
                          onBuy,
@@ -41,8 +37,7 @@ function ProductCard({
 
     if (oldPrice > price) {
         discount = Math.round(
-            ((oldPrice - price) / oldPrice) *
-            100
+            ((oldPrice - price) / oldPrice) * 100
         );
     }
 
@@ -63,16 +58,13 @@ function ProductCard({
     return (
         <article className="product-card">
 
-            {/* =========================
-          IMAGE
-      ========================= */}
-
+            {/* IMAGE */}
             <div className="product-card-image">
 
                 {product.badge && (
                     <span className="product-badge">
-            {product.badge}
-          </span>
+                        {product.badge}
+                    </span>
                 )}
 
                 <button
@@ -87,7 +79,7 @@ function ProductCard({
                     }
                     aria-label="Yêu thích"
                 >
-                    <FiHeart />
+                    ♥
                 </button>
 
                 {image ? (
@@ -127,40 +119,36 @@ function ProductCard({
 
             </div>
 
-            {/* =========================
-          CONTENT
-      ========================= */}
-
+            {/* CONTENT */}
             <div className="product-card-content">
 
                 {/* Rating */}
-
                 <div className="product-rating">
 
-          <span className="rating-star">
-            ★
-          </span>
+                    <span className="rating-star" style={{ color: "#f4a000" }}>
+                        ★
+                    </span>
 
                     <strong>
                         {product.rating || "5.0"}
                     </strong>
 
                     <span>
-            (
-                        {product.reviews || "0"}
-                        + đã bán)
-          </span>
+                        ({product.reviews || "0"} đánh giá)
+                    </span>
+
+                    <span className="product-sold" style={{ marginLeft: "auto", fontSize: "12px", color: "#666" }}>
+                        Đã bán {product.sold || product.reviews || 0}
+                    </span>
 
                 </div>
 
                 {/* Name */}
-
                 <h3 className="product-name">
                     {product.name}
                 </h3>
 
                 {/* Description */}
-
                 {product.description && (
                     <p className="product-description">
                         {product.description}
@@ -168,25 +156,17 @@ function ProductCard({
                 )}
 
                 {/* Origin */}
-
                 {product.origin && (
                     <div className="product-origin">
-
-            <span>
-              ❧
-            </span>
-
                         <span>
-              {product.origin}
-            </span>
-
+                            {product.origin}
+                        </span>
                     </div>
                 )}
 
                 <div className="product-divider" />
 
                 {/* Price */}
-
                 <div className="product-price-row">
 
                     <div className="product-price">
@@ -195,10 +175,22 @@ function ProductCard({
                             {formatPrice(price)}
                         </strong>
 
+                        {oldPrice > price && (
+                            <>
+                                <del style={{ fontSize: "13px", color: "#a2a7ad", marginLeft: "6px" }}>
+                                    {formatPrice(oldPrice)}
+                                </del>
+
+                                <span className="discount" style={{ marginLeft: "6px" }}>
+                                    -{discount}%
+                                </span>
+                            </>
+                        )}
+
                         {product.variants?.[0]?.volume && (
                             <span>
-                /{product.variants[0].volume}
-              </span>
+                                /{product.variants[0].volume}
+                            </span>
                         )}
 
                     </div>
@@ -213,32 +205,41 @@ function ProductCard({
                         }
                     >
                         <span />
-
                         {stockText}
                     </div>
 
                 </div>
 
-                {/* Old price */}
-
-                <div className="product-old-price">
-
-                    {oldPrice > price && (
-                        <>
-                            <del>
-                                {formatPrice(oldPrice)}
-                            </del>
-
-                            <span className="discount">
-                -{discount}%
-              </span>
-                        </>
-                    )}
-
-                </div>
+                {/* Flash Sale Progress */}
+                {variant === "flash" && (
+                    <div style={{ marginTop: "8px" }}>
+                        <div style={{ background: "#ffebee", borderRadius: "8px", height: "16px", position: "relative", overflow: "hidden" }}>
+                            <div style={{
+                                position: "absolute",
+                                left: 0,
+                                top: 0,
+                                height: "100%",
+                                width: `${product.progress || 0}%`,
+                                background: "linear-gradient(90deg, #ff4b2b 0%, #ff416c 100%)",
+                                borderRadius: "8px"
+                            }} />
+                            <span style={{
+                                position: "absolute",
+                                width: "100%",
+                                textAlign: "center",
+                                fontSize: "10px",
+                                color: product.progress > 50 ? "#fff" : "#d20b3b",
+                                fontWeight: "bold",
+                                lineHeight: "16px",
+                                zIndex: 1
+                            }}>
+                                Đã bán {product.progress || 0}%
+                            </span>
+                        </div>
+                    </div>
+                )}
 
                 {/* Buttons */}
-
                 <div className="product-actions">
 
                     <button
@@ -253,11 +254,7 @@ function ProductCard({
                             onAdd?.(product)
                         }
                     >
-                        <FiShoppingBag />
-
-                        <span>
-              Thêm giỏ
-            </span>
+                        <span>Thêm giỏ</span>
                     </button>
 
                     <button
@@ -272,11 +269,7 @@ function ProductCard({
                             onBuy?.(product)
                         }
                     >
-                        <FiZap />
-
-                        <span>
-              Mua ngay
-            </span>
+                        <span>Mua ngay</span>
                     </button>
 
                 </div>

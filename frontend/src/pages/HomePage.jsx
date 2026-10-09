@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import HomeProductCard from "../components/HomeProductCard/HomeProductCard";
+import ProductCard from "../components/ProductCard/ProductCard";
 import SkeletonProductCard from "../components/ProductCard/SkeletonProductCard.jsx";
 
 import Header from "../components/Header/Header";
@@ -83,9 +83,9 @@ export default function HomePage() {
             <main className="home-page">
                 <section className="home-container hero">
                     <div className="hero__copy">
-            <span className="hero__badge">
-              THẾ GIỚI TINH DẦU THIÊN NHIÊN
-            </span>
+                        <span className="hero__badge">
+                            THẾ GIỚI TINH DẦU THIÊN NHIÊN
+                        </span>
 
                         <h1>
                             Khơi Nguồn Cảm Hứng
@@ -132,11 +132,11 @@ export default function HomePage() {
                                 <span className="countdown-box">{countdownTime.minutes}</span>
                                 <b>:</b>
                                 <span className="countdown-box countdown-box--highlight">
-                  {countdownTime.seconds}
-                </span>
+                                    {countdownTime.seconds}
+                                </span>
                             </div>
 
-                            <span className="countdown-note">| Kết thúc trong hôm nay</span>
+                            <span className="countdown-note"></span>
                         </div>
 
                         <a
@@ -144,16 +144,17 @@ export default function HomePage() {
                             href="#"
                             onClick={(e) => e.preventDefault()}
                         >
-                            Xem tất cả ưu đãi ›
+                            Xem tất cả ›
                         </a>
                     </div>
 
-                    <div className="product-grid product-grid--4">
-                        {data.flashSales?.slice(0, 4).map((product) => (
-                            <HomeProductCard
+                    <div className="product-grid product-grid--3">
+                        {data.flashSales?.slice(0, 3).map((product) => (
+                            <ProductCard
                                 key={product.id}
                                 product={product}
                                 variant="flash"
+                                onAdd={() => addToCart(product)}
                                 onBuy={() => buyProduct(product)}
                             />
                         ))}
@@ -172,17 +173,17 @@ export default function HomePage() {
                             href="#"
                             onClick={(e) => e.preventDefault()}
                         >
-                            Xem tất cả sản phẩm mới →
+                            Xem tất cả →
                         </a>
                     </div>
 
                     <div className="product-grid product-grid--4">
                         {data.newProducts?.slice(0, 4).map((product) => (
-                            <HomeProductCard
+                            <ProductCard
                                 key={product.id}
                                 product={product}
-                                variant="new"
                                 onAdd={() => addToCart(product)}
+                                onBuy={() => buyProduct(product)}
                             />
                         ))}
                     </div>
@@ -191,9 +192,9 @@ export default function HomePage() {
                 <section className="home-container section">
                     <div className="section-heading section-heading--best">
                         <div>
-              <span className="section-eyebrow section-eyebrow--highlight">
-                ĐƯỢC YÊU THÍCH NHẤT
-              </span>
+                            <span className="section-eyebrow section-eyebrow--highlight">
+                                ĐƯỢC YÊU THÍCH NHẤT
+                            </span>
                             <h2>Top Sản Phẩm Bán Chạy</h2>
                         </div>
 
@@ -213,11 +214,11 @@ export default function HomePage() {
 
                     <div className="product-grid product-grid--4">
                         {bestProducts?.slice(0, 8).map((product) => (
-                            <HomeProductCard
+                            <ProductCard
                                 key={`${activeTab}-${product.id}`}
                                 product={product}
-                                variant="best"
                                 onAdd={() => addToCart(product)}
+                                onBuy={() => buyProduct(product)}
                             />
                         ))}
                     </div>
@@ -244,9 +245,9 @@ export default function HomePage() {
                                     onClick={() => handlePromotion(promotion)}
                                 >
                                     {savedVoucher === promotion.id
-                                        ? "✓ Đã lưu voucher"
+                                        ? "Đã lưu voucher"
                                         : promotion.button}
-                                    {" →"}
+
                                 </button>
                             </div>
                         </article>
@@ -257,7 +258,7 @@ export default function HomePage() {
                     <div className="personalize-banner__text">
                         <span className="personalize-banner__badge">TƯ VẤN CÁ NHÂN</span>
                         <h2>
-                            Tìm Hương Thơm <em>Phù Hợp Với Bạn</em>
+                            Tìm Hương Thơm Phù Hợp Với Bạn
                         </h2>
                         <p>
                             Trả lời vài câu hỏi ngắn để Oilia gợi ý loại tinh dầu &amp; nến
