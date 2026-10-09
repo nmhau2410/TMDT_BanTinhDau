@@ -41,6 +41,7 @@ function ProductPage() {
                 setProducts(productDatabase?.products || []);
             });
     }, []);
+
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("all");
     const [priceRange, setPriceRange] = useState("all");
@@ -48,7 +49,6 @@ function ProductPage() {
     const [sort, setSort] = useState("default");
 
     const [selectedGroups, setSelectedGroups] = useState([]);
-
     const [favorites, setFavorites] = useState([]);
 
     const filteredProducts = useMemo(() => {
@@ -128,6 +128,7 @@ function ProductPage() {
         selectedGroups,
         sort,
     ]);
+
     const toggleFavorite = (product) => {
         setFavorites((current) => {
             if (current.includes(product.id)) {
@@ -139,6 +140,7 @@ function ProductPage() {
             return [...current, product.id];
         });
     };
+
     const resetFilters = () => {
         setSearch("");
         setCategory("all");
@@ -147,6 +149,7 @@ function ProductPage() {
         setSelectedGroups([]);
         setSort("default");
     };
+
     const handleAdd = (product) => {
         if (!product) return;
 
@@ -162,6 +165,7 @@ function ProductPage() {
 
         navigate("/cart");
     };
+
     const toggleGroup = (group) => {
         setSelectedGroups((current) => {
             if (current.includes(group)) {
@@ -173,6 +177,7 @@ function ProductPage() {
             return [...current, group];
         });
     };
+
     const scentGroups = [
         "Cam Bergamot",
         "Lavender Pháp",
@@ -228,13 +233,13 @@ function ProductPage() {
                                     setCategory("all")
                                 }
                             >
-                <span className="check-box">
-                  {category === "all" && "✓"}
-                </span>
+                                <span className="check-box">
+                                    {category === "all" && "✓"}
+                                </span>
 
                                 <span>
-                  Tất cả sản phẩm
-                </span>
+                                    Tất cả sản phẩm
+                                </span>
 
                                 <small>
                                     ({products.length})
@@ -254,14 +259,13 @@ function ProductPage() {
                                             setCategory(item.value)
                                         }
                                     >
-                    <span className="check-box">
-                      {category === item.value &&
-                          "✓"}
-                    </span>
+                                        <span className="check-box">
+                                            {category === item.value && "✓"}
+                                        </span>
 
                                         <span>
-                      {item.label}
-                    </span>
+                                            {item.label}
+                                        </span>
                                     </button>
                                 )
                             )}
@@ -286,8 +290,8 @@ function ProductPage() {
                                 />
 
                                 <span>
-                  Tất cả
-                </span>
+                                    Tất cả
+                                </span>
                             </label>
 
                             {productDatabase.priceRanges?.map(
@@ -308,8 +312,8 @@ function ProductPage() {
                                         />
 
                                         <span>
-                      {item.label}
-                    </span>
+                                            {item.label}
+                                        </span>
                                     </label>
                                 )
                             )}
@@ -391,11 +395,11 @@ function ProductPage() {
                                         />
 
                                         <span className="stars">
-                      {"★".repeat(value)}
+                                            {"★".repeat(value)}
                                             <span className="empty-stars">
-                        {"★".repeat(5 - value)}
-                      </span>
-                    </span>
+                                                {"★".repeat(5 - value)}
+                                            </span>
+                                        </span>
 
                                         <small>
                                             (Từ {value} sao)
@@ -417,32 +421,32 @@ function ProductPage() {
                             <label className="filter-check">
                                 <span className="check-box" />
                                 <span>
-                  Đà Lạt Organic
-                </span>
+                                    Đà Lạt Organic
+                                </span>
                                 <small>(14)</small>
                             </label>
 
                             <label className="filter-check">
                                 <span className="check-box" />
                                 <span>
-                  Bảo Lộc Farm
-                </span>
+                                    Bảo Lộc Farm
+                                </span>
                                 <small>(8)</small>
                             </label>
 
                             <label className="filter-check">
                                 <span className="check-box" />
                                 <span>
-                  Hạ Giang Native
-                </span>
+                                    Hạ Giang Native
+                                </span>
                                 <small>(6)</small>
                             </label>
 
                             <label className="filter-check">
                                 <span className="check-box" />
                                 <span>
-                  Nhập khẩu Pháp
-                </span>
+                                    Nhập khẩu Pháp
+                                </span>
                                 <small>(10)</small>
                             </label>
 
@@ -476,10 +480,10 @@ function ProductPage() {
 
                             <div>
                                 <span>
-                                  Hiển thị{" "}
+                                    Hiển thị{" "}
                                     <strong>
-                                    {filteredProducts.length}
-                                  </strong>{" "}
+                                        {filteredProducts.length}
+                                    </strong>{" "}
                                     sản phẩm phù hợp tiêu chí
                                 </span>
                                 <div className="search-suggestions">
@@ -563,8 +567,8 @@ function ProductPage() {
 
                             <div className="empty-products">
 
-                                <div>
-                                    🔍
+                                <div className="empty-products-icon">
+                                    <FiSearch />
                                 </div>
 
                                 <h2>
@@ -572,16 +576,8 @@ function ProductPage() {
                                 </h2>
 
                                 <p>
-                                    Hãy thử thay đổi bộ lọc hoặc
-                                    từ khóa tìm kiếm.
+                                    Hãy thử thay đổi bộ lọc hoặc từ khóa tìm kiếm.
                                 </p>
-
-                                <button
-                                    type="button"
-                                    onClick={resetFilters}
-                                >
-                                    Xóa bộ lọc
-                                </button>
 
                             </div>
 
