@@ -18,8 +18,29 @@ import "../css/ProductPage.css";
 function ProductPage() {
     const navigate = useNavigate();
 
-    const products = productDatabase?.products || [];
+    const [products, setProducts] = useState([]);
 
+    React.useEffect(() => {
+        fetch("http://localhost:8080/api/products")
+            .then(res => res.json())
+            .then(data => {
+                const mapProduct = (p) => ({
+                    ...p,
+                    category: p.type === "PERFUME" ? "nuoc-hoa" : p.type === "ESSENTIAL_OIL" ? "tinh-dau" : "nen-thom",
+                    scent: p.scentNotes,
+                    oldPrice: p.salePrice ? p.price : null,
+                    price: p.salePrice ? p.salePrice : p.price,
+                    origin: p.workshopProvince || "Việt Nam",
+                    progress: p.stock > 0 ? Math.round((p.sold / (p.sold + p.stock)) * 100) : 0,
+                    reviews: p.sold,
+                });
+                setProducts(data.map(mapProduct));
+            })
+            .catch(err => {
+                console.error("Error fetching products:", err);
+                setProducts(productDatabase?.products || []);
+            });
+    }, []);
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("all");
     const [priceRange, setPriceRange] = useState("all");
@@ -30,30 +51,14 @@ function ProductPage() {
 
     const [favorites, setFavorites] = useState([]);
 
-    /* =========================
-       FILTER
-    ========================= */
-
     const filteredProducts = useMemo(() => {
         let result = [...products];
-
-        // /* Tìm kiếm */
-        // if (search.trim()) {
-        //     const keyword = search.toLowerCase().trim();
-        //
-        //     result = result.filter((product) =>
-        //         product.name?.toLowerCase().includes(keyword)
-        //     );
-        // }
-
-        /* Danh mục */
         if (category !== "all") {
             result = result.filter(
                 (product) => product.category === category
             );
         }
 
-        /* Giá */
         if (priceRange !== "all") {
             const range = productDatabase.priceRanges?.find(
                 (item) => item.value === priceRange
@@ -71,22 +76,17 @@ function ProductPage() {
             }
         }
 
-        /* Rating */
         if (rating !== "all") {
             result = result.filter(
                 (product) =>
                     Number(product.rating || 0) >= Number(rating)
             );
         }
-
-        /* Nhóm mùi */
         if (selectedGroups.length > 0) {
             result = result.filter((product) =>
                 selectedGroups.includes(product.scent)
             );
         }
-
-        /* Sắp xếp */
         if (sort === "price-asc") {
             result.sort(
                 (a, b) =>
@@ -94,7 +94,6 @@ function ProductPage() {
                     Number(b.price || 0)
             );
         }
-
         if (sort === "price-desc") {
             result.sort(
                 (a, b) =>
@@ -129,11 +128,6 @@ function ProductPage() {
         selectedGroups,
         sort,
     ]);
-
-    /* =========================
-       FAVORITE
-    ========================= */
-
     const toggleFavorite = (product) => {
         setFavorites((current) => {
             if (current.includes(product.id)) {
@@ -145,11 +139,6 @@ function ProductPage() {
             return [...current, product.id];
         });
     };
-
-    /* =========================
-       RESET
-    ========================= */
-
     const resetFilters = () => {
         setSearch("");
         setCategory("all");
@@ -158,11 +147,6 @@ function ProductPage() {
         setSelectedGroups([]);
         setSort("default");
     };
-
-    /* =========================
-       CART / BUY
-    ========================= */
-
     const handleAdd = (product) => {
         if (!product) return;
 
@@ -178,11 +162,6 @@ function ProductPage() {
 
         navigate("/cart");
     };
-
-    /* =========================
-       GROUP CHECKBOX
-    ========================= */
-
     const toggleGroup = (group) => {
         setSelectedGroups((current) => {
             if (current.includes(group)) {
@@ -194,11 +173,6 @@ function ProductPage() {
             return [...current, group];
         });
     };
-
-    /* =========================
-       GROUPS
-    ========================= */
-
     const scentGroups = [
         "Cam Bergamot",
         "Lavender Pháp",
@@ -210,25 +184,11 @@ function ProductPage() {
     return (
         <div className="product-page">
 
-            {/* HEADER */}
             <Header />
 
             <main>
 
-                {/* =========================
-            SEARCH SUGGESTIONS
-        ========================= */}
-
-
-                {/* =========================
-            PRODUCT AREA
-        ========================= */}
-
                 <section className="product-layout">
-
-                    {/* =========================
-              SIDEBAR
-          ========================= */}
 
                     <aside className="product-sidebar">
 
@@ -251,7 +211,6 @@ function ProductPage() {
 
                         </div>
 
-                        {/* DANH MỤC */}
 
                         <div className="filter-section">
 
@@ -309,7 +268,6 @@ function ProductPage() {
 
                         </div>
 
-                        {/* GIÁ */}
 
                         <div className="filter-section">
 
@@ -374,7 +332,6 @@ function ProductPage() {
 
                         </div>
 
-                        {/* NHÓM MÙI */}
 
                         <div className="filter-section">
 
@@ -409,7 +366,6 @@ function ProductPage() {
 
                         </div>
 
-                        {/* RATING */}
 
                         <div className="filter-section">
 
@@ -451,7 +407,6 @@ function ProductPage() {
 
                         </div>
 
-                        {/* NÔNG TRẠI */}
 
                         <div className="filter-section">
 
@@ -493,7 +448,6 @@ function ProductPage() {
 
                         </div>
 
-                        {/* BUTTON */}
 
                         <div className="filter-actions">
 
@@ -515,9 +469,6 @@ function ProductPage() {
 
                     </aside>
 
-                    {/* =========================
-              PRODUCTS
-          ========================= */}
 
                     <section className="product-results">
 
@@ -642,9 +593,6 @@ function ProductPage() {
 
             </main>
 
-            {/* =========================
-          FOOTER
-      ========================= */}
 
             <Footer />
 
