@@ -383,7 +383,10 @@ export default function MyOrdersPage() {
                                     <div className="order-actions">
 
                                         {order.status === "success" && (
-                                            <button className="order-review-btn">
+                                            <button 
+                                                className="order-review-btn"
+                                                onClick={() => navigate("/customer/write-review")}
+                                            >
                                                 <FiStar />
                                                 {order.reviewed
                                                     ? "Đã đánh giá (5★)"

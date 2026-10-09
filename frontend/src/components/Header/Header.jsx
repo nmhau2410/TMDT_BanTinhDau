@@ -38,12 +38,12 @@ export default function Header() {
             </div>
             <div className="header-main">
                 <div className="header-container">
-                    <Link to="/customer" className="header-logo">
+                    <Link to="/" className="header-logo">
                         <span className="header-logo__icon"></span>
                         <span>Oilia</span>
                     </Link>
                     <nav className="header-nav">
-                        <Link to="/customer">Tất cả</Link>
+                        <Link to="/">Tất cả</Link>
                         <Link to="/customer/products">Bộ sản phẩm</Link>
                         <Link to="/customer/custom-perfume" className="highlight-link">
                             Thiết kế cá nhân hóa

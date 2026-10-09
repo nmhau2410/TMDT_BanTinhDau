@@ -1,10 +1,39 @@
 import homeDatabase from "../test/data.js";
 
-// Lấy toàn bộ dữ liệu cho Homepage
 export async function getHomeData() {
-  await new Promise((resolve) => setTimeout(resolve, 650));
-
-  return homeDatabase;
+  try {
+    const response = await fetch("http://localhost:8080/api/home");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    
+    const mapProduct = (p) => ({
+      ...p,
+      oldPrice: p.salePrice ? p.price : null,
+      price: p.salePrice ? p.salePrice : p.price,
+      origin: p.workshopProvince || "Việt Nam",
+      progress: p.stock > 0 ? Math.round((p.sold / (p.sold + p.stock)) * 100) : 0,
+      reviews: p.sold,
+    });
+    
+    // Merge API data with mock data to supply missing fields like hero and promotions
+    return {
+      ...homeDatabase,
+      ...data,
+      flashSales: (data.flashSales || []).map(mapProduct),
+      newProducts: (data.newProducts || []).map(mapProduct),
+      bestSellerTabs: Object.fromEntries(
+        Object.entries(data.bestSellerTabs || {}).map(([key, products]) => [key, products.map(mapProduct)])
+      ),
+      hero: data.hero || homeDatabase.hero,
+      promotions: data.promotions || homeDatabase.promotions
+    };
+  } catch (error) {
+    console.error("Error fetching home data:", error);
+    // Fallback to mock data if API fails or for testing without BE
+    return homeDatabase;
+  }
 }
 
 // Lấy danh sách sản phẩm bán chạy theo tab
