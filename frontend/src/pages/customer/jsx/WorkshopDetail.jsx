@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
+import ProductCard from "../../../components/ProductCard/ProductCard";
 
 import { productDatabase } from "../../../test/data";
 
@@ -19,8 +20,7 @@ export default function WorkshopDetail() {
     const workshop = {
         id: id || 1,
         name: "Xưởng Thảo Mộc Hưng Yên",
-        subtitle:
-            "Chưng Cất Dược Liệu Truyền Thống & Tinh Chế Áp Suất Thấp",
+        subtitle: "Chưng Cất Dược Liệu Truyền Thống & Tinh Chế Áp Suất Thấp",
         location: "Thôn Thảo Dược, Xã Nghĩa Dân, H. Kim Động, T. Hưng Yên",
         phone: "0988 234 567",
         email: "hopnhan@thaomochungyen.vn",
@@ -30,9 +30,7 @@ export default function WorkshopDetail() {
         method: "Hơi Nước",
         capacity: "1,500 Lít/tháng",
         delivery: "24 - 48 Giờ",
-        image:
-            products.find((p) => p.id === 302)?.image ||
-            products[0]?.image,
+        image: products.find((p) => p.id === 302)?.image || products[0]?.image,
     };
 
     const workshopProducts = useMemo(() => {
@@ -52,13 +50,16 @@ export default function WorkshopDetail() {
         "Can / Phuy sỉ (Bulk Drum)",
     ];
 
+    const handleFavorite = (product) => {};
+    const handleAddToCart = (product) => {};
+    const handleBuyNow = (product) => {};
+
     return (
         <>
             <Header />
 
             <main className="workshop-detail-page">
 
-                {/* Breadcrumb */}
                 <div className="workshop-detail-container">
                     <div className="workshop-detail-breadcrumb">
                         Trang chủ
@@ -69,13 +70,11 @@ export default function WorkshopDetail() {
                     </div>
                 </div>
 
-                {/* Workshop information */}
                 <section className="workshop-company-section">
                     <div className="workshop-detail-container">
 
                         <div className="workshop-company-grid">
 
-                            {/* Images */}
                             <div className="workshop-gallery">
 
                                 <div className="workshop-main-image">
@@ -85,12 +84,11 @@ export default function WorkshopDetail() {
                                     />
 
                                     <button className="gallery-button">
-                                        ↗
+                                        Xem
                                     </button>
 
                                     <div className="gallery-caption">
-                                        Hệ Thống Lôi Cuốn Hơi Nước
-                                        Đóng Kín 8 Giờ
+                                        Hệ Thống Lôi Cuốn Hơi Nước Đóng Kín 8 Giờ
                                     </div>
                                 </div>
 
@@ -117,7 +115,6 @@ export default function WorkshopDetail() {
 
                             </div>
 
-                            {/* Company info */}
                             <div className="workshop-company-info">
 
                                 <div className="workshop-company-title">
@@ -126,7 +123,6 @@ export default function WorkshopDetail() {
                                 </div>
 
                                 <div className="workshop-rating-row">
-                                    <strong>★★★★★</strong>
                                     <b>{workshop.rating}</b>
                                     <span>
                                         ({workshop.reviews} đánh giá tích cực)
@@ -134,7 +130,7 @@ export default function WorkshopDetail() {
 
                                     <i></i>
 
-                                    <span>✓ Đã chứng nhận</span>
+                                    <span>Đã chứng nhận</span>
 
                                     <i></i>
 
@@ -145,13 +141,14 @@ export default function WorkshopDetail() {
 
                                 <div className="workshop-contact-box">
 
-                                    <div className="contact-block">
-                                        <span>⌖ ĐỊA CHỈ</span>
-                                        <strong>{workshop.location}</strong>
+                                    <div className="contact-block location-single-line">
+                                        <span className="workshop-name-inline">{workshop.name}</span>
+                                        <span className="location-divider">•</span>
+                                        <strong className="workshop-address-inline">{workshop.location}</strong>
                                     </div>
 
                                     <div className="contact-block">
-                                        <span>♧ THÔNG TIN LIÊN HỆ</span>
+                                        <span>THÔNG TIN LIÊN HỆ</span>
                                         <strong>
                                             Hotline: {workshop.phone}
                                         </strong>
@@ -165,15 +162,15 @@ export default function WorkshopDetail() {
                                         href="#bulk-order"
                                         className="bulk-button"
                                     >
-                                        ◈ Đặt Lô Hàng Số Lượng Lớn
+                                        Đặt Lô Hàng Số Lượng Lớn
                                     </a>
 
                                     <button className="consult-button">
-                                        ☎ Liên hệ tư vấn xưởng
+                                        Liên hệ tư vấn xưởng
                                     </button>
 
                                     <button className="vr-button">
-                                        ◉ Tour VR 360°
+                                        Tour VR 360°
                                     </button>
                                 </div>
 
@@ -184,31 +181,29 @@ export default function WorkshopDetail() {
                     </div>
                 </section>
 
-                {/* Capacity */}
                 <section className="workshop-capacity-section">
                     <div className="workshop-detail-container">
 
                         <div className="workshop-capacity-grid">
 
                             <div className="capacity-card">
-                                <div className="capacity-icon">♧</div>
+                                <div className="capacity-icon">1</div>
 
                                 <span>PHƯƠNG PHÁP CHƯNG CẤT</span>
 
                                 <strong>{workshop.method}</strong>
 
                                 <p>
-                                    Nguyên liệu được thu hoàn kín
-                                    trong 8 giờ bảo toàn 100% ester tự nhiên
+                                    Nguyên liệu được thu hoàn kín trong 8 giờ bảo toàn 100% ester tự nhiên
                                 </p>
 
                                 <small>
-                                    ✓ Kiểm soát nhiệt độ 95°C - 98°C
+                                    Kiểm soát nhiệt độ 95°C - 98°C
                                 </small>
                             </div>
 
                             <div className="capacity-card">
-                                <div className="capacity-icon">▣</div>
+                                <div className="capacity-icon">2</div>
 
                                 <span>NĂNG LỰC SẢN XUẤT</span>
 
@@ -217,17 +212,16 @@ export default function WorkshopDetail() {
                                 </strong>
 
                                 <p>
-                                    Chai bán lẻ 10ml, 30ml, 100ml & Can
-                                    phụ nhôm 5kg, 25kg, 180kg
+                                    Chai bán lẻ 10ml, 30ml, 100ml & Can phụ nhôm 5kg, 25kg, 180kg
                                 </p>
 
                                 <small>
-                                    ✓ Có sẵn hàng kho để đơn ổn định
+                                    Có sẵn hàng kho để đơn ổn định
                                 </small>
                             </div>
 
                             <div className="capacity-card">
-                                <div className="capacity-icon">▣</div>
+                                <div className="capacity-icon">3</div>
 
                                 <span>CHUẨN VẬN HÀNH B2B</span>
 
@@ -236,12 +230,11 @@ export default function WorkshopDetail() {
                                 </strong>
 
                                 <p>
-                                    Giao hàng toàn quốc, niêm phong
-                                    kẹp chì phân xưởng
+                                    Giao hàng toàn quốc, niêm phong kẹp chì phân xưởng
                                 </p>
 
                                 <small>
-                                    ✓ Đầy đủ COA, MSDS & Hồ sơ đơn
+                                    Đầy đủ COA, MSDS & Hồ sơ đơn
                                 </small>
                             </div>
 
@@ -250,7 +243,6 @@ export default function WorkshopDetail() {
                     </div>
                 </section>
 
-                {/* Products */}
                 <section className="workshop-products-section">
                     <div className="workshop-detail-container">
 
@@ -258,8 +250,7 @@ export default function WorkshopDetail() {
                             <div>
                                 <h2>Sản Phẩm Của Xưởng</h2>
                                 <p>
-                                    Bộ sưu tập sản phẩm nguyên chất được sản
-                                    xuất trực tiếp tại xưởng Hưng Yên.
+                                    Bộ sưu tập sản phẩm nguyên chất được sản xuất trực tiếp tại xưởng Hưng Yên.
                                 </p>
                             </div>
                         </div>
@@ -278,97 +269,26 @@ export default function WorkshopDetail() {
                             ))}
                         </div>
 
-                        <div className="workshop-product-grid">
-
+                        <div className="product-grid product-grid--4">
                             {workshopProducts.map((product) => (
-                                <article
-                                    className="workshop-product-card"
+                                <ProductCard
                                     key={product.id}
-                                >
-                                    <div className="workshop-product-image">
-                                        <img
-                                            src={product.image}
-                                            alt={product.name}
-                                        />
-
-                                        <button className="favorite-button">
-                                            ♥
-                                        </button>
-                                    </div>
-
-                                    <div className="workshop-product-content">
-
-                                        <div className="product-rating">
-                                            ★ {product.rating}
-                                            <span>
-                                                ({product.reviews} đã bán)
-                                            </span>
-                                        </div>
-
-                                        <h3>{product.name}</h3>
-
-                                        <p>
-                                            {product.description ||
-                                                "Tinh dầu nguyên chất được sản xuất trực tiếp tại xưởng."}
-                                        </p>
-
-                                        <span className="product-workshop">
-                                            ✓ {workshop.name}
-                                        </span>
-
-                                        <div className="product-price-row">
-                                            <div>
-                                                <strong>
-                                                    {product.price?.toLocaleString(
-                                                        "vi-VN"
-                                                    )}
-                                                    đ
-                                                </strong>
-
-                                                {product.oldPrice && (
-                                                    <del>
-                                                        {product.oldPrice.toLocaleString(
-                                                            "vi-VN"
-                                                        )}
-                                                        đ
-                                                    </del>
-                                                )}
-                                            </div>
-
-                                            {product.oldPrice && (
-                                                <span className="discount">
-                                                    -
-                                                    {Math.round(
-                                                        (1 -
-                                                            product.price /
-                                                            product.oldPrice) *
-                                                        100
-                                                    )}
-                                                    %
-                                                </span>
-                                            )}
-                                        </div>
-
-                                        <div className="product-actions">
-                                            <button>
-                                                ♡ Thêm giỏ
-                                            </button>
-
-                                            <button className="buy-button">
-                                                Mua ngay
-                                            </button>
-                                        </div>
-
-                                    </div>
-                                </article>
+                                    product={{
+                                        ...product,
+                                        workshopName: workshop.name,
+                                        province: "Hưng Yên",
+                                        location: "Hưng Yên",
+                                    }}
+                                    onFavorite={handleFavorite}
+                                    onAdd={handleAddToCart}
+                                    onBuy={handleBuyNow}
+                                />
                             ))}
-
                         </div>
 
                     </div>
                 </section>
 
-                {/* Bulk order */}
                 <section
                     className="bulk-order-section"
                     id="bulk-order"
@@ -390,49 +310,43 @@ export default function WorkshopDetail() {
                                 </h2>
 
                                 <p>
-                                    Quy đổi từ sản xuất mỹ phẩm, nến thơm
-                                    cao cấp, hệ thống spa trị liệu và chuỗi
-                                    phân phối cần nguồn nguyên liệu tinh dầu
-                                    trực tiếp từ xưởng.
+                                    Quy đổi từ sản xuất mỹ phẩm, nến thơm cao cấp, hệ thống spa trị liệu và chuỗi phân phối cần nguồn nguyên liệu tinh dầu trực tiếp từ xưởng.
                                 </p>
 
                                 <div className="bulk-benefits">
 
                                     <div>
-                                        <b>▣</b>
+                                        <b>1</b>
                                         <span>
                                             <strong>
                                                 Chiết Khấu Đến 45%
                                             </strong>
                                             <small>
-                                                Báo lô mức giá ổn định theo
-                                                hợp đồng 12 tháng.
+                                                Báo lô mức giá ổn định theo hợp đồng 12 tháng.
                                             </small>
                                         </span>
                                     </div>
 
                                     <div>
-                                        <b>✓</b>
+                                        <b>2</b>
                                         <span>
                                             <strong>
                                                 Hỗ Trợ Gia Công Tem Nhãn Riêng
                                             </strong>
                                             <small>
-                                                OEM/ODM theo yêu cầu của
-                                                khách hàng.
+                                                OEM/ODM theo yêu cầu của khách hàng.
                                             </small>
                                         </span>
                                     </div>
 
                                     <div>
-                                        <b>▣</b>
+                                        <b>3</b>
                                         <span>
                                             <strong>
                                                 Bảo Hiểm Vận Chuyển Toàn Quốc
                                             </strong>
                                             <small>
-                                                Hỗ trợ giao hàng và đóng gói
-                                                theo tiêu chuẩn.
+                                                Hỗ trợ giao hàng và đóng gói theo tiêu chuẩn.
                                             </small>
                                         </span>
                                     </div>
@@ -453,7 +367,6 @@ export default function WorkshopDetail() {
 
                             </div>
 
-                            {/* Form */}
                             <div className="bulk-order-form">
 
                                 <div className="form-row">
@@ -542,12 +455,11 @@ export default function WorkshopDetail() {
                                 </label>
 
                                 <p className="form-note">
-                                    * Cam kết bảo mật thông tin đối tác &
-                                    gửi mẫu test miễn phí tận nơi.
+                                    Cam kết bảo mật thông tin đối tác & gửi mẫu test miễn phí tận nơi.
                                 </p>
 
                                 <button className="submit-bulk">
-                                    ▷ Gửi Yêu Cầu Báo Giá & Nhận Mẫu Thử
+                                    Gửi Yêu Cầu Báo Giá & Nhận Mẫu Thử
                                 </button>
 
                             </div>

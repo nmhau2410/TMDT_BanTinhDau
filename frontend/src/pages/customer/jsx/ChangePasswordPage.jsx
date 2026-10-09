@@ -34,25 +34,6 @@ export default function ChangePasswordPage() {
                     BREADCRUMB
                 ========================= */}
 
-                <div className="change-password-breadcrumb">
-
-                    <span>
-                        Trang chủ
-                    </span>
-
-                    <span>/</span>
-
-                    <span>
-                        Tài khoản khách hàng
-                    </span>
-
-                    <span>/</span>
-
-                    <strong>
-                        Đổi mật khẩu
-                    </strong>
-
-                </div>
 
                 {/* =========================
                     TITLE
@@ -125,21 +106,21 @@ export default function ChangePasswordPage() {
                                 <span>Đổi mật khẩu</span>
                             </Link>
 
-                            <Link
-                                to="/customer/orders"
-                                className="change-password-menu-item"
-                            >
-                                <FiShoppingBag />
-                                <span>Đơn hàng của tôi</span>
-                            </Link>
+                            {/*<Link*/}
+                            {/*    to="/customer/orders"*/}
+                            {/*    className="change-password-menu-item"*/}
+                            {/*>*/}
+                            {/*    <FiShoppingBag />*/}
+                            {/*    <span>Đơn hàng của tôi</span>*/}
+                            {/*</Link>*/}
 
-                            <Link
-                                to="/customer/favorites"
-                                className="change-password-menu-item"
-                            >
-                                <FiHeart />
-                                <span>Sản phẩm yêu thích</span>
-                            </Link>
+                            {/*<Link*/}
+                            {/*    to="/customer/favorites"*/}
+                            {/*    className="change-password-menu-item"*/}
+                            {/*>*/}
+                            {/*    <FiHeart />*/}
+                            {/*    <span>Sản phẩm yêu thích</span>*/}
+                            {/*</Link>*/}
 
                             <Link
                                 to="/customer/notifications"

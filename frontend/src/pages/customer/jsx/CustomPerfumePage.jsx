@@ -35,7 +35,14 @@ const CustomPerfumePage = () => {
 
             <main className="custom-perfume-container">
                 <div className="custom-inner">
-                    <h1 className="page-title">Thiết Kế Tinh Dầu Cá Nhân Hóa</h1>
+                    <div className="custom-header-banner">
+                        <h1 className="custom-page-title">
+                            Thiết Kế Tinh Dầu <span>Cá Nhân Hóa</span>
+                        </h1>
+                        <p className="custom-page-desc">
+                            Tự tay sáng tạo công thức hương thơm độc bản.
+                        </p>
+                    </div>
 
                     <div className="custom-perfume-grid">
                         <div className="column-left">
