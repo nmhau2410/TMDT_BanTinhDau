@@ -12,6 +12,7 @@ import WorkshopList from "../pages/customer/jsx/WorkshopList";
 import WorkshopDetail from "../pages/customer/jsx/WorkshopDetail";
 import CustomPerfumePage from "../pages/customer/jsx/CustomPerfumePage";
 import CheckoutPage from "../pages/customer/jsx/CheckoutPage";
+import AddressPage from "../pages/customer/jsx/AddressPage.jsx";
 
 function CustomerRoutes() {
     return (
@@ -29,6 +30,7 @@ function CustomerRoutes() {
             <Route path="favorites" element={<FavoriteProducts />} />
             <Route path="myorders" element={<MyOrdersPage />} />
             <Route path="workshop" element={<WorkshopList />} />
+            <Route path="address" element={<AddressPage />} />
             <Route path="workshop/:id" element={<WorkshopDetail />} />
 
             <Route path="*" element={<Navigate to="/" replace />} />

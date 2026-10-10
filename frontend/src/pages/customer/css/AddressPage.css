@@ -1,0 +1,152 @@
+
+.btn-add-address {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.address-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.address-empty {
+    padding: 30px;
+    text-align: center;
+    color: #888;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.address-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background-color: #ffffff;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    gap: 16px;
+}
+
+.address-item.default-address {
+    border-color: #e63946;
+    background-color: #fff8f8;
+}
+
+.address-icon {
+    font-size: 20px;
+    color: #e63946;
+    margin-top: 2px;
+}
+
+.address-details {
+    flex: 1;
+}
+
+.address-name {
+    font-size: 16px;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.address-name strong {
+    font-weight: 600;
+}
+
+.address-name span {
+    margin-left: 12px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.address-line {
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.5;
+}
+
+.address-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.default-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #fee2e2;
+    color: #dc2626;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.set-default-btn,
+.change-btn,
+.delete-btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid #cbd5e1;
+    background-color: #fff;
+    color: #334155;
+    transition: background 0.2s;
+}
+
+.set-default-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #e2e8f0;
+}
+
+.set-default-btn:not(:disabled):hover,
+.change-btn:hover {
+    background-color: #f1f5f9;
+}
+
+.delete-btn {
+    color: #ef4444;
+    border-color: #fca5a5;
+}
+
+.delete-btn:hover {
+    background-color: #fef2f2;
+}
+
+.address-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 30px;
+}
+
+.page-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #cbd5e1;
+    background-color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.page-btn.active {
+    background-color: #e63946;
+    color: #fff;
+    border-color: #e63946;
+}
+
+.page-btn:hover:not(.active) {
+    background-color: #f1f5f9;
+}
