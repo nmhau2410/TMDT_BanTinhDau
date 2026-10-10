@@ -43,17 +43,13 @@ export default function HomeProductCard({
                     )}
                 </div>
 
-                <div className="home-card__category">
-                    {product.categoryLabel ||
-                        "THẢO MỘC THIÊN NHIÊN"}
-                </div>
 
                 <h3 className="home-card__name">
                     {product.name}
                 </h3>
 
                 <p className="home-card__origin">
-                    ◇ {product.origin}
+                    {product.origin}
                 </p>
 
                 <div className="home-card__price">

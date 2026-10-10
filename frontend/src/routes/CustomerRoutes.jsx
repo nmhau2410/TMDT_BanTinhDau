@@ -21,6 +21,7 @@ function CustomerRoutes() {
             <Route path="custom-perfume" element={<CustomPerfumePage />} />
             <Route path="products" element={<ProductPage />} />
             <Route path="products/:id" element={<ProductDetail />} />
+            <Route path="product/:id" element={<ProductDetail />} />
             <Route path="cart" element={<CartPage />} />
             <Route path="checkout" element={<CheckoutPage />} />
             <Route path="account" element={<AccountPage />} />

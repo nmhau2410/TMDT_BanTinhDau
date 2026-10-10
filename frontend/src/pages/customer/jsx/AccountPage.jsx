@@ -26,13 +26,7 @@ export default function AccountPage() {
                     BREADCRUMB
                 ========================= */}
 
-                <div className="account-breadcrumb">
-                    <span>Trang chủ</span>
-                    <span>/</span>
-                    <span>Tài khoản khách hàng</span>
-                    <span>/</span>
-                    <strong>Hồ sơ cá nhân</strong>
-                </div>
+
 
                 {/* =========================
                     PAGE TITLE
@@ -96,21 +90,21 @@ export default function AccountPage() {
                                 <span>Đổi mật khẩu</span>
                             </Link>
 
-                            <Link
-                                to="/customer/myorders"
-                                className="account-sidebar-item"
-                            >
-                                <FiShoppingBag />
-                                <span>Đơn hàng của tôi</span>
-                            </Link>
+                            {/*<Link*/}
+                            {/*    to="/customer/myorders"*/}
+                            {/*    className="account-sidebar-item"*/}
+                            {/*>*/}
+                            {/*    <FiShoppingBag />*/}
+                            {/*    <span>Đơn hàng của tôi</span>*/}
+                            {/*</Link>*/}
 
-                            <Link
-                                to="/customer/favorites"
-                                className="account-sidebar-item"
-                            >
-                                <FiHeart />
-                                <span>Sản phẩm yêu thích</span>
-                            </Link>
+                            {/*<Link*/}
+                            {/*    to="/customer/favorites"*/}
+                            {/*    className="account-sidebar-item"*/}
+                            {/*>*/}
+                            {/*    <FiHeart />*/}
+                            {/*    <span>Sản phẩm yêu thích</span>*/}
+                            {/*</Link>*/}
 
                             <Link
                                 to="/customer/notifications"

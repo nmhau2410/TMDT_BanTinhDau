@@ -1,401 +1,646 @@
 .checkout-page {
     background-color: #f8fafc;
-    min-height: 80vh;
-    padding: 2rem 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    padding: 30px 0 60px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #1e293b;
+    -webkit-font-smoothing: antialiased;
 }
 
 .checkout-container {
-    max-width: 1200px;
+    width: min(1320px, calc(100% - 32px));
     margin: 0 auto;
-    padding: 0 1rem;
-}
-
-.checkout-breadcrumb {
-    font-size: 13px;
-    color: #64748b;
-    margin-bottom: 1.5rem;
     display: flex;
-    align-items: center;
-    gap: 0.4rem;
+    flex-direction: column;
+    gap: 24px;
 }
 
-.checkout-breadcrumb strong {
-    color: #0f172a;
-}
-
-.checkout-layout {
+.checkout-top-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-}
-
-@media (min-width: 992px) {
-    .checkout-layout {
-        grid-template-columns: 1fr 380px;
-    }
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: stretch;
 }
 
 .checkout-card {
-    background-color: #ffffff;
-    border-radius: 12px;
+    background: #ffffff;
     border: 1px solid #e2e8f0;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    border-radius: 12px;
+    padding: 22px 24px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
 }
 
-.checkout-heading h1 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin: 0 0 0.25rem 0;
-    color: #0f172a;
-}
-
-.checkout-heading p {
-    font-size: 13px;
-    color: #64748b;
-    margin-bottom: 1.5rem;
-}
-
-.options-list {
+.flex-card {
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
+    height: 100%;
+    box-sizing: border-box;
 }
 
-.option-item {
+.flex-body {
+    flex: 1;
     display: flex;
-    align-items: flex-start;
-    gap: 0.85rem;
-    padding: 1rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #fafafa;
-    transition: all 0.2s ease;
+    flex-direction: column;
 }
 
-.option-item:hover {
-    border-color: #cbd5e1;
+.flex-column-between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
-.option-item.selected {
-    border-color: #0f172a;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 1px #0f172a;
+.card-header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 16px;
 }
 
-.option-item input[type="radio"] {
-    margin-top: 3px;
-    accent-color: #0f172a;
+.header-icon {
+    font-size: 18px;
+    color: #e11d48;
 }
 
-.option-content {
+.card-header-title h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f172a;
+    letter-spacing: -0.2px;
+}
+
+.form-vertical-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.form-row-group {
+    display: flex;
+    gap: 12px;
+}
+
+.flex-1 {
     flex: 1;
 }
 
-.option-title {
-    font-weight: 600;
-    font-size: 14px;
-    color: #0f172a;
-}
-
-.option-sub {
-    font-size: 12px;
-    color: #64748b;
-    margin-top: 2px;
-}
-
-.option-price {
-    font-weight: 700;
-    font-size: 13px;
-    color: #0f172a;
-    margin-top: 4px;
-}
-
-.summary-card h2 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin: 0 0 1rem 0;
-}
-
-.summary-label {
-    font-size: 12px;
-    color: #94a3b8;
-    margin-bottom: 0.5rem;
-}
-
-.summary-products {
+.flex-grow-note {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    margin-bottom: 1rem;
 }
 
-.summary-product-item {
-    display: flex;
-    justify-content: space-between;
+.form-row label {
     font-size: 13px;
-}
-
-.summary-product-item span {
+    font-weight: 500;
     color: #334155;
 }
 
-.voucher-selector-wrapper {
-    position: relative;
-    margin-bottom: 1rem;
-}
-
-.voucher-select-btn {
+.form-row input,
+.form-row select {
     width: 100%;
-    padding: 0.6rem 0.85rem;
-    background: #ffffff;
+    height: 40px;
+    padding: 0 12px;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     font-size: 13px;
-    cursor: pointer;
-}
-
-.voucher-dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+    font-weight: 400;
+    color: #0f172a;
+    outline: none;
+    box-sizing: border-box;
     background: #ffffff;
-    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.form-row textarea {
+    width: 100%;
+    flex: 1;
+    min-height: 85px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
     border-radius: 8px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    padding: 0.75rem;
-    z-index: 10;
-    margin-top: 4px;
-}
-
-.dropdown-header {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: #64748b;
-    margin-bottom: 0.5rem;
-}
-
-.dropdown-header button {
-    background: none;
-    border: none;
-    color: #3b82f6;
-    cursor: pointer;
-}
-
-.voucher-option {
-    padding: 0.5rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    margin-bottom: 0.4rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-}
-
-.voucher-option:hover {
-    background-color: #f8fafc;
-}
-
-.voucher-option.active {
-    border-color: #3b82f6;
-    background-color: #eff6ff;
-}
-
-.voucher-option p {
-    margin: 0;
-    font-size: 11px;
-    color: #64748b;
-}
-
-.clear-btn {
-    justify-content: center;
-    color: #ef4444;
-    border-style: dashed;
-}
-
-.summary-row {
-    display: flex;
-    justify-content: space-between;
     font-size: 13px;
-    margin-bottom: 0.5rem;
+    font-weight: 400;
+    color: #0f172a;
+    outline: none;
+    box-sizing: border-box;
+    background: #ffffff;
+    resize: none;
+    transition: all 0.2s ease;
+}
+
+.form-row input::placeholder,
+.form-row textarea::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    border-color: #e11d48;
+    box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.08);
+}
+
+.cart-table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 12px;
+}
+
+.cart-items-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.cart-items-table th {
+    text-align: left;
+    padding: 10px 8px;
     color: #64748b;
+    border-bottom: 1px solid #f1f5f9;
+    font-weight: 500;
 }
 
-.discount-text {
-    color: #10b981;
+.cart-items-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #f8fafc;
+    vertical-align: middle;
 }
 
-.summary-divider {
+.col-product {
+    width: 50%;
+}
+
+.product-item-meta {
+    display: flex;
+    align-items: center;
+}
+
+.product-title {
+    display: block;
+    color: #1e293b;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.product-item-meta small {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.col-qty {
+    text-align: center;
+}
+
+.qty-static-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.col-price {
+    color: #64748b;
+    font-weight: 400;
+}
+
+.highlight-price {
+    color: #e11d48;
+    font-weight: 600;
+}
+
+.cart-back-link {
+    margin-top: 6px;
+}
+
+.cart-back-link button {
+    border: none;
+    background: transparent;
+    color: #e11d48;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0;
+}
+
+.summary-calculation {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.checkout-voucher-single-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.checkout-open-voucher-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px dashed #f43f5e;
+    border-radius: 8px;
+    background: #fff1f2;
+    color: #e11d48;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.checkout-open-voucher-btn:hover {
+    background: #ffe4e6;
+}
+
+.checkout-voucher-input-group {
+    display: flex;
+    gap: 8px;
+    flex: 1.2;
+}
+
+.checkout-voucher-input-group input {
+    flex: 1;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 400;
+    outline: none;
+}
+
+.checkout-voucher-input-group input:focus {
+    border-color: #e11d48;
+}
+
+.checkout-voucher-input-group button {
+    padding: 0 16px;
+    height: 38px;
+    border: none;
+    border-radius: 8px;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.calc-divider {
+    width: 100%;
     height: 1px;
-    background-color: #e2e8f0;
-    margin: 0.85rem 0;
+    background: #f1f5f9;
+    margin: 2px 0;
 }
 
-.summary-total {
+.calc-full-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.calc-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.25rem;
-    font-size: 14px;
+    width: 100%;
+    font-size: 13px;
+    color: #475569;
+    font-weight: 400;
 }
 
-.total-price {
-    font-size: 1.25rem;
-    color: #ef4444;
+.calc-row strong {
+    font-weight: 500;
+    color: #0f172a;
+}
+
+.calc-row.discount {
+    color: #e11d48;
+}
+
+.calc-row.discount strong {
+    color: #e11d48;
+    font-weight: 600;
+}
+
+.total-row {
+    font-size: 15px;
+    color: #0f172a;
+}
+
+.total-row span {
+    font-weight: 600;
+}
+
+.final-price {
+    color: #e11d48;
+    font-size: 18px;
     font-weight: 700;
 }
 
-.btn-continue {
+.payment-card-full {
     width: 100%;
-    padding: 0.75rem;
-    background-color: #0f172a;
-    color: #ffffff;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.payment-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.payment-option-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.payment-option-item.selected {
+    border-color: #e11d48;
+    background: #fff1f2;
+}
+
+.payment-option-item input[type="radio"] {
+    margin-top: 3px;
+    accent-color: #e11d48;
+}
+
+.payment-option-content strong {
+    display: block;
     font-size: 14px;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.btn-continue:hover {
-    background-color: #1e293b;
-}
-
-.checkout-processing-layout {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-}
-
-@media (min-width: 992px) {
-    .checkout-processing-layout {
-        grid-template-columns: 1fr 340px;
-    }
-}
-
-.processing-card {
-    text-align: center;
-    padding: 3rem 1.5rem;
-}
-
-.card-icon-center {
-    margin-bottom: 1rem;
-}
-
-.sub-text {
-    font-size: 13px;
-    color: #64748b;
-    max-width: 420px;
-    margin: 0.5rem auto 2rem auto;
-}
-
-.stepper-dots {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-bottom: 2.5rem;
-    font-size: 12px;
-}
-
-.step-dot {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    color: #94a3b8;
-}
-
-.step-dot.done {
-    color: #10b981;
     font-weight: 600;
-}
-
-.step-dot.active {
-    color: #10b981;
-    font-weight: 600;
-}
-
-.stepper-dots .line {
-    width: 30px;
-    height: 2px;
-    background-color: #e2e8f0;
-}
-
-.stepper-dots .line.done {
-    background-color: #10b981;
-}
-
-.processing-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.btn-dark {
-    padding: 0.65rem 1.25rem;
-    background-color: #0f172a;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-.btn-dark-outline {
-    padding: 0.65rem 1.25rem;
-    background-color: #ffffff;
     color: #0f172a;
-    border: 1px solid #0f172a;
-    border-radius: 6px;
-    cursor: pointer;
+}
+
+.payment-option-content p {
+    margin: 4px 0 0;
     font-size: 13px;
-}
-
-.help-card h3 {
-    font-size: 1rem;
-    margin-top: 0;
-}
-
-.help-card p {
-    font-size: 12px;
+    font-weight: 400;
     color: #64748b;
     line-height: 1.5;
 }
 
-.contact-info {
-    margin-top: 1.5rem;
-    font-size: 12px;
+.terms-checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #334155;
+}
+
+.terms-checkbox-row input[type="checkbox"] {
+    accent-color: #e11d48;
+}
+
+.terms-link {
+    color: #e11d48;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-order-full {
+    width: 100%;
+    height: 44px;
+    margin-top: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #e11d48;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-order-full:hover {
+    background: #be123c;
+}
+
+.voucher-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.voucher-modal {
+    width: 480px;
+    max-width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.voucher-modal-header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+.voucher-modal-header h3 {
+    margin: 0;
+    font-size: 16px;
     font-weight: 600;
     color: #0f172a;
 }
 
-.success-card {
-    text-align: center;
-    padding: 4rem 1.5rem;
-    max-width: 600px;
-    margin: 2rem auto;
-}
-
-.success-icon {
-    width: 60px;
-    height: 60px;
-    background-color: #d1fae5;
-    color: #059669;
-    font-size: 30px;
-    border-radius: 50%;
+.close-modal-btn {
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    color: #64748b;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1rem auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}
+
+.close-modal-btn:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.voucher-modal-body {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 420px;
+    overflow-y: auto;
+    background: #f8fafc;
+}
+
+.voucher-card-item {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 14px;
+    position: relative;
+    gap: 12px;
+    transition: all 0.2s ease;
+}
+
+.voucher-card-item.selected {
+    border-color: #e11d48;
+    background: #fff1f2;
+}
+
+.voucher-card-item.disabled {
+    opacity: 0.6;
+    background: #f1f5f9;
+}
+
+.voucher-card-left {
+    width: 54px;
+    height: 54px;
+    background: #fff1f2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px dashed #fecdd3;
+}
+
+.voucher-tag-badge {
+    color: #e11d48;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.voucher-card-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.voucher-card-content h4 {
+    margin: 0 0 3px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.voucher-card-content p {
+    margin: 0;
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.voucher-min-text {
+    display: inline-block;
+    margin-top: 3px;
+    font-size: 11px;
+    color: #e11d48;
+    font-weight: 500;
+}
+
+.voucher-card-right {
+    flex-shrink: 0;
+}
+
+.voucher-select-btn {
+    height: 34px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 6px;
+    background: #e11d48 !important;
+    color: #ffffff !important;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.voucher-select-btn:hover:not(:disabled) {
+    background: #be123c !important;
+}
+
+.voucher-card-item.selected .voucher-select-btn {
+    background: #0f172a !important;
+    color: #ffffff !important;
+}
+
+.voucher-select-btn:disabled {
+    background: #e2e8f0 !important;
+    color: #64748b !important;
+    cursor: not-allowed;
+    opacity: 1 !important;
+}
+
+@media (max-width: 900px) {
+    .checkout-top-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row-group {
+        flex-direction: column;
+    }
+
+    .checkout-voucher-single-row {
+        flex-direction: column;
+    }
+
+    .checkout-open-voucher-btn,
+    .checkout-voucher-input-group {
+        width: 100%;
+    }
 }

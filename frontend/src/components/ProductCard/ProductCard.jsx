@@ -1,19 +1,16 @@
 import React from "react";
-import {
-    FiHeart,
-    FiShoppingBag,
-    FiZap,
-} from "react-icons/fi";
-
+import { useNavigate } from "react-router-dom";
 import "./ProductCard.css";
 
 const formatPrice = (value) => {
     if (!value) return "0đ";
+    return new Intl.NumberFormat("vi-VN").format(value) + "đ";
+};
 
-    return (
-        new Intl.NumberFormat("vi-VN").format(value) +
-        "đ"
-    );
+const extractProvince = (addressStr) => {
+    if (!addressStr) return "";
+    const parts = addressStr.split(",");
+    return parts[parts.length - 1].trim();
 };
 
 function ProductCard({
@@ -23,71 +20,65 @@ function ProductCard({
                          onAdd,
                          onBuy,
                      }) {
-    const image =
-        product.images?.[0] ||
-        product.image;
+    const navigate = useNavigate();
 
-    const price =
-        Number(product.price || 0);
-
-    const oldPrice =
-        Number(
-            product.oldPrice ||
-            product.originalPrice ||
-            0
-        );
+    const image = product.images?.[0] || product.image;
+    const price = Number(product.price || 0);
+    const oldPrice = Number(product.oldPrice || product.originalPrice || 0);
 
     let discount = 0;
-
     if (oldPrice > price) {
-        discount = Math.round(
-            ((oldPrice - price) / oldPrice) *
-            100
-        );
+        discount = Math.round(((oldPrice - price) / oldPrice) * 100);
     }
 
-    const stockText =
-        product.stockText ||
-        "Còn hàng";
-
     const isOutOfStock =
-        stockText
-            .toLowerCase()
-            .includes("hết");
+        product.stock === 0 ||
+        (product.stockText && product.stockText.toLowerCase().includes("hết"));
 
-    const isLowStock =
-        stockText
-            .toLowerCase()
-            .includes("sắp");
+    const workshopName =
+        product.workshopName ||
+        (typeof product.workshop === "string"
+            ? product.workshop
+            : product.workshop?.name) ||
+        "Xưởng Thảo Mộc";
+
+    const provinceName =
+        product.province ||
+        extractProvince(product.location || product.address) ||
+        product.origin ||
+        "Hưng Yên";
+
+    const handleCardClick = (e) => {
+        if (
+            e.target.closest("button") ||
+            e.target.tagName === "BUTTON"
+        ) {
+            return;
+        }
+        navigate(`/customer/product/${product.id}`);
+    };
 
     return (
-        <article className="product-card">
-
-            {/* =========================
-          IMAGE
-      ========================= */}
-
+        <article
+            className={`product-card ${isOutOfStock ? "out-of-stock" : ""}`}
+            onClick={handleCardClick}
+            style={{ cursor: "pointer" }}
+        >
             <div className="product-card-image">
-
                 {product.badge && (
-                    <span className="product-badge">
-            {product.badge}
-          </span>
+                    <span className="product-badge">{product.badge}</span>
                 )}
 
                 <button
                     type="button"
-                    className={
-                        favorite
-                            ? "product-favorite active"
-                            : "product-favorite"
-                    }
-                    onClick={() =>
-                        onFavorite?.(product)
-                    }
+                    className={favorite ? "product-favorite active" : "product-favorite"}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onFavorite?.(product);
+                    }}
                     aria-label="Yêu thích"
                 >
-                    <FiHeart />
+                    ♥
                 </button>
 
                 {image ? (
@@ -95,194 +86,91 @@ function ProductCard({
                         src={image}
                         alt={product.name}
                         onError={(e) => {
-                            e.currentTarget.style.display =
-                                "none";
-
-                            const fallback =
-                                e.currentTarget.parentElement.querySelector(
-                                    ".product-image-fallback"
-                                );
-
-                            if (fallback) {
-                                fallback.style.display =
-                                    "flex";
-                            }
+                            e.currentTarget.style.display = "none";
+                            const fallback = e.currentTarget.parentElement.querySelector(
+                                ".product-image-fallback"
+                            );
+                            if (fallback) fallback.style.display = "flex";
                         }}
                     />
                 ) : null}
 
                 <div
                     className="product-image-fallback"
-                    style={{
-                        display: image
-                            ? "none"
-                            : "flex",
-                    }}
+                    style={{ display: image ? "none" : "flex" }}
                 >
-                    <span>🌿</span>
-                    <small>
-                        Oiila
-                    </small>
+                    <small>Oilia</small>
                 </div>
-
             </div>
 
-            {/* =========================
-          CONTENT
-      ========================= */}
-
             <div className="product-card-content">
-
-                {/* Rating */}
-
                 <div className="product-rating">
-
-          <span className="rating-star">
-            ★
-          </span>
-
-                    <strong>
-                        {product.rating || "5.0"}
-                    </strong>
-
-                    <span>
-            (
-                        {product.reviews || "0"}
-                        + đã bán)
-          </span>
-
+                    <strong>{product.rating || "5.0"}</strong>
+                    <span>({product.reviews || "0"} đánh giá)</span>
+                    <span className="product-sold">
+                        Đã bán {product.sold || product.reviews || 0}
+                    </span>
                 </div>
 
-                {/* Name */}
-
-                <h3 className="product-name">
-                    {product.name}
-                </h3>
-
-                {/* Description */}
+                <h3 className="product-name">{product.name}</h3>
 
                 {product.description && (
-                    <p className="product-description">
-                        {product.description}
-                    </p>
+                    <p className="product-description">{product.description}</p>
                 )}
 
-                {/* Origin */}
-
-                {product.origin && (
-                    <div className="product-origin">
-
-            <span>
-              ❧
-            </span>
-
-                        <span>
-              {product.origin}
-            </span>
-
-                    </div>
-                )}
+                <div className="product-workshop-row">
+                    <span className="workshop-name-text">{workshopName}</span>
+                    <span className="workshop-province-text">{provinceName}</span>
+                </div>
 
                 <div className="product-divider" />
 
-                {/* Price */}
-
                 <div className="product-price-row">
-
                     <div className="product-price">
-
-                        <strong>
-                            {formatPrice(price)}
-                        </strong>
-
-                        {product.variants?.[0]?.volume && (
-                            <span>
-                /{product.variants[0].volume}
-              </span>
+                        <strong>{formatPrice(price)}</strong>
+                        {oldPrice > price && (
+                            <>
+                                <del>{formatPrice(oldPrice)}</del>
+                                <span className="discount">-{discount}%</span>
+                            </>
                         )}
-
+                        {product.variants?.[0]?.volume && (
+                            <span>/{product.variants[0].volume}</span>
+                        )}
                     </div>
 
-                    <div
-                        className={
-                            isOutOfStock
-                                ? "stock-status out"
-                                : isLowStock
-                                    ? "stock-status low"
-                                    : "stock-status"
-                        }
-                    >
+                    <div className={isOutOfStock ? "stock-status out" : "stock-status"}>
                         <span />
-
-                        {stockText}
+                        {isOutOfStock ? "Hết hàng" : "Còn hàng"}
                     </div>
-
                 </div>
-
-                {/* Old price */}
-
-                <div className="product-old-price">
-
-                    {oldPrice > price && (
-                        <>
-                            <del>
-                                {formatPrice(oldPrice)}
-                            </del>
-
-                            <span className="discount">
-                -{discount}%
-              </span>
-                        </>
-                    )}
-
-                </div>
-
-                {/* Buttons */}
 
                 <div className="product-actions">
-
                     <button
                         type="button"
-                        className={
-                            isOutOfStock
-                                ? "product-button add disabled"
-                                : "product-button add"
-                        }
+                        className="product-button add"
                         disabled={isOutOfStock}
-                        onClick={() =>
-                            onAdd?.(product)
-                        }
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onAdd?.(product);
+                        }}
                     >
-                        <FiShoppingBag />
-
-                        <span>
-              Thêm giỏ
-            </span>
+                        <span>Thêm giỏ</span>
                     </button>
 
                     <button
                         type="button"
-                        className={
-                            isOutOfStock
-                                ? "product-button buy disabled"
-                                : "product-button buy"
-                        }
+                        className="product-button buy"
                         disabled={isOutOfStock}
-                        onClick={() =>
-                            onBuy?.(product)
-                        }
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onBuy?.(product);
+                        }}
                     >
-                        <FiZap />
-
-                        <span>
-              Mua ngay
-            </span>
+                        <span>Mua ngay</span>
                     </button>
-
                 </div>
-
             </div>
-
         </article>
     );
 }

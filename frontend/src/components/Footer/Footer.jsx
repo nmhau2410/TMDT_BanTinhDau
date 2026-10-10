@@ -4,122 +4,77 @@ import "./Footer.css";
 export default function Footer() {
     return (
         <footer className="site-footer">
-
             <div className="footer-container">
-
-                {/* Brand */}
                 <div className="footer-brand">
-
-                    <a
-                        href="/"
-                        className="footer-logo"
-                    >
+                    <a href="/" className="footer-logo">
                         <span className="footer-logo__icon"></span>
                         <span>Oilia</span>
                     </a>
 
                     <p>
-                        Welcome to Estrella, where brilliance
-                        <br />
-                        meets innovation!
-                        <br />
-                        We are a leading company dedicated
-                        <br />
-                        to delivering exceptional products
-                        <br />
-                        and services to cater to your needs.
+                        Chào mừng bạn đến với Oilia – thương hiệu tinh dầu thiên nhiên, nước hoa cá nhân hóa và sản phẩm mùi hương cao cấp. Chúng tôi cam kết mang đến giải pháp thư giãn tự nhiên và nâng tầm không gian sống của bạn.
                     </p>
 
                 </div>
 
-                {/* Categories */}
                 <div className="footer-column">
 
-                    <h3>Categories</h3>
+                    <h3>Danh Mục</h3>
 
-                    <a href="/fashion">Fashion</a>
-                    <a href="/jewelry">Jewelry</a>
-                    <a href="/sports">Sports</a>
-                    <a href="/electronics">
-                        Electronics
-                    </a>
-                    <a href="/indoor">Indoor</a>
+                    <a href="/customer/products">Tinh dầu thiên nhiên</a>
+                    <a href="/customer/products">Nước hoa Bespoke</a>
+                    <a href="/customer/products">Nến thơm cao cấp</a>
+                    <a href="/customer/products">Tinh dầu xông phòng</a>
+                    <a href="/customer/products">Quà tặng hương thơm</a>
+
+                </div>
+                <div className="footer-column">
+
+                    <h3>Mua Hàng</h3>
+
+                    <a href="/payments">Phương thức thanh toán</a>
+                    <a href="/delivery">Chính sách vận chuyển</a>
+                    <a href="/buyer-protection">Bảo vệ người tiêu dùng</a>
 
                 </div>
 
-                {/* Shopping */}
                 <div className="footer-column">
 
-                    <h3>Shopping</h3>
+                    <h3>Chăm Sóc Khách Hàng</h3>
 
-                    <a href="/payments">Payments</a>
-                    <a href="/delivery">
-                        Delivery options
-                    </a>
-                    <a href="/buyer-protection">
-                        Buyer protection
-                    </a>
+                    <a href="/help-center">Trung tâm hỗ trợ</a>
+                    <a href="/terms">Điều khoản & Điều kiện</a>
+                    <a href="/privacy">Chính sách bảo mật</a>
+                    <a href="/returns">Chính sách đổi trả</a>
+                    <a href="/feedback">Góp ý & Khảo sát</a>
 
                 </div>
 
-                {/* Customer care */}
                 <div className="footer-column">
 
-                    <h3>Customer care</h3>
+                    <h3>Về Oilia</h3>
 
-                    <a href="/help-center">
-                        Help center
-                    </a>
-
-                    <a href="/terms">
-                        Terms &amp; Conditions
-                    </a>
-
-                    <a href="/privacy">
-                        Privacy policy
-                    </a>
-
-                    <a href="/returns">
-                        Returns &amp; refund
-                    </a>
-
-                    <a href="/feedback">
-                        Survey &amp; feedback
-                    </a>
+                    <a href="/about">Giới thiệu</a>
+                    <a href="/customer/workshop">Xưởng sản xuất</a>
+                    <a href="/contact">Liên hệ</a>
+                    <a href="/services">Dịch vụ điều chế</a>
+                    <a href="/blog">Tin tức & Bài viết</a>
 
                 </div>
 
-                {/* Pages */}
-                <div className="footer-column">
-
-                    <h3>Pages</h3>
-
-                    <a href="/about">About Us</a>
-                    <a href="/shop">Shop</a>
-                    <a href="/contact">
-                        Contact Us
-                    </a>
-                    <a href="/services">
-                        Services
-                    </a>
-                    <a href="/blog">Blog</a>
-
-                </div>
-
-                {/* Subscribe */}
                 <div className="footer-subscribe">
 
-                    <h3>Subscribe Now</h3>
+                    <h3>Đăng Ký Nhận Tin</h3>
 
                     <div className="subscribe-form">
 
                         <input
                             type="email"
-                            placeholder="Your email"
+                            placeholder="Email của bạn..."
                         />
 
                         <button type="button">
-                            Submit
+                            Gửi
                         </button>
 
                     </div>
@@ -149,9 +104,9 @@ export default function Footer() {
             </div>
 
             <div className="footer-bottom">
-        <span>
-          © 2023 oilia Inc. All rights reserved
-        </span>
+                <span>
+                    © 2026 Oilia Atelier. Tất cả quyền được bảo lưu.
+                </span>
             </div>
 
         </footer>

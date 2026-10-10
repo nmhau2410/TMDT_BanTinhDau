@@ -18,7 +18,29 @@ import "../css/ProductPage.css";
 function ProductPage() {
     const navigate = useNavigate();
 
-    const products = productDatabase?.products || [];
+    const [products, setProducts] = useState([]);
+
+    React.useEffect(() => {
+        fetch("http://localhost:8080/api/products")
+            .then(res => res.json())
+            .then(data => {
+                const mapProduct = (p) => ({
+                    ...p,
+                    category: p.type === "PERFUME" ? "nuoc-hoa" : p.type === "ESSENTIAL_OIL" ? "tinh-dau" : "nen-thom",
+                    scent: p.scentNotes,
+                    oldPrice: p.salePrice ? p.price : null,
+                    price: p.salePrice ? p.salePrice : p.price,
+                    origin: p.workshopProvince || "Việt Nam",
+                    progress: p.stock > 0 ? Math.round((p.sold / (p.sold + p.stock)) * 100) : 0,
+                    reviews: p.sold,
+                });
+                setProducts(data.map(mapProduct));
+            })
+            .catch(err => {
+                console.error("Error fetching products:", err);
+                setProducts(productDatabase?.products || []);
+            });
+    }, []);
 
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("all");
@@ -27,33 +49,16 @@ function ProductPage() {
     const [sort, setSort] = useState("default");
 
     const [selectedGroups, setSelectedGroups] = useState([]);
-
     const [favorites, setFavorites] = useState([]);
-
-    /* =========================
-       FILTER
-    ========================= */
 
     const filteredProducts = useMemo(() => {
         let result = [...products];
-
-        // /* Tìm kiếm */
-        // if (search.trim()) {
-        //     const keyword = search.toLowerCase().trim();
-        //
-        //     result = result.filter((product) =>
-        //         product.name?.toLowerCase().includes(keyword)
-        //     );
-        // }
-
-        /* Danh mục */
         if (category !== "all") {
             result = result.filter(
                 (product) => product.category === category
             );
         }
 
-        /* Giá */
         if (priceRange !== "all") {
             const range = productDatabase.priceRanges?.find(
                 (item) => item.value === priceRange
@@ -71,22 +76,17 @@ function ProductPage() {
             }
         }
 
-        /* Rating */
         if (rating !== "all") {
             result = result.filter(
                 (product) =>
                     Number(product.rating || 0) >= Number(rating)
             );
         }
-
-        /* Nhóm mùi */
         if (selectedGroups.length > 0) {
             result = result.filter((product) =>
                 selectedGroups.includes(product.scent)
             );
         }
-
-        /* Sắp xếp */
         if (sort === "price-asc") {
             result.sort(
                 (a, b) =>
@@ -94,7 +94,6 @@ function ProductPage() {
                     Number(b.price || 0)
             );
         }
-
         if (sort === "price-desc") {
             result.sort(
                 (a, b) =>
@@ -130,10 +129,6 @@ function ProductPage() {
         sort,
     ]);
 
-    /* =========================
-       FAVORITE
-    ========================= */
-
     const toggleFavorite = (product) => {
         setFavorites((current) => {
             if (current.includes(product.id)) {
@@ -146,10 +141,6 @@ function ProductPage() {
         });
     };
 
-    /* =========================
-       RESET
-    ========================= */
-
     const resetFilters = () => {
         setSearch("");
         setCategory("all");
@@ -158,10 +149,6 @@ function ProductPage() {
         setSelectedGroups([]);
         setSort("default");
     };
-
-    /* =========================
-       CART / BUY
-    ========================= */
 
     const handleAdd = (product) => {
         if (!product) return;
@@ -179,10 +166,6 @@ function ProductPage() {
         navigate("/cart");
     };
 
-    /* =========================
-       GROUP CHECKBOX
-    ========================= */
-
     const toggleGroup = (group) => {
         setSelectedGroups((current) => {
             if (current.includes(group)) {
@@ -195,10 +178,6 @@ function ProductPage() {
         });
     };
 
-    /* =========================
-       GROUPS
-    ========================= */
-
     const scentGroups = [
         "Cam Bergamot",
         "Lavender Pháp",
@@ -210,25 +189,11 @@ function ProductPage() {
     return (
         <div className="product-page">
 
-            {/* HEADER */}
             <Header />
 
             <main>
 
-                {/* =========================
-            SEARCH SUGGESTIONS
-        ========================= */}
-
-
-                {/* =========================
-            PRODUCT AREA
-        ========================= */}
-
                 <section className="product-layout">
-
-                    {/* =========================
-              SIDEBAR
-          ========================= */}
 
                     <aside className="product-sidebar">
 
@@ -251,7 +216,6 @@ function ProductPage() {
 
                         </div>
 
-                        {/* DANH MỤC */}
 
                         <div className="filter-section">
 
@@ -269,13 +233,13 @@ function ProductPage() {
                                     setCategory("all")
                                 }
                             >
-                <span className="check-box">
-                  {category === "all" && "✓"}
-                </span>
+                                <span className="check-box">
+                                    {category === "all" && "✓"}
+                                </span>
 
                                 <span>
-                  Tất cả sản phẩm
-                </span>
+                                    Tất cả sản phẩm
+                                </span>
 
                                 <small>
                                     ({products.length})
@@ -295,21 +259,19 @@ function ProductPage() {
                                             setCategory(item.value)
                                         }
                                     >
-                    <span className="check-box">
-                      {category === item.value &&
-                          "✓"}
-                    </span>
+                                        <span className="check-box">
+                                            {category === item.value && "✓"}
+                                        </span>
 
                                         <span>
-                      {item.label}
-                    </span>
+                                            {item.label}
+                                        </span>
                                     </button>
                                 )
                             )}
 
                         </div>
 
-                        {/* GIÁ */}
 
                         <div className="filter-section">
 
@@ -328,8 +290,8 @@ function ProductPage() {
                                 />
 
                                 <span>
-                  Tất cả
-                </span>
+                                    Tất cả
+                                </span>
                             </label>
 
                             {productDatabase.priceRanges?.map(
@@ -350,8 +312,8 @@ function ProductPage() {
                                         />
 
                                         <span>
-                      {item.label}
-                    </span>
+                                            {item.label}
+                                        </span>
                                     </label>
                                 )
                             )}
@@ -374,7 +336,6 @@ function ProductPage() {
 
                         </div>
 
-                        {/* NHÓM MÙI */}
 
                         <div className="filter-section">
 
@@ -409,7 +370,6 @@ function ProductPage() {
 
                         </div>
 
-                        {/* RATING */}
 
                         <div className="filter-section">
 
@@ -435,11 +395,11 @@ function ProductPage() {
                                         />
 
                                         <span className="stars">
-                      {"★".repeat(value)}
+                                            {"★".repeat(value)}
                                             <span className="empty-stars">
-                        {"★".repeat(5 - value)}
-                      </span>
-                    </span>
+                                                {"★".repeat(5 - value)}
+                                            </span>
+                                        </span>
 
                                         <small>
                                             (Từ {value} sao)
@@ -451,7 +411,6 @@ function ProductPage() {
 
                         </div>
 
-                        {/* NÔNG TRẠI */}
 
                         <div className="filter-section">
 
@@ -462,38 +421,37 @@ function ProductPage() {
                             <label className="filter-check">
                                 <span className="check-box" />
                                 <span>
-                  Đà Lạt Organic
-                </span>
+                                    Đà Lạt Organic
+                                </span>
                                 <small>(14)</small>
                             </label>
 
                             <label className="filter-check">
                                 <span className="check-box" />
                                 <span>
-                  Bảo Lộc Farm
-                </span>
+                                    Bảo Lộc Farm
+                                </span>
                                 <small>(8)</small>
                             </label>
 
                             <label className="filter-check">
                                 <span className="check-box" />
                                 <span>
-                  Hạ Giang Native
-                </span>
+                                    Hạ Giang Native
+                                </span>
                                 <small>(6)</small>
                             </label>
 
                             <label className="filter-check">
                                 <span className="check-box" />
                                 <span>
-                  Nhập khẩu Pháp
-                </span>
+                                    Nhập khẩu Pháp
+                                </span>
                                 <small>(10)</small>
                             </label>
 
                         </div>
 
-                        {/* BUTTON */}
 
                         <div className="filter-actions">
 
@@ -515,9 +473,6 @@ function ProductPage() {
 
                     </aside>
 
-                    {/* =========================
-              PRODUCTS
-          ========================= */}
 
                     <section className="product-results">
 
@@ -525,10 +480,10 @@ function ProductPage() {
 
                             <div>
                                 <span>
-                                  Hiển thị{" "}
+                                    Hiển thị{" "}
                                     <strong>
-                                    {filteredProducts.length}
-                                  </strong>{" "}
+                                        {filteredProducts.length}
+                                    </strong>{" "}
                                     sản phẩm phù hợp tiêu chí
                                 </span>
                                 <div className="search-suggestions">
@@ -612,8 +567,8 @@ function ProductPage() {
 
                             <div className="empty-products">
 
-                                <div>
-                                    🔍
+                                <div className="empty-products-icon">
+                                    <FiSearch />
                                 </div>
 
                                 <h2>
@@ -621,16 +576,8 @@ function ProductPage() {
                                 </h2>
 
                                 <p>
-                                    Hãy thử thay đổi bộ lọc hoặc
-                                    từ khóa tìm kiếm.
+                                    Hãy thử thay đổi bộ lọc hoặc từ khóa tìm kiếm.
                                 </p>
-
-                                <button
-                                    type="button"
-                                    onClick={resetFilters}
-                                >
-                                    Xóa bộ lọc
-                                </button>
 
                             </div>
 
@@ -642,9 +589,6 @@ function ProductPage() {
 
             </main>
 
-            {/* =========================
-          FOOTER
-      ========================= */}
 
             <Footer />
 
